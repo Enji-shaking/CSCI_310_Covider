@@ -3,13 +3,13 @@ package database.user;
 import static org.junit.Assert.*;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import model.user.User;
 
 public class UserManagerTest{
     UserManager um;

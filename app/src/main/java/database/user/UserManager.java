@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import database.DatabaseHandler;
-import database.notification.Notification;
+import model.user.User;
 
 public class UserManager extends DatabaseHandler {
     private static final String TABLE_NAME = "user";
@@ -33,11 +33,11 @@ public class UserManager extends DatabaseHandler {
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     KEY_NAME + " TEXT, " +
                     KEY_PASS + " TEXT, " +
-                    KEY_IS_STU + " TEXT" +
+                    KEY_IS_STU + " INTEGER" +
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            create_default_users();
+            createDefaultUsers();
         }
     }
 
@@ -51,7 +51,7 @@ public class UserManager extends DatabaseHandler {
     public int addOrUpdateUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, user.getID());
+        values.put(KEY_ID, user.getId());
         values.put(KEY_NAME, user.getName());
         values.put(KEY_PASS, user.getPassword());
         values.put(KEY_IS_STU, user.getIsStudent());
@@ -91,10 +91,10 @@ public class UserManager extends DatabaseHandler {
         return user;
     }
 
-    private void create_default_users(){
+    private void createDefaultUsers(){
         // should have user id of 1,2,3
         addUser("Mark", "password", 1);
-        addUser("Enji", "password", 1);
+        addUser("Enji", "password", 0);
         addUser("ZSN", "password", 1);
     }
 

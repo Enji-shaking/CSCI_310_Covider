@@ -1,9 +1,9 @@
-package database.user;
+package model.user;
 
 public class User {
     // incorrect approach since id_inc is reset everytime the program restarts
     //    private static int id_inc = 1;
-    private int ID;
+    private long id;
     private String name;
     private String password;
     private int isStudent; // 1 or 0
@@ -12,8 +12,8 @@ public class User {
 //        return new User(id_inc++, name, password, isStudent);
 //    }
 
-    public User(int ID, String name, String password, int isStudent) {
-        this.ID = ID;
+    public User(long id, String name, String password, int isStudent) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.isStudent = isStudent;
@@ -35,12 +35,12 @@ public class User {
         this.password = password;
     }
 
-    public int getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getIsStudent() {

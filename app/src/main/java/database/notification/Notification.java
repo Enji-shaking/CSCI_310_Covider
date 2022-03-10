@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Notification {
     // incorrect approach since id_inc is reset everytime the program restarts
 //    private static int id_inc = 1;
-    private int id;
-    private int from;
-    private int to;
+    private long id;
+    private long from;
+    private long to;
     private int read; // 1 or 0
     private String message;
 
@@ -15,7 +15,8 @@ public class Notification {
 //        return new Notification(id_inc++, from, to, read, message);
 //    }
 
-    public Notification(int id, int from, int to, int read, String message) {
+
+    public Notification(long id, long from, long to, int read, String message) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -23,27 +24,27 @@ public class Notification {
         this.message = message;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getFrom() {
+    public long getFrom() {
         return from;
     }
 
-    public void setFrom(int from) {
+    public void setFrom(long from) {
         this.from = from;
     }
 
-    public int getTo() {
+    public long getTo() {
         return to;
     }
 
-    public void setTo(int to) {
+    public void setTo(long to) {
         this.to = to;
     }
 

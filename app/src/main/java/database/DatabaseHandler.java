@@ -9,9 +9,15 @@ public abstract class DatabaseHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "covider";
     private static SQLiteDatabase currentDB;
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
 
     protected DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -51,7 +57,7 @@ public abstract class DatabaseHandler extends SQLiteOpenHelper{
         }
     }
 
-    public int getNextId(String table_name){
+    public long getNextId(String table_name){
 //        printAutoIncrements();
         SQLiteDatabase db = getReadableDatabase();
         try(Cursor cursor = db.query(

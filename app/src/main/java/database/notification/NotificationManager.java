@@ -32,9 +32,9 @@ public class NotificationManager extends DatabaseHandler {
             String SQL_CREATE_Query = "CREATE TABLE " + TABLE_NAME +
                     " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    KEY_FROM + " TEXT, " +
-                    KEY_TO + " TEXT, " +
-                    KEY_READ + " TEXT, " +
+                    KEY_FROM + " INTEGER, " +
+                    KEY_TO + " INTEGER, " +
+                    KEY_READ + " INTEGER, " +
                     KEY_MSG + " TEXT" +
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
@@ -45,35 +45,17 @@ public class NotificationManager extends DatabaseHandler {
 
 
     private void create_default_notification(){
-        Notification notification1 = new Notification(10, 999, 888, 0, "Hi Enji");
+        Notification notification1 = new Notification(10, 999L, 888L, 0, "Hi Enji");
         addOrUpdateNotification(notification1);
     }
 
-
-//    public void printAutoIncrements(){
-//        System.out.println("Here");
-//        SQLiteDatabase db = getReadableDatabase();
-//        String query = "SELECT * FROM SQLITE_SEQUENCE";
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()){
-//            do{
-//                System.out.println("tableName: " +cursor.getString(cursor.getColumnIndex("name")));
-//                System.out.println("autoInc: " + cursor.getString(cursor.getColumnIndex("seq")));
-//
-//            }while (cursor.moveToNext());
-//        }
-//        cursor.close();
-//    }
-
-
-
     // Warning: this will not modify the id inside since no insertion happened.
     // Have to insert the created one immediately otherwise will get two notifications with the same id
-    public Notification generateNewNotification(int from, int to, int read, String message){
+    public Notification generateNewNotification(long from, long to, int read, String message){
         return new Notification(getNextId(TABLE_NAME), from, to, read, message);
     }
 
-    public int addOrUpdateNotification(Notification notification){
+    public long addOrUpdateNotification(Notification notification){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID, notification.getId());
@@ -81,21 +63,21 @@ public class NotificationManager extends DatabaseHandler {
         values.put(KEY_TO, notification.getTo());
         values.put(KEY_READ, notification.getRead());
         values.put(KEY_MSG, notification.getMessage());
-        return (int) db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
-    public int addNotification(int from, int to, int read, String message){
+    public long addNotification(int from, int to, String message){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_FROM, from);
         values.put(KEY_TO, to);
-        values.put(KEY_READ, read);
+        values.put(KEY_READ, 0);
         values.put(KEY_MSG, message);
-        return (int) db.insert(TABLE_NAME, null, values);
+        return db.insert(TABLE_NAME, null, values);
     }
 
     // code to get the single contact
-    Notification getNotification(int id) {
+    public Notification getNotification(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_FROM,
@@ -105,16 +87,16 @@ public class NotificationManager extends DatabaseHandler {
                 return null;
             }
             return new Notification(
-                    cursor.getInt(0),
-                    cursor.getInt(1),
-                    cursor.getInt(2),
+                    cursor.getLong(0),
+                    cursor.getLong(1),
+                    cursor.getLong(2),
                     cursor.getInt(3),
                     cursor.getString(4)
             );
         }
     }
 
-    public ArrayList<Notification> getNotificationFor(int user_id){
+    public ArrayList<Notification> getNotificationFor(long user_id){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Notification> list = new ArrayList<Notification>();
         try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_FROM,
@@ -125,9 +107,9 @@ public class NotificationManager extends DatabaseHandler {
             }
             do{
                 list.add(new Notification(
-                        cursor.getInt(0),
-                        cursor.getInt(1),
-                        cursor.getInt(2),
+                        cursor.getLong(0),
+                        cursor.getLong(1),
+                        cursor.getLong(2),
                         cursor.getInt(3),
                         cursor.getString(4)
                 ));
@@ -137,9 +119,9 @@ public class NotificationManager extends DatabaseHandler {
         return list;
     }
 
-    public void deleteNotification(int id){
+    public void deleteNotification(long id){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, "id=?", new String[]{Integer.toString(id)});
+        db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
     }
 
     @Override
