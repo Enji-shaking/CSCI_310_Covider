@@ -16,7 +16,7 @@ public class UserManagerTest{
     @Before
     public void setup(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        instrumentationContext.deleteDatabase("covider");
+        instrumentationContext.deleteDatabase("covider");
         um = UserManager.getInstance(instrumentationContext);
     }
 

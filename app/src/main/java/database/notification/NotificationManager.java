@@ -96,12 +96,12 @@ public class NotificationManager extends DatabaseHandler {
         }
     }
 
-    public ArrayList<Notification> getNotificationFor(long user_id){
+    public ArrayList<Notification> getNotificationFor(long userId){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Notification> list = new ArrayList<Notification>();
         try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_FROM,
                         KEY_TO, KEY_READ, KEY_MSG }, KEY_TO + "=?",
-                new String[] { String.valueOf(user_id) }, null, null, null, null)){
+                new String[] { String.valueOf(userId) }, null, null, null, null)){
             if(!cursor.moveToFirst()){
                 return list;
             }

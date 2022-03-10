@@ -94,8 +94,8 @@ public class UserManager extends DatabaseHandler {
     private void createDefaultUsers(){
         // should have user id of 1,2,3
         addUser("Mark", "password", 1);
-        addUser("Enji", "password", 0);
-        addUser("ZSN", "password", 1);
+        addUser("Enji", "password", 1);
+        addUser("ZSN", "password", 0);
     }
 
     @Override
@@ -114,5 +114,21 @@ public class UserManager extends DatabaseHandler {
 
     public static String getTableName() {
         return TABLE_NAME;
+    }
+
+    public static String getKeyId() {
+        return KEY_ID;
+    }
+
+    public static String getKeyName() {
+        return KEY_NAME;
+    }
+
+    public static String getKeyPass() {
+        return KEY_PASS;
+    }
+
+    public static String getKeyIsStu() {
+        return KEY_IS_STU;
     }
 }

@@ -16,10 +16,6 @@ public class CourseManager extends DatabaseHandler {
     private static final String TABLE_NAME = "course";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
-    private static final String TABLE_ENROLLMENT_NAME = "enrollment";
-    private static final String KEY_ENROLLMENT_ID = "id";
-    private static final String KEY_ENROLLMENT_USER_ID = "userId";
-    private static final String KEY_ENROLLMENT_COURSE_ID = "courseId";
 
     private static CourseManager instance = null;
 
@@ -41,17 +37,6 @@ public class CourseManager extends DatabaseHandler {
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
             createDefaultCourses();
-        }
-        if(!isTableExist(TABLE_ENROLLMENT_NAME)){
-            String SQL_CREATE_Query = "CREATE TABLE " + TABLE_ENROLLMENT_NAME +
-                    " (" +
-                    KEY_ENROLLMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    KEY_ENROLLMENT_USER_ID + " INTEGER, " +
-                    KEY_ENROLLMENT_COURSE_ID + " INTEGER " +
-                    ")";
-            SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL(SQL_CREATE_Query);
-            createDefaultEnrollment();
         }
     }
 
@@ -106,25 +91,6 @@ public class CourseManager extends DatabaseHandler {
         addCourse("ZSNCourse");
     }
 
-
-    // 注意，这里是偷懒的作品，不单独写一个enrollment manager了
-    // 3 个default user 都和course1 有联系
-    private void createDefaultEnrollment(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_ENROLLMENT_USER_ID, 1);
-        values.put(KEY_ENROLLMENT_COURSE_ID, 1);
-        db.insert(TABLE_ENROLLMENT_NAME, null, values);
-        values.clear();
-        values.put(KEY_ENROLLMENT_USER_ID, 2);
-        values.put(KEY_ENROLLMENT_COURSE_ID, 1);
-        db.insert(TABLE_ENROLLMENT_NAME, null, values);
-        values.clear();
-        values.put(KEY_ENROLLMENT_USER_ID, 3);
-        values.put(KEY_ENROLLMENT_COURSE_ID, 1);
-        db.insert(TABLE_ENROLLMENT_NAME, null, values);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         super.onCreate(db);
@@ -153,4 +119,11 @@ public class CourseManager extends DatabaseHandler {
         return TABLE_NAME;
     }
 
+    public static String getKeyId() {
+        return KEY_ID;
+    }
+
+    public static String getKeyName() {
+        return KEY_NAME;
+    }
 }
