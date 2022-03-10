@@ -66,7 +66,7 @@ public class NotificationManager extends DatabaseHandler {
         return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
-    public long addNotification(int from, int to, String message){
+    public long addNotification(long from, long to, String message){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_FROM, from);

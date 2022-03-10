@@ -8,8 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import database.DatabaseHandler;
+import database.ManagerFactory;
+import database.enrollment.EnrollmentManager;
 import database.notification.NotificationManager;
 import model.course.Course;
+import model.user.Student;
 import model.user.User;
 
 public class CourseManager extends DatabaseHandler {
@@ -66,7 +69,7 @@ public class CourseManager extends DatabaseHandler {
 
 
     // code to get the single contact
-    Course getCourse(int id) {
+    Course getCourse(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
@@ -105,13 +108,17 @@ public class CourseManager extends DatabaseHandler {
         onCreate(db);
     }
 
-    // 妈的，我还是需要变成一个enrollment manager，先这样，明天再说
-    public ArrayList<Long> notifyOnline(int profId, int courseId){
-//
-        NotificationManager nm = NotificationManager.getInstance(getContext());
+    public ArrayList<Long> notifyOnline(long profId, long courseId){
+        // TODO: verify if the professor is teaching the course, or he is actually a professor
+        ManagerFactory.initialize(getContext());
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+        ArrayList<Student> list = em.getStudentsEnrollingIn(courseId);
         ArrayList<Long> l = new ArrayList<>();
-        l.add(nm.addNotification(profId, 1,  "Course online"));
-        l.add(nm.addNotification(profId, 3,  "Course online"));
+        Course c = getCourse(courseId);
+        for(Student s: list){
+            l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now online"));
+        }
         return l;
     }
 

@@ -27,7 +27,7 @@ public class CourseManagerTest {
     }
 
     @Test
-    public void testDefaultUsers(){
+    public void testDefaultCourse(){
         Course course = um.getCourse(1);
         assertEquals(course.getName(), "MarkCourse");
         Course course2 = um.getCourse(2);
@@ -43,14 +43,14 @@ public class CourseManagerTest {
 //        NotificationManager nm = NotificationManager.getInstance(InstrumentationRegistry.getInstrumentation().getTargetContext());
         NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
         try{
-            l = um.notifyOnline(2, 1);
+            l = um.notifyOnline(3, 1);
             assertEquals(l.size(), 2);
             Notification not1 = nm.getNotification(l.get(0));
             Notification not2 = nm.getNotification(l.get(1));
-            assertEquals(not1.getFrom(), 2);
+            assertEquals(not1.getFrom(), 3);
             assertEquals(not1.getTo(), 1);
-            assertEquals(not2.getFrom(), 2);
-            assertEquals(not2.getTo(), 3);
+            assertEquals(not2.getFrom(), 3);
+            assertEquals(not2.getTo(), 2);
         }finally {
             if(l!=null){
                 for(long i: l){
