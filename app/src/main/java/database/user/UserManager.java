@@ -71,14 +71,16 @@ public class UserManager extends DatabaseHandler {
 
 
     // code to get the single contact
-    User getUser(int id) {
+    public User getUser(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
                         KEY_NAME, KEY_PASS, KEY_IS_STU }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        if (cursor == null || !cursor.moveToFirst()){
+            return null;
+        }
+
 
         User user = new User(
                 cursor.getInt(0),
