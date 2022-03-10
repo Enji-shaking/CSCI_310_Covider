@@ -3,15 +3,12 @@ package database.enrollment;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 import database.DatabaseHandler;
 import database.course.CourseManager;
-import database.notification.Notification;
 import database.user.UserManager;
 import model.course.Course;
 import model.user.Professor;

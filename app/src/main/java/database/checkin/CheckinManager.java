@@ -5,10 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.ArrayList;
-
 import database.DatabaseHandler;
-import database.notification.Notification;
 
 public class CheckinManager extends DatabaseHandler {
 

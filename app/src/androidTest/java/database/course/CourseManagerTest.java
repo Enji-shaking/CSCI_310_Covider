@@ -12,7 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import database.ManagerFactory;
-import database.notification.Notification;
+import model.notification.Notification;
 import database.notification.NotificationManager;
 import model.course.Course;
 

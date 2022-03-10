@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import database.ManagerFactory;
+import model.notification.Notification;
 
 public class NotificationManagerTest {
     NotificationManager nm;

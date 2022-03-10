@@ -1,4 +1,4 @@
-package database.notification;
+package model.notification;
 
 import java.util.Objects;
 

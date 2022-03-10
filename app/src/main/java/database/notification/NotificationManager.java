@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import database.DatabaseHandler;
+import model.notification.Notification;
 
 public class NotificationManager extends DatabaseHandler {
     private static final String TABLE_NAME = "notification";
