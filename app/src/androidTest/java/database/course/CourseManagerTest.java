@@ -11,11 +11,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import database.course.CourseManager;
+import database.ManagerFactory;
 import database.notification.Notification;
 import database.notification.NotificationManager;
 import model.course.Course;
-import model.user.User;
 
 public class CourseManagerTest {
     CourseManager um;
@@ -23,7 +22,8 @@ public class CourseManagerTest {
     public void setup(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 //        instrumentationContext.deleteDatabase("covider");
-        um = CourseManager.getInstance(instrumentationContext);
+        ManagerFactory.initialize(instrumentationContext);
+        um = ManagerFactory.getCourseManagerInstance();
     }
 
     @Test
@@ -39,7 +39,9 @@ public class CourseManagerTest {
     @Test
     public void testNotifyOnline(){
         ArrayList<Long> l = null;
-        NotificationManager nm = NotificationManager.getInstance(InstrumentationRegistry.getInstrumentation().getTargetContext());
+//        updated: no need to do below
+//        NotificationManager nm = NotificationManager.getInstance(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
         try{
             l = um.notifyOnline(2, 1);
             assertEquals(l.size(), 2);

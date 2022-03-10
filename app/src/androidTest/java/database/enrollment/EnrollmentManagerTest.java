@@ -11,17 +11,18 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import database.ManagerFactory;
 import model.course.Course;
 import model.user.Professor;
 import model.user.Student;
 
 public class EnrollmentManagerTest {
-
     EnrollmentManager em;
     @Before
     public void setUp(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        em = EnrollmentManager.getInstance(instrumentationContext);
+        ManagerFactory.initialize(instrumentationContext);
+        em = ManagerFactory.getEnrollmentManagerInstance();
     }
 
     @Test

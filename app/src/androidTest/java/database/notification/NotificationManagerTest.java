@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import database.user.UserManager;
+import database.ManagerFactory;
 
 public class NotificationManagerTest {
     NotificationManager nm;
@@ -19,7 +19,8 @@ public class NotificationManagerTest {
     public void setUp() {
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 //        instrumentationContext.deleteDatabase("covider");
-        nm = NotificationManager.getInstance(instrumentationContext);
+        ManagerFactory.initialize(instrumentationContext);
+        nm = ManagerFactory.getNotificationManagerInstance();
     }
 
     @Test

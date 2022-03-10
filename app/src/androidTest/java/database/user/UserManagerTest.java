@@ -9,6 +9,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Before;
 import org.junit.Test;
 
+import database.ManagerFactory;
 import model.user.User;
 
 public class UserManagerTest{
@@ -16,8 +17,9 @@ public class UserManagerTest{
     @Before
     public void setup(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        instrumentationContext.deleteDatabase("covider");
-        um = UserManager.getInstance(instrumentationContext);
+//        instrumentationContext.deleteDatabase("covider");
+        ManagerFactory.initialize(instrumentationContext);
+        um = ManagerFactory.getUserManagerInstance();
     }
 
     @Test
