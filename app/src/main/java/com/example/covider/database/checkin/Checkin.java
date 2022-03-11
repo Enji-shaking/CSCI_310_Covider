@@ -13,7 +13,10 @@ public class Checkin {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Checkin checkin = (Checkin) o;
-        return getId() == checkin.getId() && getUserId() == checkin.getUserId() && getBuildingId() == checkin.getBuildingId() && getTimestamp() == checkin.getTimestamp();
+        return getId() == checkin.getId()
+                && getUserId() == checkin.getUserId()
+                && getBuildingId() == checkin.getBuildingId()
+                && getTimestamp() == checkin.getTimestamp();
     }
 
     @Override

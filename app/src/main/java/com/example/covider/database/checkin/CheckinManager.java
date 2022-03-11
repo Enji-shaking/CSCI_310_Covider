@@ -95,16 +95,9 @@ public class CheckinManager extends DatabaseHandler {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-
-        // Create tables again
-        onCreate(db);
+        // Nothing needs to be done
     }
 
-    private long getEpochTime(){
-        return System.currentTimeMillis();
-    }
     public static String getTableName() {
         return TABLE_NAME;
     }
