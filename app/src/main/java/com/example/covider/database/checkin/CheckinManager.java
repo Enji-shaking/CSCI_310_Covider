@@ -25,6 +25,7 @@ public class CheckinManager extends DatabaseHandler {
         return instance;
     }
 
+    // take a checkin object and plug it
     public long addOrUpdateCheckin(Checkin checkin){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -35,17 +36,17 @@ public class CheckinManager extends DatabaseHandler {
         return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
-    public long addCheckin(int userId, int buildingId, long timestamp){
+    // add a new checkin
+    public long addCheckin(int userId, int buildingId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER, userId);
         values.put(KEY_BUILDING, buildingId);
-        values.put(KEY_TIME, timestamp);
+        values.put(KEY_TIME, System.currentTimeMillis());
         return db.insert(TABLE_NAME, null, values);
     }
 
     private void create_default_checkin(){
-//        Checkin c = generateNewCheckin(999, 111, getEpochTime());
         // The time of March 9 around 11 pm
         long id = addOrUpdateCheckin(new Checkin(10, 999, 111, 1646896886094L));
         System.out.println(id);
@@ -67,8 +68,14 @@ public class CheckinManager extends DatabaseHandler {
         }
     }
 
+    // with given timestamp
     public Checkin generateNewCheckin(int userId, int buildingId, long timestamp){
         return new Checkin(getNextId(TABLE_NAME), userId, buildingId, timestamp);
+    }
+
+    // with current timestamp
+    public Checkin generateNewCheckin(int userId, int buildingId){
+        return new Checkin(getNextId(TABLE_NAME), userId, buildingId, System.currentTimeMillis());
     }
 
     // code to get the single contact
