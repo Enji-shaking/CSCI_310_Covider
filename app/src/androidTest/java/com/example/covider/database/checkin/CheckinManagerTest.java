@@ -6,6 +6,8 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.covider.model.checkin.Checkin;
+
 import junit.framework.TestCase;
 
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.example.covider.database.checkin;
+package com.example.covider.model.checkin;
 
 import java.util.Objects;
 

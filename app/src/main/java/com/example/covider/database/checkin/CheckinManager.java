@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.covider.database.DatabaseHandler;
+import com.example.covider.model.checkin.Checkin;
 
 public class CheckinManager extends DatabaseHandler {
 
