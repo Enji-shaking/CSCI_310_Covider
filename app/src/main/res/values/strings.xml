@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Covider</string>
+    <string name="report">Report</string>
+    <string name="check_in">Check In</string>
+    <string name="profile">Profile</string>
+    <string name="log_in">Log In</string>
+    <string name="courses">Courses</string>
+    <string name="map">Map</string>
 </resources>
