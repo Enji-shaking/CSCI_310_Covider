@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.covider.database.ManagerFactory;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         initializeNavBottom();
         initializeAnswers();
         initializeHealthAnswers();
+        initializeUserProfile();
     }
 
     private void initializeNavBottom() {
@@ -128,5 +131,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.conjunctivitis_no).setOnClickListener(listener);
         findViewById(R.id.gi_symptoms_yes).setOnClickListener(listener);
         findViewById(R.id.gi_symptoms_no).setOnClickListener(listener);
+    }
+
+    private void initializeUserProfile() {
+        ((TextView)findViewById(R.id.username)).setText(Html.fromHtml("Hi, <b>Trojan</b>!"));
+
     }
 }

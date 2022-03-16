@@ -12,4 +12,8 @@
     <color name="cardinal">#FF990000</color>
     <color name="cardinal_selected">#FF800000</color>
     <color name="gold">#FFFFC72C</color>
+    <color name="assess_green">#FF69BBAB</color>
+    <color name="in_person_green">#FF00B050</color>
+    <color name="hybrid_orange">#FFFFC000</color>
+    <color name="online_red">#FFFF0000</color>
 </resources>
