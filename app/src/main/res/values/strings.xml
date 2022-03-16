@@ -9,12 +9,15 @@
     <string name="list_view">List View</string>
     <!--    Profile Strings    -->
     <string name="courses">Courses</string>
-    <string name="test_records">Test Records</string>
+    <string name="test_records">COVID Test Records</string>
     <string name="no_test_records"><i>No COVID test result reported.</i></string>
     <string name="online"><b>Online</b></string>
     <string name="hybrid"><b>Hybrid</b></string>
     <string name="in_person"><b>In Person</b></string>
     <string name="assess"><b>Assess</b></string>
+    <string name="negative_result">Negative</string>
+    <string name="positive_result">Positive</string>
+    <string name="add_records">Add Test Result</string>
     <!--    Health Form Strings    -->
     <string name="health_form_title">Wellness Assessment Tool</string>
     <string name="guiding_question1">Do any of these apply to you?</string>

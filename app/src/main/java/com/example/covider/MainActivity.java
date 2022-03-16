@@ -61,19 +61,22 @@ public class MainActivity extends AppCompatActivity {
                 case "Map":
                     mapView.setVisibility(View.VISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
+                    profileView.setVisibility(View.INVISIBLE);
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
                 case "Report":
                     reportView.setVisibility(View.VISIBLE);
                     mapView.setVisibility(View.INVISIBLE);
+                    profileView.setVisibility(View.INVISIBLE);
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
                 case "Profile":
+                    profileView.setVisibility(View.VISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapView.setVisibility(View.INVISIBLE);
+                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
             }
