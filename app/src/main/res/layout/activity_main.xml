@@ -78,8 +78,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/map_view"
-            android:theme="@style/Theme.ToggleTheme"
-            app:track="@drawable/switch_track" />
+            android:theme="@style/Theme.ToggleTheme" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
