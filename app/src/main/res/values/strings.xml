@@ -8,4 +8,19 @@
     <string name="map">Map</string>
     <string name="map_view">Map View</string>
     <string name="list_view">List View</string>
+    <string name="health_form_title">Wellness Assessment Tool</string>
+    <string name="guiding_question1">Do any of these apply to you?</string>
+    <string name="infection">Are you currently required to isolate due to a COVID-19 infection?</string>
+    <string name="infection_date">When did you test positive?</string>
+    <string name="guiding_question2">Do you currently have any of the following symptoms (please answer regardless of why you believe you have the symptoms):</string>
+    <string name="chills_fever"><b>Chills</b> or <b>Fever</b> of 100 degrees or higher</string>
+    <string name="taste_smell">Loss of <b>Taste</b> or <b>Smell</b></string>
+    <string name="muscle"><b>Muscle Soreness</b> or <b>Headaches</b> or <b>Fatigue</b></string>
+    <string name="cough"><b>Cough</b> or <b>Runny Nose</b> or <b>Sore Throat</b> or <b>Congestion</b></string>
+    <string name="breathing"><b>Difficulty Breathing</b> or <b>Shortness of Breath</b> or <b>Fatigue</b></string>
+    <string name="conjunctivitis"><b>Conjunctivitis</b> (inflammation of eye including redness, itching, and tearing) ALONG WITH feeling feverish</string>
+    <string name="gi_symptoms">GI symptoms such as <b>Abdominal Pain</b> or <b>Diarrhea</b> or <b>Nausea</b> or <b>Vomiting</b></string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="submit">Submit</string>
 </resources>

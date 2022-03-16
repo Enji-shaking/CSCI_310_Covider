@@ -6,9 +6,485 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <LinearLayout
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            tools:ignore="UseSwitchCompatOrMaterialXml">
+
+            <Switch
+                android:id="@+id/toggle_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/map_view"
+                android:theme="@style/Theme.ToggleTheme" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/report_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TitleTheme"
+            android:text="@string/health_form_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guiding_question1"
+                    android:theme="@style/SubtitleTheme"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/infection"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/infection_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="infection"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/infection_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="infection"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/guiding_question2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guiding_question2"
+                    android:theme="@style/SubtitleTheme"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chills_fever"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/chills_fever_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="chills_fever"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/chills_fever_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="chills_fever"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taste_smell"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/taste_smell_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="taste_smell"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/taste_smell_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="taste_smell"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/muscle"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/muscle_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="muscle"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/muscle_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="muscle"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cough"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/cough_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="cough"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/cough_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="cough"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breathing"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/breathing_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="breathing"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/breathing_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="breathing"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/conjunctivitis"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/conjunctivitis_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="conjunctivitis"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/conjunctivitis_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="conjunctivitis"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gi_symptoms"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
+
+                    <Button
+                        android:id="@+id/gi_symptoms_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="gi_symptoms"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/gi_symptoms_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="gi_symptoms"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/submit" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profile_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="center"
         android:background="@color/cardinal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,68 +493,41 @@
         app:layout_constraintVertical_bias="1.0"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal" >
-            <ImageButton
-                android:id="@+id/map"
-                android:contentDescription="@string/map"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@color/cardinal_selected"
-                android:backgroundTint="@color/cardinal_selected"
-                android:src="@android:drawable/ic_dialog_map"
-                android:layout_weight="1"
-                app:tint="@color/gold" />
-
-            <ImageButton
-                android:id="@+id/report"
-                android:contentDescription="@string/report"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@color/cardinal"
-                android:backgroundTint="@color/cardinal"
-                android:src="@drawable/ic_report_icon_fill"
-                android:layout_weight="1"
-                app:tint="@color/gold" />
-
-            <ImageButton
-                android:id="@+id/profile"
-                android:contentDescription="@string/profile"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@color/cardinal"
-                android:backgroundTint="@color/cardinal"
-                android:src="@drawable/ic_person_fill"
-                android:layout_weight="1"
-                app:tint="@color/gold" />
-        </LinearLayout>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
-        tools:ignore="UseSwitchCompatOrMaterialXml">
-
-        <Switch
-            android:id="@+id/toggle_view"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal" >
+        <ImageButton
+            android:id="@+id/map"
+            android:contentDescription="@string/map"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/map_view"
-            android:theme="@style/Theme.ToggleTheme" />
+            android:layout_height="fill_parent"
+            android:background="@color/cardinal_selected"
+            android:backgroundTint="@color/cardinal_selected"
+            android:src="@android:drawable/ic_dialog_map"
+            android:layout_weight="1"
+            app:tint="@color/gold" />
+
+        <ImageButton
+            android:id="@+id/report"
+            android:contentDescription="@string/report"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/cardinal"
+            android:backgroundTint="@color/cardinal"
+            android:src="@drawable/ic_report_icon_fill"
+            android:layout_weight="1"
+            app:tint="@color/gold" />
+
+        <ImageButton
+            android:id="@+id/profile"
+            android:contentDescription="@string/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/cardinal"
+            android:backgroundTint="@color/cardinal"
+            android:src="@drawable/ic_person_fill"
+            android:layout_weight="1"
+            app:tint="@color/gold" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
