@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ToggleTheme" parent="Theme.AppCompat.Light">sss
+
+        <!-- colorAccent is used as the default value for colorControlActivated,
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/cardinal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/ibm_plex_serif</item>
+        <item name="android:textFontWeight">500</item>
+
+    </style>
+</resources>

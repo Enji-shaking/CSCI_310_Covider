@@ -6,4 +6,6 @@
     <string name="log_in">Log In</string>
     <string name="courses">Courses</string>
     <string name="map">Map</string>
+    <string name="map_view">Map View</string>
+    <string name="list_view">List View</string>
 </resources>
