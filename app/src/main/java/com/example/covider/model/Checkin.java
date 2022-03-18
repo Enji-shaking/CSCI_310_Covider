@@ -1,4 +1,4 @@
-package com.example.covider.model.checkin;
+package com.example.covider.model;
 
 import java.util.Objects;
 
@@ -24,7 +24,7 @@ public class Checkin {
         return Objects.hash(getId(), getUserId(), getBuildingId(), getTimestamp());
     }
 
-    public Checkin(long id, long userId, long buildingId, long timestamp) {
+    public Checkin(long id, int userId, int buildingId, long timestamp) {
         this.id = id;
         this.userId = userId;
         this.buildingId = buildingId;

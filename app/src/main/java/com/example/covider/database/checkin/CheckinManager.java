@@ -6,14 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.covider.database.DatabaseHandler;
+import com.example.covider.model.building.Building;
 import com.example.covider.model.checkin.Checkin;
+
+import java.util.ArrayList;
+import java.util.zip.CheckedInputStream;
 
 public class CheckinManager extends DatabaseHandler {
 
     private static final String TABLE_NAME = "checkin";
     private static final String KEY_ID = "id";
-    private static final String KEY_USER = "user_id";
-    private static final String KEY_BUILDING = "building_id";
+    private static final String KEY_USER_ID = "user_id";
+    private static final String KEY_BUILDING_ID = "building_id";
     private static final String KEY_TIME = "timestamp";
 
     private static CheckinManager instance = null;
@@ -30,8 +34,8 @@ public class CheckinManager extends DatabaseHandler {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID, checkin.getId());
-        values.put(KEY_USER, checkin.getUserId());
-        values.put(KEY_BUILDING, checkin.getBuildingId());
+        values.put(KEY_USER_ID, checkin.getUserId());
+        values.put(KEY_BUILDING_ID, checkin.getBuildingId());
         values.put(KEY_TIME, checkin.getTimestamp());
         return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
@@ -40,8 +44,8 @@ public class CheckinManager extends DatabaseHandler {
     public long addCheckin(int userId, int buildingId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_USER, userId);
-        values.put(KEY_BUILDING, buildingId);
+        values.put(KEY_USER_ID, userId);
+        values.put(KEY_BUILDING_ID, buildingId);
         values.put(KEY_TIME, System.currentTimeMillis());
         return db.insert(TABLE_NAME, null, values);
     }
@@ -58,14 +62,15 @@ public class CheckinManager extends DatabaseHandler {
             String SQL_CREATE_Query = "CREATE TABLE " + TABLE_NAME +
                     " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    KEY_USER + " INTEGER, " +
-                    KEY_BUILDING + " INTEGER, " +
+                    KEY_USER_ID + " INTEGER, " +
+                    KEY_BUILDING_ID + " INTEGER, " +
                     KEY_TIME + " INTEGER " +
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
             create_default_checkin();
         }
+//        addCheckin(1, 111);
     }
 
     // with given timestamp
@@ -82,7 +87,7 @@ public class CheckinManager extends DatabaseHandler {
     Checkin getCheckin(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER, KEY_BUILDING, KEY_TIME}, KEY_ID + "=?",
+        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER_ID, KEY_BUILDING_ID, KEY_TIME}, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null)){
             if(!cursor.moveToFirst()){
                 return null;
@@ -99,6 +104,62 @@ public class CheckinManager extends DatabaseHandler {
     public void deleteCheckin(long id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
+    }
+
+    public ArrayList<Checkin> getBuildingCheckinsInTimeSpan(long buildingId, long startTime, long endTime){
+        ArrayList<Checkin> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER_ID, KEY_BUILDING_ID, KEY_TIME}, KEY_BUILDING_ID + "=? AND " + KEY_TIME + " BETWEEN ? AND ? ",
+                new String[] { String.valueOf(buildingId), String.valueOf(startTime), String.valueOf(endTime) }, null, null, null, null)){
+            if(!cursor.moveToFirst()){
+                return list;
+            }
+            /*
+            {
+               id=1
+               name=SAL
+            }
+            */
+            do{
+                list.add(new Checkin(
+                        cursor.getLong(0),
+                        cursor.getLong(1),
+                        cursor.getLong(2),
+                        cursor.getLong(3)
+                ));
+            }
+            while (cursor.moveToNext());
+        }
+
+        return list;
+    }
+
+    public ArrayList<Checkin> getUserCheckinsInTimeSpan(long userId, long startTime, long endTime){
+        ArrayList<Checkin> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER_ID, KEY_BUILDING_ID, KEY_TIME}, KEY_USER_ID + "=? AND " + KEY_TIME + " BETWEEN ? AND ? ",
+                new String[] { String.valueOf(userId), String.valueOf(startTime), String.valueOf(endTime) }, null, null, null, null)){
+            if(!cursor.moveToFirst()){
+                return list;
+            }
+            /*
+            {
+               id=1
+               name=SAL
+            }
+            */
+            do{
+                list.add(new Checkin(
+                        cursor.getLong(0),
+                        cursor.getLong(1),
+                        cursor.getLong(2),
+                        cursor.getLong(3)
+                ));
+            }
+            while (cursor.moveToNext());
+        }
+
+        return list;
     }
 
     @Override

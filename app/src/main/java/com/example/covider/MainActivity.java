@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 //        System.out.println(System.currentTimeMillis());
+        getApplicationContext().deleteDatabase("covider"); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
         initializeNavBottom();
         initializeAnswers();

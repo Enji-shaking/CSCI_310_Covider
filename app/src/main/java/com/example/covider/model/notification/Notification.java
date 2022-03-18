@@ -3,7 +3,7 @@ package com.example.covider.model.notification;
 import java.util.Objects;
 
 public class Notification {
-    // incorrect approach since id_inc is reset everytime the program restarts
+// incorrect approach since id_inc is reset everytime the program restarts
 //    private static int id_inc = 1;
     private long id;
     private long from;

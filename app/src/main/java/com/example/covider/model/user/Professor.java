@@ -18,9 +18,9 @@ public class Professor extends User{
         // TODO: find a correct context for below (or not?)
         // TODO: ManagerFactory.initialize(context..?)
         ArrayList<Long> notifications = new ArrayList<>();
-        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance(); // TODO: Variable not used
         EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
-        CourseManager cm = ManagerFactory.getCourseManagerInstance();
+        CourseManager cm = ManagerFactory.getCourseManagerInstance(); // TODO: Variable not used
         ArrayList<Course> list = em.getCoursesTaughtBy(getId());
         for(Course c: list){
             notifications.addAll(notifyOnline(c.getId()));
@@ -30,7 +30,7 @@ public class Professor extends User{
     public ArrayList<Long> notifyOnline(long courseId){
         // TODO: find a correct context for below (or not?)
         // TODO: ManagerFactory.initialize(context..?)
-        ArrayList<Long> notifications = new ArrayList<>();
+        ArrayList<Long> notifications = new ArrayList<>(); // TODO: Variable not used
         CourseManager cm = ManagerFactory.getCourseManagerInstance();
         return cm.notifyOnline(getId(), courseId);
     }

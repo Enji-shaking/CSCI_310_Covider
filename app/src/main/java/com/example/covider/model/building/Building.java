@@ -1,16 +1,15 @@
-package com.example.covider.model.course;
+package com.example.covider.model.building;
 
 import java.util.Objects;
 
-public class Course {
+public class Building {
+
     private long id;
     private String name;
-    private long building;
 
-    public Course(long id, String name, long building) {
+    public Building(long id, String name) {
         this.id = id;
         this.name = name;
-        this.building = building;
     }
 
     public long getId() {
@@ -29,33 +28,27 @@ public class Course {
         this.name = name;
     }
 
-    public long getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(long building) {
-        this.building = building;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return id == course.id && building == course.building && Objects.equals(name, course.name);
+        Building building = (Building) o;
+        return id == building.id && name.equals(building.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, building);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Course{" +
+        return "Building{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", building=" + building +
                 '}';
     }
+
+
+
 }

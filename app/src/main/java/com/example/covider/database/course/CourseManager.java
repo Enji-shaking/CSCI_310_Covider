@@ -19,6 +19,7 @@ public class CourseManager extends DatabaseHandler {
     private static final String TABLE_NAME = "course";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
+    public static final String KEY_BUILDING_ID = "building_id";
 
     private static CourseManager instance = null;
 
@@ -35,7 +36,8 @@ public class CourseManager extends DatabaseHandler {
             String SQL_CREATE_Query = "CREATE TABLE " + TABLE_NAME +
                     " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    KEY_NAME + " TEXT " +
+                    KEY_NAME + " TEXT, " +
+                    KEY_BUILDING_ID + " INTEGER " +
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
@@ -44,43 +46,46 @@ public class CourseManager extends DatabaseHandler {
     }
 
     // Warning: this will not modify the id inside since no insertion happened.
-    // Have to insert the created one immediately otherwise will get two notifications with the same id
-    public Course generateNewCourse(String name){
-        return new Course(getNextId(TABLE_NAME), name);
+    // Have to insert the created one immediately otherwise will get two course with the same id
+    public Course generateNewCourse(String name, long courseBuildingId){
+        return new Course(getNextId(TABLE_NAME), name, courseBuildingId);
     }
 
 
-    public long addOrUpdateCourse(User user){
+    public long addOrUpdateCourse(Course course){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, user.getId());
-        values.put(KEY_NAME, user.getName());
+        values.put(KEY_ID, course.getId());
+        values.put(KEY_NAME, course.getName());
+        values.put(KEY_BUILDING_ID, course.getBuilding());
         return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
 
-    public long addCourse(String name){
+    public long addCourse(String courseName, long courseBuildingId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, name);
+        values.put(KEY_NAME, courseName);
+        values.put(KEY_BUILDING_ID, courseBuildingId);
         return db.insert(TABLE_NAME, null, values);
     }
 
 
 
     // code to get the single contact
-    Course getCourse(long id) {
+    public Course getCourse(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
-                        KEY_NAME }, KEY_ID + "=?",
+                        KEY_NAME, KEY_BUILDING_ID }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Course course = new Course(
                 cursor.getLong(0),
-                cursor.getString(1)
+                cursor.getString(1),
+                cursor.getLong(2)
         );
         // return course
         cursor.close();
@@ -89,10 +94,10 @@ public class CourseManager extends DatabaseHandler {
 
     private void createDefaultCourses(){
         // should have course id of 1,2,3
-        addCourse("MarkCourse");
-        addCourse("EnjiCourse");
-        addCourse("ZSNCourse");
-        addCourse("DummyCourse");
+        addCourse("MarkCourse", 1);
+        addCourse("EnjiCourse", 1);
+        addCourse("ZSNCourse", 1);
+        addCourse("DummyCourse", 3);
     }
 
     @Override
@@ -102,11 +107,12 @@ public class CourseManager extends DatabaseHandler {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-
-        // Create tables again
-        onCreate(db);
+        // No need to do anything
+//        // Drop older table if existed
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+//
+//        // Create tables again
+//        onCreate(db);
     }
 
     public ArrayList<Long> notifyOnline(long profId, long courseId){

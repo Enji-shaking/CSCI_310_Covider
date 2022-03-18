@@ -11,8 +11,10 @@ import com.example.covider.database.DatabaseHandler;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.user.UserManager;
 import com.example.covider.model.course.Course;
+import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.user.Professor;
 import com.example.covider.model.user.Student;
+import com.example.covider.model.user.User;
 
 public class EnrollmentManager extends DatabaseHandler {
     private static final String TABLE_NAME = "enrollment";
@@ -55,6 +57,16 @@ public class EnrollmentManager extends DatabaseHandler {
         db.insert(TABLE_NAME, null, values);
     }
 
+    public int addOrUpdateEnrollment(Enrollment enrollment){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, enrollment.getId());
+        values.put(KEY_USER_ID, enrollment.getUserId());
+        values.put(KEY_COURSE_ID, enrollment.getCourseId());
+        values.put(KEY_IS_STU, enrollment.getIs_student());
+        return (int) db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+    }
+
     // 3 个default user 都和course1 有联系
     private void createDefaultEnrollment(){
         addEnrollment(1, 1, 1);
@@ -68,6 +80,11 @@ public class EnrollmentManager extends DatabaseHandler {
     public ArrayList<Student> getStudentsEnrollingIn(long courseId){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Student> list = new ArrayList<>();
+
+        //  eg: SELECT u.id, u.name, u.pass, u.isStudent
+        //      FROM enrollment INNER JOIN user AS u
+        //          ON enrollment.courseId = u.id
+        //      WHERE enrollment.isStudent = 1 AND enrollment.userId = ?
         String MY_QUERY = "SELECT " + "u." + UserManager.getKeyId() + ", u." + UserManager.getKeyName() +
                 ", u." + UserManager.getKeyPass() + ", u." + UserManager.getKeyIsStu() +
                 " FROM " +
@@ -138,7 +155,13 @@ public class EnrollmentManager extends DatabaseHandler {
     public ArrayList<Course> getCoursesTakenBy(long userId){
         ArrayList<Course> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() +
+
+
+        //  eg: SELECT c.id, c.name, c.building_id
+        //      FROM enrollment INNER JOIN course AS c
+        //          ON enrollment.courseId = c.id
+        //      WHERE enrollment.isStudent = 1 AND enrollment.userId = ?
+        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() + ", c." + CourseManager.KEY_BUILDING_ID+
                 " FROM " +
                 TABLE_NAME + " INNER JOIN " + CourseManager.getTableName()  + " c ON " +
                 TABLE_NAME + "." + KEY_COURSE_ID + " = " + "c." + CourseManager.getKeyId() +
@@ -153,12 +176,14 @@ public class EnrollmentManager extends DatabaseHandler {
             {
                id=1
                name=MarkCourse
+               building_id = 1
             }
             */
             do{
                 list.add(new Course(
                         cursor.getLong(0),
-                        cursor.getString(1)
+                        cursor.getString(1),
+                        cursor.getLong(2)
                 ));
             }
             while (cursor.moveToNext());
@@ -169,7 +194,12 @@ public class EnrollmentManager extends DatabaseHandler {
     public ArrayList<Course> getCoursesTaughtBy(long userId){
         ArrayList<Course> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() +
+
+        //  eg: SELECT c.id, c.name
+        //      FROM enrollment INNER JOIN course AS c
+        //          ON enrollment.courseId = c.id
+        //      WHERE enrollment.isStudent = 0 AND enrollment.userId = ?
+        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() + ", c." + CourseManager.KEY_BUILDING_ID+
                 " FROM " +
                 TABLE_NAME + " INNER JOIN " + CourseManager.getTableName()  + " c ON " +
                 TABLE_NAME + "." + KEY_COURSE_ID + " = " + "c." + CourseManager.getKeyId() +
@@ -184,12 +214,14 @@ public class EnrollmentManager extends DatabaseHandler {
             {
                id=1
                name=MarkCourse
+               building_id = 1
             }
             */
             do{
                 list.add(new Course(
                         cursor.getLong(0),
-                        cursor.getString(1)
+                        cursor.getString(1),
+                        cursor.getLong(2)
                 ));
             }
             while (cursor.moveToNext());

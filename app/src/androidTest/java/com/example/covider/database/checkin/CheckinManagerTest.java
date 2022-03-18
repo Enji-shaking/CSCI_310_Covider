@@ -13,9 +13,12 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 
 public class CheckinManagerTest extends TestCase {
     CheckinManager cm;
+
     @Before
     public void setUp() {
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -55,4 +58,41 @@ public class CheckinManagerTest extends TestCase {
         assertNotEquals(cm.getNextId(CheckinManager.getTableName()), -1);
         System.out.println(cm.getNextId(CheckinManager.getTableName()));
     }
+
+    @Test
+    public void testGetBuildingCheckinsInTimeSpan(){
+        Checkin checkin = cm.generateNewCheckin(999, 888, 100000001L);
+        cm.addOrUpdateCheckin(checkin);
+        Checkin checkin2 = cm.generateNewCheckin(996, 888, 100000003L);
+        cm.addOrUpdateCheckin(checkin2);
+
+        ArrayList<Checkin> list =  cm.getBuildingCheckinsInTimeSpan(888, 100000000L, 100000004L);
+        assertEquals(2,list.size());
+
+        ArrayList<Checkin> listOne =  cm.getBuildingCheckinsInTimeSpan(888, 100000000L, 100000001L);
+        assertEquals(1,listOne.size());
+
+        ArrayList<Checkin> listEmpty =  cm.getBuildingCheckinsInTimeSpan(888, 0L, 1L);
+        assertEquals(0, listEmpty.size());
+
+    }
+
+    @Test
+    public void testGetUserCheckinsInTimeSpan(){
+        Checkin checkin1 = cm.generateNewCheckin(1006, 777, 100000002L);
+        cm.addOrUpdateCheckin(checkin1);
+        Checkin checkin2 = cm.generateNewCheckin(1006, 888, 100000003L);
+        cm.addOrUpdateCheckin(checkin2);
+
+        ArrayList<Checkin> list =  cm.getUserCheckinsInTimeSpan(1006, 100000000L, 100000004L);
+        assertEquals(2,list.size());
+
+        ArrayList<Checkin> listOne =  cm.getUserCheckinsInTimeSpan(1006, 100000000L, 100000002L); //Inclusive
+        assertEquals(1,listOne.size());
+
+        ArrayList<Checkin> listEmpty =  cm.getUserCheckinsInTimeSpan(1006, 0L, 1L);
+        assertEquals(0, listEmpty.size());
+
+    }
+
 }
