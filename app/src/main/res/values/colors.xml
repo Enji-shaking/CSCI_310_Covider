@@ -12,6 +12,16 @@
     <color name="cardinal">#FF990000</color>
     <color name="cardinal_selected">#FF800000</color>
     <color name="gold">#FFFFC72C</color>
+    <!--    Map Colors    -->
+    <color name="cardinal_transparent">#33990000</color>
+    <color name="gold_transparent">#33FFC72C</color>
+    <color name="green_transparent">#3370C7B1</color>
+    <color name="brown_transparent">#33CDA890</color>
+    <color name="pink_transparent">#33F3869A</color>
+    <color name="blue_transparent">#3362C2E0</color>
+    <color name="purple_transparent">#33C7B2D5</color>
+    <color name="grey_transparent">#33D2D4D3</color>
+    <!--    Profile Colors    -->
     <color name="assess_green">#FF69BBAB</color>
     <color name="in_person_green">#FF00B050</color>
     <color name="hybrid_orange">#FFFFC000</color>
