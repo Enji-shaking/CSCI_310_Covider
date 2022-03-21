@@ -61,6 +61,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/map"
                         app:srcCompat="@drawable/usc_map" />
+
                     <View
                         android:id="@+id/usc_map_esh"
                         android:layout_width="90dp"
@@ -231,15 +232,16 @@
                         android:rotation="28"
                         android:contentDescription="@string/ois"
                         android:background="@color/gold_transparent"/>
+
                     <View
                         android:id="@+id/usc_map_cec"
                         android:layout_width="42dp"
                         android:layout_height="73dp"
                         android:layout_marginStart="1438dp"
                         android:layout_marginTop="881dp"
-                        android:rotation="28"
+                        android:background="@color/gold_transparent"
                         android:contentDescription="@string/cec"
-                        android:background="@color/gold_transparent"/>
+                        android:rotation="28" />
                     <View
                         android:id="@+id/usc_map_mtx"
                         android:layout_width="142dp"
@@ -411,15 +413,16 @@
                         android:rotation="28"
                         android:contentDescription="@string/sos"
                         android:background="@color/gold_transparent"/>
+
                     <View
                         android:id="@+id/usc_map_lvl"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="1129dp"
                         android:layout_marginTop="895dp"
-                        android:rotation="27"
+                        android:background="@color/purple_transparent"
                         android:contentDescription="@string/lvl"
-                        android:background="@color/purple_transparent"/>
+                        android:rotation="27" />
                     <View
                         android:id="@+id/usc_map_jmc"
                         android:layout_width="90dp"
@@ -490,15 +493,25 @@
                         android:layout_marginTop="890dp"
                         android:contentDescription="@string/drb"
                         android:background="@color/gold_transparent"/>
+
                     <View
                         android:id="@+id/usc_map_rri"
                         android:layout_width="95dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="222dp"
                         android:layout_marginTop="820dp"
-                        android:rotation="27"
+                        android:background="@color/gold_transparent"
                         android:contentDescription="@string/rri"
-                        android:background="@color/gold_transparent"/>
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_mcb"
+                        android:layout_width="67dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="305dp"
+                        android:layout_marginTop="849dp"
+                        android:background="@color/grey_transparent"
+                        android:contentDescription="@string/mcb"
+                        android:rotation="27" />
                     <View
                         android:id="@+id/usc_map_sgm"
                         android:layout_width="65dp"
@@ -769,868 +782,1383 @@
                         android:rotation="28"
                         android:contentDescription="@string/nct"
                         android:background="@color/blue_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_adm"
+                        android:layout_width="61dp"
+                        android:layout_height="101dp"
+                        android:layout_marginStart="810dp"
+                        android:layout_marginTop="965dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/adm"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_bks"
+                        android:layout_width="45dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="685dp"
+                        android:layout_marginTop="1050dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/bks"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_sto"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="658dp"
+                        android:layout_marginTop="1089dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/sto"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_hsh"
+                        android:layout_width="18dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="638dp"
+                        android:layout_marginTop="1070dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/hsh"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_tcc"
+                        android:layout_width="31dp"
+                        android:layout_height="99dp"
+                        android:layout_marginStart="720dp"
+                        android:layout_marginTop="1056dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/tcc"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_stu"
+                        android:layout_width="44dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="784dp"
+                        android:layout_marginTop="1106dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/stu"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_sks"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="730dp"
+                        android:layout_marginTop="1140dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/sks"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_cem"
+                        android:layout_width="52dp"
+                        android:layout_height="62dp"
+                        android:layout_marginStart="675dp"
+                        android:layout_marginTop="1178dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/cem"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_ljs"
+                        android:layout_width="70dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="622dp"
+                        android:layout_marginTop="1153dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/ljs"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_zhs"
+                        android:layout_width="52dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="715dp"
+                        android:layout_marginTop="1204dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/zhs"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_slh"
+                        android:layout_width="36dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="653dp"
+                        android:layout_marginTop="1188dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/slh"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_acb"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="617dp"
+                        android:layout_marginTop="1221dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/acb"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_har"
+                        android:layout_width="79dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="583dp"
+                        android:layout_marginTop="1283dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/har"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_mhp"
+                        android:layout_width="50dp"
+                        android:layout_height="71dp"
+                        android:layout_marginStart="664dp"
+                        android:layout_marginTop="1315dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/mhp"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_bri"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="787dp"
+                        android:layout_marginTop="1295dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/bri"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_acc"
+                        android:layout_width="46dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="817dp"
+                        android:layout_marginTop="1242dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/acc"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_hoh"
+                        android:layout_width="25dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="866dp"
+                        android:layout_marginTop="1305dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/hoh"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_ahf1"
+                        android:layout_width="49dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="880dp"
+                        android:layout_marginTop="1174dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/ahf1"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_hmm"
+                        android:layout_width="35dp"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="922dp"
+                        android:layout_marginTop="1210dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/hmm"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_ahf2"
+                        android:layout_width="30dp"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="941dp"
+                        android:layout_marginTop="1170dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/ahf2"
+                        android:background="@color/blue_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_jhh"
+                        android:layout_width="46dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="993dp"
+                        android:layout_marginTop="1210dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/jhh"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_tgf"
+                        android:layout_width="69dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="965dp"
+                        android:layout_marginTop="1255dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/tgf"
+                        android:background="@color/blue_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_law"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="932dp"
+                        android:layout_marginTop="1316dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/law"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_vpd"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="1038dp"
+                        android:layout_marginTop="1285dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/vpd"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_rgl"
+                        android:layout_width="75dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="1056dp"
+                        android:layout_marginTop="1241dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/rgl"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_dml"
+                        android:layout_width="101dp"
+                        android:layout_height="72dp"
+                        android:layout_marginStart="1023dp"
+                        android:layout_marginTop="1098dp"
+                        android:rotation="28"
+                        android:contentDescription="@string/dml"
+                        android:background="@color/purple_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_cpa"
+                        android:layout_width="102dp"
+                        android:layout_height="65dp"
+                        android:layout_marginStart="987dp"
+                        android:layout_marginTop="958dp"
+                        android:rotation="26"
+                        android:contentDescription="@string/cpa"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_bsr"
+                        android:layout_width="26dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="1232dp"
+                        android:layout_marginTop="903dp"
+                        android:contentDescription="@string/bsr"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_nrc"
+                        android:layout_width="161dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="1268dp"
+                        android:layout_marginTop="954dp"
+                        android:contentDescription="@string/nrc"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_ptd"
+                        android:layout_width="62dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="1178dp"
+                        android:layout_marginTop="1152dp"
+                        android:contentDescription="@string/ptd"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_dxm"
+                        android:layout_width="18dp"
+                        android:layout_height="102dp"
+                        android:layout_marginStart="1221dp"
+                        android:layout_marginTop="1162dp"
+                        android:contentDescription="@string/dxm"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_alm"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="1174dp"
+                        android:layout_marginTop="1223dp"
+                        android:contentDescription="@string/alm"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_tro"
+                        android:layout_width="71dp"
+                        android:layout_height="71dp"
+                        android:layout_marginStart="1235dp"
+                        android:layout_marginTop="1208dp"
+                        android:contentDescription="@string/tro"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_dmt"
+                        android:layout_width="52dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="1255dp"
+                        android:layout_marginTop="1192dp"
+                        android:contentDescription="@string/dmt"
+                        android:rotation="27"
+                        android:background="@color/brown_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_fig"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="1327dp"
+                        android:layout_marginTop="1160dp"
+                        android:contentDescription="@string/fig"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_jkp"
+                        android:layout_width="48dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="1152dp"
+                        android:layout_marginTop="1291dp"
+                        android:contentDescription="@string/jkp"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_jff"
+                        android:layout_width="50dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="1195dp"
+                        android:layout_marginTop="1311dp"
+                        android:contentDescription="@string/jff"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_rmh"
+                        android:layout_width="46dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="1376dp"
+                        android:layout_marginTop="1208dp"
+                        android:contentDescription="@string/rmh"
+                        android:rotation="27"
+                        android:background="@color/grey_transparent"/>
+
+                    <View
+                        android:id="@+id/usc_map_ugb"
+                        android:layout_width="86dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="1428dp"
+                        android:layout_marginTop="1151dp"
+                        android:background="@color/gold_transparent"
+                        android:contentDescription="@string/ugb"
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_gec"
+                        android:layout_width="135dp"
+                        android:layout_height="221dp"
+                        android:layout_marginStart="1481dp"
+                        android:layout_marginTop="935dp"
+                        android:contentDescription="@string/gec"
+                        android:rotation="29"
+                        android:background="@color/green_transparent"/>
+
+                    <View
+                        android:id="@+id/usc_map_ugw"
+                        android:layout_width="105dp"
+                        android:layout_height="255dp"
+                        android:layout_marginStart="1490dp"
+                        android:layout_marginTop="589dp"
+                        android:background="@color/grey_transparent"
+                        android:contentDescription="@string/ugw"
+                        android:rotation="29" />
+                    <View
+                        android:id="@+id/usc_map_shr"
+                        android:layout_width="95dp"
+                        android:layout_height="240dp"
+                        android:layout_marginStart="1327dp"
+                        android:layout_marginTop="512dp"
+                        android:contentDescription="@string/shr"
+                        android:rotation="29"
+                        android:background="@color/grey_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_elb"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="1748dp"
+                        android:layout_marginTop="1198dp"
+                        android:contentDescription="@string/elb"
+                        android:rotation="27"
+                        android:background="@color/purple_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_cdf"
+                        android:layout_width="81dp"
+                        android:layout_height="103dp"
+                        android:layout_marginStart="2005dp"
+                        android:layout_marginTop="1185dp"
+                        android:contentDescription="@string/cdf"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_cal"
+                        android:layout_width="125dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="1928dp"
+                        android:layout_marginTop="1277dp"
+                        android:contentDescription="@string/cal"
+                        android:rotation="27"
+                        android:background="@color/gold_transparent"/>
+                    <View
+                        android:id="@+id/usc_map_ift"
+                        android:layout_width="80dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="1816dp"
+                        android:layout_marginTop="471dp"
+                        android:background="@color/gold_transparent"
+                        android:contentDescription="@string/ift"
+                        android:rotation="28" />
+                    <View
+                        android:id="@+id/usc_map_rzc"
+                        android:layout_width="112dp"
+                        android:layout_height="68dp"
+                        android:layout_marginStart="1576dp"
+                        android:layout_marginTop="515dp"
+                        android:background="@color/gold_transparent"
+                        android:contentDescription="@string/rzc"
+                        android:rotation="28" />
+                    <View
+                        android:id="@+id/usc_map_scs"
+                        android:layout_width="32dp"
+                        android:layout_height="68dp"
+                        android:layout_marginStart="1510dp"
+                        android:layout_marginTop="455dp"
+                        android:background="@color/gold_transparent"
+                        android:contentDescription="@string/scs"
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_trh"
+                        android:layout_width="90dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="1280dp"
+                        android:layout_marginTop="205dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/trh"
+                        android:rotation="27" />
+
+                    <View
+                        android:id="@+id/usc_map_huc"
+                        android:layout_width="130dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="1070dp"
+                        android:layout_marginTop="275dp"
+                        android:background="@color/grey_transparent"
+                        android:contentDescription="@string/huc"
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_hjc"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="1089dp"
+                        android:layout_marginTop="398dp"
+                        android:background="@color/grey_transparent"
+                        android:contentDescription="@string/hjc"
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_ccc"
+                        android:layout_width="55dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="1070dp"
+                        android:layout_marginTop="355dp"
+                        android:background="@color/grey_transparent"
+                        android:contentDescription="@string/ccc"
+                        android:rotation="26" />
+                    <View
+                        android:id="@+id/usc_map_crc"
+                        android:layout_width="108dp"
+                        android:layout_height="123dp"
+                        android:layout_marginStart="911dp"
+                        android:layout_marginTop="209dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/crc"/>
+                    <View
+                        android:id="@+id/usc_map_mrc"
+                        android:layout_width="86dp"
+                        android:layout_height="65dp"
+                        android:layout_marginStart="923dp"
+                        android:layout_marginTop="484dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/mrc"
+                        android:rotation="27" />
+                    <View
+                        android:id="@+id/usc_map_nbc"
+                        android:layout_width="55dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="982dp"
+                        android:layout_marginTop="394dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/nbc"
+                        android:rotation="-10" />
+                    <View
+                        android:id="@+id/usc_map_cic"
+                        android:layout_width="129dp"
+                        android:layout_height="78dp"
+                        android:layout_marginStart="770dp"
+                        android:layout_marginTop="400dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/cic"
+                        android:rotation="28" />
+                    <View
+                        android:id="@+id/usc_map_mhc"
+                        android:layout_width="129dp"
+                        android:layout_height="78dp"
+                        android:layout_marginStart="760dp"
+                        android:layout_marginTop="282dp"
+                        android:background="@color/brown_transparent"
+                        android:contentDescription="@string/mhc"
+                        android:rotation="28" />
                 </RelativeLayout>
             </ScrollView>
         </HorizontalScrollView>
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/report_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginBottom="50dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/nav"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:visibility="invisible"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:orientation="vertical" >-->
+    <LinearLayout
+        android:id="@+id/report_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:theme="@style/TitleTheme"-->
-<!--            android:text="@string/health_form_title" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TitleTheme"
+            android:text="@string/health_form_title" />
 
-<!--        <ScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:paddingStart="20dp"-->
-<!--            android:paddingEnd="20dp" >-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/guiding_question1"-->
-<!--                    android:theme="@style/SubtitleTheme"/>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/infection"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guiding_question1"
+                    android:theme="@style/SubtitleTheme"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/infection"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/infection_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="infection"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/infection_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="infection"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
+                    <Button
+                        android:id="@+id/infection_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="infection"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/infection_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="infection"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/guiding_question2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/guiding_question2"-->
-<!--                    android:theme="@style/SubtitleTheme"/>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/chills_fever"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                <TextView
+                    android:id="@+id/guiding_question2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guiding_question2"
+                    android:theme="@style/SubtitleTheme"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chills_fever"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/chills_fever_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="chills_fever"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/chills_fever_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="chills_fever"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/taste_smell"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/chills_fever_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="chills_fever"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/chills_fever_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="chills_fever"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taste_smell"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/taste_smell_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="taste_smell"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/taste_smell_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="taste_smell"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/muscle"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/taste_smell_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="taste_smell"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/taste_smell_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="taste_smell"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/muscle"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/muscle_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="muscle"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/muscle_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="muscle"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/cough"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/muscle_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="muscle"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/muscle_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="muscle"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cough"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/cough_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="cough"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/cough_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="cough"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/breathing"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/cough_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="cough"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/cough_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="cough"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breathing"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/breathing_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="breathing"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/breathing_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="breathing"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/conjunctivitis"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/breathing_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="breathing"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/breathing_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="breathing"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/conjunctivitis"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/conjunctivitis_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="conjunctivitis"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/conjunctivitis_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="conjunctivitis"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/gi_symptoms"-->
-<!--                    android:theme="@style/PlainTextTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingEnd="20dp"-->
-<!--                    android:paddingStart="20dp"-->
-<!--                    tools:ignore="HardcodedText" >-->
+                    <Button
+                        android:id="@+id/conjunctivitis_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="conjunctivitis"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/conjunctivitis_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="conjunctivitis"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gi_symptoms"
+                    android:theme="@style/PlainTextTheme"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    tools:ignore="HardcodedText" >
 
-<!--                    <Button-->
-<!--                        android:id="@+id/gi_symptoms_yes"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="gi_symptoms"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/yes"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                    <View-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="0.5" />-->
-<!--                    <Button-->
-<!--                        android:id="@+id/gi_symptoms_no"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:contentDescription="gi_symptoms"-->
-<!--                        style="?android:attr/buttonBarButtonStyle"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@string/no"-->
-<!--                        android:bottomRightRadius="20dp"-->
-<!--                        android:bottomLeftRadius="20dp"-->
-<!--                        android:topLeftRadius="20dp"-->
-<!--                        android:topRightRadius="20dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:backgroundTint="@color/switch_off_track" />-->
-<!--                </LinearLayout>-->
+                    <Button
+                        android:id="@+id/gi_symptoms_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="gi_symptoms"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/yes"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/gi_symptoms_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="gi_symptoms"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:bottomRightRadius="20dp"
+                        android:bottomLeftRadius="20dp"
+                        android:topLeftRadius="20dp"
+                        android:topRightRadius="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/switch_off_track" />
+                </LinearLayout>
 
-<!--                <Button-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="@color/gold"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    android:layout_marginStart="20dp"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:layout_marginBottom="15dp"-->
-<!--                    android:text="@string/submit" />-->
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/submit" />
 
-<!--            </LinearLayout>-->
-<!--        </ScrollView>-->
+            </LinearLayout>
+        </ScrollView>
 
-<!--    </LinearLayout>-->
+    </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/profile_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginBottom="50dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/nav"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:visibility="invisible"-->
-<!--        android:orientation="vertical" >-->
-<!--        <ScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:paddingStart="20dp"-->
-<!--            android:paddingEnd="20dp" >-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical" >-->
+    <LinearLayout
+        android:id="@+id/profile_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+        android:orientation="vertical" >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-<!--                <TextView-->
-<!--                    android:id="@+id/username"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Hi!"-->
-<!--                    android:gravity="center"-->
-<!--                    android:theme="@style/TitleTheme"/>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/course_title"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="@string/courses"-->
-<!--                    android:gravity="start"-->
-<!--                    android:theme="@style/TitleTheme"/>-->
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/courses"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical" >-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_code1"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="CSCI 310"-->
-<!--                            android:layout_weight="0.9"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_title1"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="2.1"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="0dp"-->
-<!--                            android:paddingEnd="5dp"-->
-<!--                            android:text="Software Engineering Software Engineering"-->
-<!--                            android:theme="@style/PlainTextTheme"-->
-<!--                            app:layout_constraintLeft_toLeftOf="@id/course_code2"-->
-<!--                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>-->
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hi!"
+                    android:gravity="center"
+                    android:theme="@style/TitleTheme"/>
+                <TextView
+                    android:id="@+id/course_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/courses"
+                    android:gravity="start"
+                    android:theme="@style/TitleTheme"/>
+                <LinearLayout
+                    android:id="@+id/courses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/course_code1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CSCI 310"
+                            android:layout_weight="0.9"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/course_title1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.1"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="5dp"
+                            android:text="Software Engineering Software Engineering"
+                            android:theme="@style/PlainTextTheme"
+                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
+                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
 
-<!--                        <Button-->
-<!--                            android:id="@+id/status_course1"-->
-<!--                            android:layout_weight="1.5"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_vertical"-->
-<!--                            android:backgroundTint="@color/online_red"-->
-<!--                            android:text="@string/online" />-->
+                        <Button
+                            android:id="@+id/status_course1"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@color/online_red"
+                            android:text="@string/online" />
 
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_code2"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="CSCI 310"-->
-<!--                            android:layout_weight="0.9"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_title2"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="2.1"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingEnd="5dp"-->
-<!--                            android:text="Software Engineering Software Engineering"-->
-<!--                            android:theme="@style/PlainTextTheme"-->
-<!--                            app:layout_constraintLeft_toLeftOf="@id/course_code2"-->
-<!--                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>-->
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/course_code2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CSCI 310"
+                            android:layout_weight="0.9"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/course_title2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.1"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="5dp"
+                            android:text="Software Engineering Software Engineering"
+                            android:theme="@style/PlainTextTheme"
+                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
+                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
 
-<!--                        <Button-->
-<!--                            android:id="@+id/status_course2"-->
-<!--                            android:layout_weight="1.5"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_vertical"-->
-<!--                            android:backgroundTint="@color/hybrid_orange"-->
-<!--                            android:text="@string/hybrid" />-->
+                        <Button
+                            android:id="@+id/status_course2"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@color/hybrid_orange"
+                            android:text="@string/hybrid" />
 
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_code3"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="CSCI 310"-->
-<!--                            android:layout_weight="0.9"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_title3"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="2.1"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingEnd="5dp"-->
-<!--                            android:text="Software Engineering Software Engineering"-->
-<!--                            android:theme="@style/PlainTextTheme"-->
-<!--                            app:layout_constraintLeft_toLeftOf="@id/course_code2"-->
-<!--                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>-->
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/course_code3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CSCI 310"
+                            android:layout_weight="0.9"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/course_title3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.1"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="5dp"
+                            android:text="Software Engineering Software Engineering"
+                            android:theme="@style/PlainTextTheme"
+                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
+                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
 
-<!--                        <Button-->
-<!--                            android:id="@+id/status_course3"-->
-<!--                            android:layout_weight="1.5"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_vertical"-->
-<!--                            android:backgroundTint="@color/in_person_green"-->
-<!--                            android:text="@string/in_person" />-->
+                        <Button
+                            android:id="@+id/status_course3"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@color/in_person_green"
+                            android:text="@string/in_person" />
 
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_code4"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="CSCI 310"-->
-<!--                            android:layout_weight="0.9"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/course_title4"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="2.1"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingEnd="5dp"-->
-<!--                            android:text="Software Engineering Software Engineering"-->
-<!--                            android:theme="@style/PlainTextTheme"-->
-<!--                            app:layout_constraintLeft_toLeftOf="@id/course_code2"-->
-<!--                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>-->
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/course_code4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CSCI 310"
+                            android:layout_weight="0.9"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/course_title4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.1"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="5dp"
+                            android:text="Software Engineering Software Engineering"
+                            android:theme="@style/PlainTextTheme"
+                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
+                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
 
-<!--                        <Button-->
-<!--                            android:id="@+id/status_course4"-->
-<!--                            android:layout_weight="1.5"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_vertical"-->
-<!--                            android:backgroundTint="@color/assess_green"-->
-<!--                            android:text="@string/assess" />-->
+                        <Button
+                            android:id="@+id/status_course4"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@color/assess_green"
+                            android:text="@string/assess" />
 
-<!--                    </LinearLayout>-->
-<!--                </LinearLayout>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/test_records_title"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/test_records"-->
-<!--                    android:gravity="start"-->
-<!--                    android:theme="@style/TitleTheme"/>-->
-<!--                <Button-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    android:layout_marginStart="0dp"-->
-<!--                    android:layout_marginEnd="10dp"-->
-<!--                    android:textColor="@color/gold"-->
-<!--                    android:textSize="17sp"-->
-<!--                    android:fontFamily="@font/ibm_plex_serif_semibold"-->
-<!--                    android:text="@string/add_records" />-->
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/test_records"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical" >-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date1"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="03/22/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result1"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="03/18/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date3"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="03/10/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result3"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date4"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="03/01/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result4"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date5"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="02/15/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result5"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/positive_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date6"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="02/01/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result6"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date7"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="01/28/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result7"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date8"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="01/20/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result8"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:orientation="horizontal" >-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result_date9"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="01/13/2022"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/test_result9"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="10"-->
-<!--                            android:paddingTop="5dp"-->
-<!--                            android:paddingBottom="10dp"-->
-<!--                            android:paddingStart="20dp"-->
-<!--                            android:paddingEnd="0dp"-->
-<!--                            android:text="@string/negative_result"-->
-<!--                            android:theme="@style/PlainTextTheme"/>-->
-<!--                    </LinearLayout>-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
-<!--        </ScrollView>-->
-<!--    </LinearLayout>-->
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/test_records_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_records"
+                    android:gravity="start"
+                    android:theme="@style/TitleTheme"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/gold"
+                    android:textSize="17sp"
+                    android:fontFamily="@font/ibm_plex_serif_semibold"
+                    android:text="@string/add_records" />
+                <LinearLayout
+                    android:id="@+id/test_records"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03/22/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03/18/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03/10/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03/01/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02/15/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/positive_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02/01/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01/28/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01/20/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/test_result_date9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01/13/2022"
+                            android:layout_weight="1"
+                            android:theme="@style/PlainTextTheme"/>
+                        <TextView
+                            android:id="@+id/test_result9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="0dp"
+                            android:text="@string/negative_result"
+                            android:theme="@style/PlainTextTheme"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav"
