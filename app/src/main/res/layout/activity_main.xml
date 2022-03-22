@@ -1124,12 +1124,12 @@
                                 android:rotation="27"
                                 android:background="@color/gold_transparent"/>
                             <View
-                                android:id="@+id/usc_map_rmh"
+                                android:id="@+id/usc_map_ush"
                                 android:layout_width="46dp"
                                 android:layout_height="130dp"
                                 android:layout_marginStart="1376dp"
                                 android:layout_marginTop="1208dp"
-                                android:contentDescription="@string/rmh"
+                                android:contentDescription="@string/ush"
                                 android:rotation="27"
                                 android:background="@color/grey_transparent"/>
 
@@ -3279,13 +3279,13 @@
                                 android:text="@string/jff_display"/>
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/usc_list_rmh"
+                            android:id="@+id/usc_list_ush"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
                             android:background="@color/gold_transparent"
-                            android:contentDescription="@string/rmh"
+                            android:contentDescription="@string/ush"
                             android:orientation="horizontal">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -3293,7 +3293,7 @@
                                 android:layout_marginStart="10dp"
                                 android:textSize="17sp"
                                 android:fontFamily="@font/ibm_plex_serif_semibold"
-                                android:text="@string/rmh_display"/>
+                                android:text="@string/ush_display"/>
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/usc_list_ugb"

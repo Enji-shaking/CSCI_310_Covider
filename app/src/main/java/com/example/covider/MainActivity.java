@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.usc_map_fig).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_jkp).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_jff).setOnClickListener(buildingListener);
-        findViewById(R.id.usc_map_rmh).setOnClickListener(buildingListener);
+        findViewById(R.id.usc_map_ush).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_ugb).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_gec).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_ugw).setOnClickListener(buildingListener);
@@ -452,7 +452,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.usc_list_fig).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_jkp).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_jff).setOnClickListener(buildingListener);
-        findViewById(R.id.usc_list_rmh).setOnClickListener(buildingListener);
+        findViewById(R.id.usc_list_ush).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_ugb).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_gec).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_ugw).setOnClickListener(buildingListener);
