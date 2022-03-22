@@ -21,6 +21,7 @@
     <color name="blue_transparent">#3362C2E0</color>
     <color name="purple_transparent">#33C7B2D5</color>
     <color name="grey_transparent">#33D2D4D3</color>
+    <color name="grey_light">#80D2D4D3</color>
     <!--    Profile Colors    -->
     <color name="assess_green">#FF69BBAB</color>
     <color name="in_person_green">#FF00B050</color>
