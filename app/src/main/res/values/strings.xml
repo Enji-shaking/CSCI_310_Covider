@@ -4,6 +4,8 @@
     <string name="check_in">Check In</string>
     <string name="profile">Profile</string>
     <string name="log_in">Log In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <!--    Map Strings    -->
     <string name="map">Map</string>
     <string name="map_view">Map View</string>
