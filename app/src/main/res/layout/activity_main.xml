@@ -4548,5 +4548,74 @@
             app:tint="@color/gold" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/log_in_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/cardinal"
+            android:fontFamily="@font/ibm_plex_serif_bolditalic"
+            android:textSize="60sp"
+            android:text="@string/app_name" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/gold"
+            android:fontFamily="@font/ibm_plex_serif_bold"
+            android:textSize="35sp"
+            android:layout_marginTop="20dp"
+            android:text="@string/log_in" />
+        <EditText
+            android:id="@+id/log_in_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:backgroundTint="@color/gold"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="30dp"
+            android:inputType="text"/>
+        <EditText
+            android:id="@+id/log_in_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:backgroundTint="@color/gold"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/log_in_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in"
+            android:layout_marginTop="90dp"
+            android:layout_marginStart="50dp"
+            android:minHeight="55dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/ibm_plex_serif_semibold"
+            android:layout_marginEnd="50dp"/>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

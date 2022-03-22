@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private View profileView = null;
     private LinearLayout buildingsMap = null;
     private LinearLayout buildingsList = null;
+    private String username;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     @Override
@@ -41,17 +43,24 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(System.currentTimeMillis());
         getApplicationContext().deleteDatabase("covider"); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
+        initializeLogInPage();
         initializeNavBottom();
         initializeAnswers();
         initializeHealthAnswers();
         initializeUserProfile();
-        ScrollView vertical = findViewById(R.id.usc_map_vertical);
-        HorizontalScrollView horizontal = findViewById(R.id.usc_map_horizontal);
-        horizontal.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
-                horizontal.scrollTo(horizontal.getChildAt(0).getWidth()/2,0));
-        vertical.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
-                vertical.scrollTo(0, vertical.getChildAt(0).getHeight()/2));
         initializeMapView();
+    }
+
+    private void initializeLogInPage() {
+        Button.OnClickListener logInListener = (View view) -> {
+            EditText usernameInput = findViewById(R.id.log_in_username);
+            EditText passwordInput = findViewById(R.id.log_in_password);
+            username = usernameInput.getText().toString();
+            String password = passwordInput.getText().toString();
+            System.out.println(username + " " + password);
+            findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+        };
+        findViewById(R.id.log_in_submit).setOnClickListener(logInListener);
     }
 
     private void initializeNavBottom() {
@@ -161,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeMapView() {
+        ScrollView vertical = findViewById(R.id.usc_map_vertical);
+        HorizontalScrollView horizontal = findViewById(R.id.usc_map_horizontal);
+        horizontal.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
+                horizontal.scrollTo(horizontal.getChildAt(0).getWidth()/2,0));
+        vertical.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
+                vertical.scrollTo(0, vertical.getChildAt(0).getHeight()/2));
         initializeMapBuildings();
         if (buildingsMap == null) {
             buildingsMap = findViewById(R.id.usc_map_view);
