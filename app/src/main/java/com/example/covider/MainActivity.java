@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.covider.database.ManagerFactory;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private View mapView = null;
     private View reportView = null;
     private View profileView = null;
+    private LinearLayout buildingsMap = null;
+    private LinearLayout buildingsList = null;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     @Override
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 horizontal.scrollTo(horizontal.getChildAt(0).getWidth()/2,0));
         vertical.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
                 vertical.scrollTo(0, vertical.getChildAt(0).getHeight()/2));
-        initializeBuildings();
+        initializeMapView();
     }
 
     private void initializeNavBottom() {
@@ -155,7 +160,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initializeBuildings() {
+    private void initializeMapView() {
+        initializeMapBuildings();
+        Switch viewToggleSwitch = findViewById(R.id.toggle_view);
+        if (buildingsMap == null) {
+            buildingsMap = findViewById(R.id.usc_map_view);
+        }
+        if (buildingsList == null) {
+            buildingsList = findViewById(R.id.usc_list_view);
+        }
+        viewToggleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                buildingsMap.setVisibility(View.VISIBLE);
+                buildingsList.setVisibility(View.INVISIBLE);
+            } else {
+                buildingsMap.setVisibility(View.INVISIBLE);
+                buildingsList.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void initializeMapBuildings() {
         View.OnClickListener buildingListener = (View view) -> {
             String code = view.getContentDescription().toString();
             int stringId = getResources().getIdentifier(
