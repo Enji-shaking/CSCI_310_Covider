@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         ManagerFactory.initialize(getApplicationContext());
         initializeLogInPage();
         initializeNavBottom();
-        initializeAnswers();
-        initializeHealthAnswers();
+        initializeReportPage();
         initializeUserProfile();
         initializeMapView();
     }
@@ -112,6 +111,15 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(bottomNavListener);
         reportButton.setOnClickListener(bottomNavListener);
         profileButton.setOnClickListener(bottomNavListener);
+    }
+
+    private void initializeReportPage() {
+        initializeAnswers();
+        initializeHealthAnswers();
+        Button.OnClickListener submitHealthFormHandler = (View view) -> {
+            System.out.println("Submit Health Form");
+        };
+        findViewById(R.id.submit_health_form).setOnClickListener(submitHealthFormHandler);
     }
 
     private void initializeAnswers() {
