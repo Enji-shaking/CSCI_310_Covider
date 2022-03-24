@@ -20,6 +20,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.covider.database.ManagerFactory;
+import com.example.covider.database.user.UserManager;
+import com.example.covider.model.user.User;
 
 import java.util.HashMap;
 
@@ -59,7 +61,14 @@ public class MainActivity extends AppCompatActivity {
             username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
             System.out.println(username + " " + password);
-            findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+
+            UserManager um = ManagerFactory.getUserManagerInstance();
+            User user = um.getUserByName(username);
+            if (user.getPassword().equals(password)){
+                findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+            }
+
+
         };
         findViewById(R.id.log_in_submit).setOnClickListener(logInListener);
     }

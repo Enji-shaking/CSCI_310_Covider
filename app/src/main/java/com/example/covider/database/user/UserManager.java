@@ -93,6 +93,30 @@ public class UserManager extends DatabaseHandler {
         return user;
     }
 
+    // code to get the single contact
+    // TODO: write Test
+    public User getUserByName(String userName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
+                        KEY_NAME, KEY_PASS, KEY_IS_STU }, KEY_NAME + "=?",
+                new String[] { userName }, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()){
+            return null;
+        }
+
+
+        User user = new User(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getInt(3)
+        );
+        // return user
+        cursor.close();
+        return user;
+    }
+
     private void createDefaultUsers(){
         // should have user id of 1,2,3
         addUser("Mark", "password", 1);
