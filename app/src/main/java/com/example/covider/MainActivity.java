@@ -2,12 +2,16 @@ package com.example.covider;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -18,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.user.UserManager;
@@ -64,14 +69,39 @@ public class MainActivity extends AppCompatActivity {
 
             UserManager um = ManagerFactory.getUserManagerInstance();
             User user = um.getUserByName(username);
-            if (user==null){
-                System.out.println("user does not exists");
+            if (user == null){
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Error")
+                        .setMessage("User does not exist")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Log In Failed",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
             }
             else if (user.getPassword().equals(password)) {
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+                View temp = this.getCurrentFocus();
+                if (temp != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(temp.getWindowToken(), 0);
+                }
             }
             else{
-                System.out.println("wrong password");
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Error")
+                        .setMessage("Wrong Password")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Log In Failed",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
             }
 
 
