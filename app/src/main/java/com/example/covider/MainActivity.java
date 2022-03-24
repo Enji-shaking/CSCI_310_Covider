@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private View notificationView = null;
     private LinearLayout buildingsMap = null;
     private LinearLayout buildingsList = null;
-    private String username;
+    private String username = null;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     @Override
@@ -197,8 +197,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUserProfile() {
-        ((TextView)findViewById(R.id.username)).setText(Html.fromHtml("Hi, <b>Trojan</b>!"));
-
+        ((TextView)findViewById(R.id.username)).setText(
+                Html.fromHtml("Hi, <b>" + username + "</b>!"));
     }
 
     private void initializeMapView() {
