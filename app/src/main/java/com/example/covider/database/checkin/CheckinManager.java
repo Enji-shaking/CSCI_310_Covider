@@ -9,7 +9,11 @@ import com.example.covider.database.DatabaseHandler;
 import com.example.covider.model.building.Building;
 import com.example.covider.model.checkin.Checkin;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.zip.CheckedInputStream;
 
 public class CheckinManager extends DatabaseHandler {
@@ -21,6 +25,7 @@ public class CheckinManager extends DatabaseHandler {
     private static final String KEY_TIME = "timestamp";
 
     private static CheckinManager instance = null;
+    private static final long MILLIS_PER_DAY = 86400000L;
 
     public static CheckinManager getInstance(Context context){
         if(instance == null){
@@ -170,5 +175,76 @@ public class CheckinManager extends DatabaseHandler {
     public static String getTableName() {
         return TABLE_NAME;
     }
+
+    /*
+    Return List<buildingId> of user's recent visit
+     */
+    public ArrayList<Long> getFrequentVisit(long userId){
+        return getFrequentVisit(userId, 3);
+    }
+
+    /*
+    Return List<buildingId> of user's recent visit
+
+        "SELECT building_id , COUNT(*) AS visits " +
+        "FROM checkin " +
+        "WHERE user_id = 999 " +
+        "GROUP BY user_id " +
+        "ORDER BY visits DESC " +
+        "LIMIT 1"
+     */
+    public ArrayList<Long> getFrequentVisit(long userId, int topk){
+        ArrayList<Long> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT building_id " +
+                "FROM " + CheckinManager.getTableName() + " " +
+                "WHERE user_id = ? " +
+                "GROUP BY user_id " +
+                "ORDER BY COUNT(*) DESC " +
+                "LIMIT ?";
+        try(
+                Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(userId), String.valueOf(topk)});
+        ){
+            if(!cursor.moveToFirst()){
+                return list;
+            }
+            /*
+            {
+                building_id = 111;
+            }
+            */
+            do {
+                list.add(cursor.getLong(0));
+            }
+            while (cursor.moveToNext());
+        }
+
+        return list;
+    }
+
+    public ArrayList<Long> getCloseContact(long userId) {
+        return getCloseContact(userId,System.currentTimeMillis(),System.currentTimeMillis() - 3 * MILLIS_PER_DAY);
+    }
+
+
+    public ArrayList<Long> getCloseContact(long userId, long startTime, long endTime){
+        ArrayList<Checkin> buildingCheckins = getUserCheckinsInTimeSpan(userId, startTime, endTime);
+        Set<Long> closeContactUserIds = new HashSet<Long>();
+        for (Checkin checkin : buildingCheckins){
+            Long buildingId = checkin.getBuildingId();
+            ArrayList<Checkin> userCheckinsInBuilding = getBuildingCheckinsInTimeSpan(buildingId, startTime, endTime);
+            for (Checkin c : userCheckinsInBuilding){
+                closeContactUserIds.add(c.getUserId());
+            }
+        }
+
+        closeContactUserIds.remove(userId);
+
+        ArrayList<Long> res = new ArrayList<Long>(closeContactUserIds);
+        return res;
+    }
+
+
 
 }

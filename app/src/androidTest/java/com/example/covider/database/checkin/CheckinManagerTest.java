@@ -13,7 +13,9 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CheckinManagerTest extends TestCase {
@@ -94,5 +96,23 @@ public class CheckinManagerTest extends TestCase {
         assertEquals(0, listEmpty.size());
 
     }
+
+    @Test
+    public void testGetFrequentVisit(){
+        ArrayList<Long> buildingIds = cm.getFrequentVisit(999);
+        assertEquals(1,buildingIds.size());
+        assertEquals(Long.valueOf(111),buildingIds.get(0));
+
+        ArrayList<Long> buildingIds2 = cm.getFrequentVisit(999,0);
+        assertEquals(0,buildingIds2.size());
+    }
+
+
+    @Test
+    public void testGetCloseContact(){ // TODO: ADD DUMMY DATA
+        ArrayList<Long> closeContacts = cm.getCloseContact(999);
+        assertEquals(0,closeContacts.size());
+    }
+
 
 }
