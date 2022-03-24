@@ -64,8 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
             UserManager um = ManagerFactory.getUserManagerInstance();
             User user = um.getUserByName(username);
-            if (user.getPassword().equals(password)){
+            if (user==null){
+                System.out.println("user does not exists");
+            }
+            else if (user.getPassword().equals(password)) {
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+            }
+            else{
+                System.out.println("wrong password");
             }
 
 
