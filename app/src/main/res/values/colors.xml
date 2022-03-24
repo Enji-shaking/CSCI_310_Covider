@@ -12,6 +12,7 @@
     <color name="cardinal">#FF990000</color>
     <color name="cardinal_selected">#FF800000</color>
     <color name="gold">#FFFFC72C</color>
+    <color name="grey">#FFD2D4D3</color>
     <!--    Map Colors    -->
     <color name="cardinal_transparent">#33990000</color>
     <color name="gold_transparent">#33FFC72C</color>
@@ -27,4 +28,8 @@
     <color name="in_person_green">#FF00B050</color>
     <color name="hybrid_orange">#FFFFC000</color>
     <color name="online_red">#FFFF0000</color>
+    <!--    Notification Colors    -->
+    <color name="low_risk">#33FFFF24</color>
+    <color name="medium_risk">#33FC7B28</color>
+    <color name="high_risk">#33F9172B</color>
 </resources>

@@ -27,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private View mapButton = null;
     private View reportButton = null;
     private View profileButton = null;
+    private View notificationButton = null;
     private View mapView = null;
     private View reportView = null;
     private View profileView = null;
+    private View notificationView = null;
     private LinearLayout buildingsMap = null;
     private LinearLayout buildingsList = null;
     private String username;
@@ -72,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         if (profileButton == null) {
             profileButton = findViewById(R.id.profile);
         }
+        if (notificationButton == null) {
+            notificationButton = findViewById(R.id.notification);
+        }
         if (mapView == null) {
             mapView = findViewById(R.id.map_view);
         }
@@ -81,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         if (profileView == null) {
             profileView = findViewById(R.id.profile_view);
         }
+        if (notificationView == null) {
+            notificationView = findViewById(R.id.notification_view);
+        }
         ImageButton.OnClickListener bottomNavListener = (View view) -> {
             view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
             String content = view.getContentDescription().toString();
@@ -89,28 +97,44 @@ public class MainActivity extends AppCompatActivity {
                     mapView.setVisibility(View.VISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
+                    notificationView.setVisibility(View.INVISIBLE);
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
                 case "Report":
                     reportView.setVisibility(View.VISIBLE);
                     mapView.setVisibility(View.INVISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
+                    notificationView.setVisibility(View.INVISIBLE);
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
                 case "Profile":
                     profileView.setVisibility(View.VISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
                     mapView.setVisibility(View.INVISIBLE);
+                    notificationView.setVisibility(View.INVISIBLE);
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    break;
+                case "Notification":
+                    notificationView.setVisibility(View.VISIBLE);
+                    profileView.setVisibility(View.INVISIBLE);
+                    reportView.setVisibility(View.INVISIBLE);
+                    mapView.setVisibility(View.INVISIBLE);
+                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
             }
         };
         mapButton.setOnClickListener(bottomNavListener);
         reportButton.setOnClickListener(bottomNavListener);
         profileButton.setOnClickListener(bottomNavListener);
+        notificationButton.setOnClickListener(bottomNavListener);
     }
 
     private void initializeReportPage() {
