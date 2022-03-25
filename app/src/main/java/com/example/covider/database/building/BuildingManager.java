@@ -38,7 +38,7 @@ public class BuildingManager extends DatabaseHandler {
 
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(sql);
-            create_default_building();
+//            create_default_building();
         }
 //        addCheckin(1, 111);
     }
@@ -60,10 +60,10 @@ public class BuildingManager extends DatabaseHandler {
 
 
     private void create_default_building(){
-        addBuilding("SA");
-        addOrUpdateBuilding(new Building(1,"SAL"));
-        addOrUpdateBuilding(new Building(2,"KAP"));
-        addOrUpdateBuilding(new Building(4,"LVL"));
+//        addBuilding("SA"); // will be overwritten by the next line
+//        addOrUpdateBuilding(new Building(1,"SAL"));
+//        addOrUpdateBuilding(new Building(2,"KAP"));
+//        addOrUpdateBuilding(new Building(4,"LVL"));
     }
 
     public Building getBuildingByName(String name){

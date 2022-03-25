@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covider.database.ManagerFactory;
+import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.enrollment.EnrollmentManager;
@@ -32,6 +33,7 @@ import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
+import com.example.covider.model.building.Building;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         CourseManager courseManager;
         UserManager userManager;
         NotificationManager notificationManager;
+        BuildingManager buildingManager;
 
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         courseManager = ManagerFactory.getCourseManagerInstance();
         userManager = ManagerFactory.getUserManagerInstance();
         notificationManager = ManagerFactory.getNotificationManagerInstance();
+        buildingManager = ManagerFactory.getBuildingManagerInstance();
 
         reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
         reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
@@ -108,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
         notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
 
+        buildingManager.addBuilding("SA"); // will be overwritten by the next line
+        buildingManager.addOrUpdateBuilding(new Building(91,"SAL"));
+        buildingManager.addOrUpdateBuilding(new Building(92,"KAP"));
+        buildingManager.addOrUpdateBuilding(new Building(94,"LVL"));
 
     }
 
@@ -346,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                     nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
 
-                if (isProf == 1){
+                if (isStu == 0){
                     EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
                     CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
                     ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
