@@ -46,9 +46,6 @@ import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
-import com.google.android.material.navigation.NavigationBarItemView;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
