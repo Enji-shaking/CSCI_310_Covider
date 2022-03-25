@@ -53,14 +53,25 @@ public class MainActivity extends AppCompatActivity {
         getApplicationContext().deleteDatabase("covider"); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
         initializeLogInPage();
-        initializeNavBottom();
-        initializeReportPage();
-        initializeUserProfile();
-        initializeMapView();
     }
 
     private void initializeLogInPage() {
+        View.OnFocusChangeListener ofcListener = (View view, boolean hasFocus) -> {
+            EditText usernameInput = findViewById(R.id.log_in_username);
+            EditText passwordInput = findViewById(R.id.log_in_password);
+            if(!hasFocus && !usernameInput.hasFocus() && !passwordInput.hasFocus()) {
+                InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        };
+        findViewById(R.id.log_in_username).setOnFocusChangeListener(ofcListener);
+        findViewById(R.id.log_in_password).setOnFocusChangeListener(ofcListener);
         Button.OnClickListener logInListener = (View view) -> {
+            View temp = this.getCurrentFocus();
+            if (temp != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(temp.getWindowToken(), 0);
+            }
             EditText usernameInput = findViewById(R.id.log_in_username);
             EditText passwordInput = findViewById(R.id.log_in_password);
             username = usernameInput.getText().toString();
@@ -83,12 +94,11 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
             else if (user.getPassword().equals(password)) {
+                initializeNavBottom();
+                initializeReportPage();
+                initializeUserProfile();
+                initializeMapView();
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
-                View temp = this.getCurrentFocus();
-                if (temp != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(temp.getWindowToken(), 0);
-                }
             }
             else{
                 new AlertDialog.Builder(this)
