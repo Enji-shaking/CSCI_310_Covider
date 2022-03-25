@@ -87,7 +87,7 @@ public class RiskManager extends DatabaseHandler {
 
     //hard coded to 2 days
     public BuildingRiskReport getReportForBuilding(long buildingId){
-        return getReportForBuilding(buildingId, 2 * MILLIS_PER_DAY);
+        return getReportForBuilding(buildingId, 3 * MILLIS_PER_DAY);
     }
 
     public BuildingRiskReport getReportForBuilding(long buildingId, long spanTimeMillis){
