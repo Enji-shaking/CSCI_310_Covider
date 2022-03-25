@@ -11,6 +11,7 @@ import com.example.covider.database.DatabaseHandler;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.enrollment.EnrollmentManager;
 import com.example.covider.database.notification.NotificationManager;
+import com.example.covider.database.user.UserManager;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
@@ -134,8 +135,10 @@ public class CourseManager extends DatabaseHandler {
         ArrayList<Student> list = em.getStudentsEnrollingIn(courseId);
         ArrayList<Long> l = new ArrayList<>();
         Course c = getCourse(courseId);
+        UserManager um = ManagerFactory.getUserManagerInstance();
+        User prof = um.getUser(profId);
         for(Student s: list){
-            l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now online"));
+            l.add(nm.addNotification(profId, s.getId(), "Professor " + prof.getName() + " has announced the course " + c.getName() + " is now online"));
         }
         c.setIsOnline(1);
         addOrUpdateCourse(c);
@@ -150,8 +153,10 @@ public class CourseManager extends DatabaseHandler {
         ArrayList<Student> list = em.getStudentsEnrollingIn(courseId);
         ArrayList<Long> l = new ArrayList<>();
         Course c = getCourse(courseId);
+        UserManager um = ManagerFactory.getUserManagerInstance();
+        User prof = um.getUser(profId);
         for(Student s: list){
-            l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now in person"));
+            l.add(nm.addNotification(profId, s.getId(), "Professor " + prof.getName() + " has announced the course " + c.getName() + " is now in person"));
         }
         c.setIsOnline(0);
         addOrUpdateCourse(c);

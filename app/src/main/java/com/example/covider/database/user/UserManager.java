@@ -37,7 +37,7 @@ public class UserManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            createDefaultUsers();
+//            createDefaultUsers();
         }
     }
 
@@ -118,10 +118,10 @@ public class UserManager extends DatabaseHandler {
     }
 
     private void createDefaultUsers(){
-//        // should have user id of 1,2,3
-//        addUser("Mark", "password", 1);
-//        addUser("Enji", "password", 1);
-//        addUser("ZSN", "password", 0);
+        // should have user id of 1,2,3
+        addUser("Mark", "password", 1);
+        addUser("Enji", "password", 1);
+        addUser("ZSN", "password", 0);
     }
 
     @Override

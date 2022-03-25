@@ -1,13 +1,17 @@
 package com.example.covider;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -19,6 +23,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -387,7 +392,6 @@ public class MainActivity extends AppCompatActivity {
         initializeAnswers();
         initializeHealthAnswers();
         Button.OnClickListener submitHealthFormHandler = (View view) -> {
-            System.out.println("Submit Health Form");
             String symptom = "";
             boolean isPositive = false;
             for (HashMap.Entry<String, Boolean> set :
@@ -422,6 +426,17 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
 
                 for (Long closeContactUserId : closeContacts){
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive patient, BEWARE!");
+                }
+            }else if(!symptom.equals("")){
+                CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+                NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+                ArrayList<Long> closeContacts = cm.getCloseContact(userId);
+                System.out.println(closeContacts);
+
+
+                for (Long closeContactUserId : closeContacts){
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a student with covid related symptom, BEWARE!");
                     nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
 
@@ -557,40 +572,65 @@ public class MainActivity extends AppCompatActivity {
         initializeListBuildings();
     }
 
-    private void initializeMapBuildings() {
-        View.OnClickListener buildingListener = (View view) -> {
-            String code = view.getContentDescription().toString();
-            int stringIdTmp = getResources().getIdentifier(
-                    code + "_full", "string", getPackageName());
+    private void showPopUp(View view) {
+        String code = view.getContentDescription().toString();
+        int stringIdTmp = getResources().getIdentifier(
+                code + "_display", "string", getPackageName());
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.risk_popup, null);
+        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        // TODO: ZSN can modify risk level color
+        ((ImageView)(popupWindow.getContentView()
+                .findViewById(R.id.pop_up_building_risk_circle)))
+                .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
 
             int buildingIdTmp = getResources().getIdentifier(
                     code + "_id", "string", getPackageName());
 
             long buildingId = -1;
-            if (buildingIdTmp == 0){
-                // code is the building name, eg: lvl, kap, sal, ...
-                BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
-                Building building = bm.getBuildingByName(code);
-                if (building == null){
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        RiskManager rm = ManagerFactory.getRiskManagerInstance();
+        if (buildingIdTmp == 0){
+            // code is the building name, eg: lvl, kap, sal, ...
+            Building building = bm.getBuildingByName(code);
+            if (building == null){
                     System.out.println("Creating db entry for building:" + code);
                     bm.addBuilding(code);
                 }
-                building = bm.getBuildingByName(code);
-                buildingId = building.getId();
-            }else{
-                String fullName = getResources().getString(stringIdTmp);
-                buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
-            }
+            building = bm.getBuildingByName(code);
+            buildingId = building.getId();
+        }else{
+            String fullName = getResources().getString(stringIdTmp);
+            buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
+        }
 
-            System.out.println(code + " " + buildingId);
-            RiskManager rm = ManagerFactory.getRiskManagerInstance();
+        System.out.println(code + " " + buildingId);
             BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
             System.out.println(brp);
-
-
-            // TODO: show building report on click
-            // BuildingRiskReport{description='Last 2 Days', spanStartTime=1647999432901, spanEndTime=1648172232901, numVisitors=3, numLowRiskVisitors=1, numHighRiskVisitors=1, numPositiveVisitors=1}
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors)).setText(String.format(getResources().getString(R.string.high_risk_visitors), brp.getNumHighRiskVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors)).setText(String.format(getResources().getString(R.string.positive_visitors), brp.getNumPositiveVisitors()));
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        Button.OnClickListener returnListener = (View popup) -> {
+            popupWindow.dismiss();
         };
+        popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
+        Button.OnClickListener checkInListener = (View popup) -> {
+            CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+            System.out.println("Check In at " + code);
+            cm.addCheckin(userId, bm.getBuildingByName(code).getId());
+            popupWindow.dismiss();
+        };
+        popupWindow.getContentView().findViewById(R.id.check_in_button).setOnClickListener(checkInListener);
+    }
+
+    private void initializeMapBuildings() {
+        View.OnClickListener buildingListener = this::showPopUp;
         findViewById(R.id.usc_map_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_flt).setOnClickListener(buildingListener);
@@ -731,13 +771,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeListBuildings() {
-        LinearLayout.OnClickListener buildingListener = (View view) -> {
-            String code = view.getContentDescription().toString();
-            int stringId = getResources().getIdentifier(
-                    code + "_display", "string", getPackageName());
-            String displayName = getResources().getString(stringId);
-            System.out.println(displayName);
-        };
+        LinearLayout.OnClickListener buildingListener = this::showPopUp;
         findViewById(R.id.usc_list_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_flt).setOnClickListener(buildingListener);
