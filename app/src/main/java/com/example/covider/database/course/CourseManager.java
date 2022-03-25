@@ -138,6 +138,7 @@ public class CourseManager extends DatabaseHandler {
             l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now online"));
         }
         c.setIsOnline(1);
+        addOrUpdateCourse(c);
         return l;
     }
 
@@ -153,6 +154,7 @@ public class CourseManager extends DatabaseHandler {
             l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now in person"));
         }
         c.setIsOnline(0);
+        addOrUpdateCourse(c);
         return l;
     }
 
