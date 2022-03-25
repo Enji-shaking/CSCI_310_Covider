@@ -3,7 +3,6 @@ package com.example.covider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
@@ -35,10 +34,14 @@ import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
+import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
+import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
+import com.google.android.material.navigation.NavigationBarItemView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout buildingsList = null;
     private String userName = null;
     private long userId = 0;
+    private int isStu = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     private void createDummy(){
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ReportManager reportManager;
         CourseManager courseManager;
         UserManager userManager;
+        NotificationManager notificationManager;
 
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         courseManager = ManagerFactory.getCourseManagerInstance();
         userManager = ManagerFactory.getUserManagerInstance();
+        notificationManager = ManagerFactory.getNotificationManagerInstance();
 
         reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
         reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
@@ -86,12 +92,23 @@ public class MainActivity extends AppCompatActivity {
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
 
-        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99));
+        enrollmentManager.addEnrollment(1, 1, 1);
+        enrollmentManager.addEnrollment(1, 2, 1);
+        enrollmentManager.addEnrollment(2, 1, 1);
+        enrollmentManager.addEnrollment(2, 2, 1);
+        enrollmentManager.addEnrollment(3, 1, 0);
+        enrollmentManager.addEnrollment(3, 2, 0);
+
+        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99, 0));
 
         userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
         userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
         userManager.addOrUpdateUser(new User(11,"RiskTester3", "12345678", 1));
         userManager.addOrUpdateUser(new User(12,"RiskTester4", "12345678", 0));
+
+        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+
+
     }
 
     @Override
@@ -150,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             else if (user.getPassword().equals(password)) {
                 userName = user.getName();
                 userId = user.getId();
+                isStu = user.getIsStudent();
                 ((TextView)findViewById(R.id.username)).setText(
                         Html.fromHtml("Hi, <b>" + userName + "</b>!"));
                 mapView.setVisibility(View.VISIBLE);
@@ -180,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
 
         };
         findViewById(R.id.log_in_submit).setOnClickListener(logInListener);
+    }
+
+    private void changeCourseStatus(long courseId){
+        CourseManager cm = ManagerFactory.getCourseManagerInstance();
+        cm.toggleClassInPersonOnlineStatus(userId, courseId);
     }
 
     private void initializeNavBottom() {
@@ -237,8 +260,32 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    // TODO: front end show all reports
+                    ReportManager rm = ManagerFactory.getReportManagerInstance();
+                    ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
+                    System.out.println(reports);
+                    // [Report{id=10013, userId=10, isPositive=1, note='infection,breathing,gi_symptoms,taste_smell,muscle,chills_fever,conjunctivitis,cough,', timestamp=1648177952924}, Report{id=10010, userId=10, isPositive=0, note='Fever', timestamp=1648177932202}]
+
+                    // TODO: show enrollment
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    ArrayList<Course> courses;
+                    if(isStu == 0){
+                        courses = em.getCoursesTaughtBy(userId);
+                    }else {
+                        courses = em.getCoursesTakenBy(userId);
+                    }
+                    System.out.println(courses);
+                    // [Course{id=101, name='Course For Testing', building=99}]
+
+                    // TODO: add onclick function for change status course
+
                     break;
                 case "Notification":
+                    NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+                    ArrayList<Notification> notifications = nm.getNotificationFor(userId);
+                    System.out.println(notifications);
+                    // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
+                    
                     notificationView.setVisibility(View.VISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
@@ -249,11 +296,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         };
+
         mapButton.setOnClickListener(bottomNavListener);
         reportButton.setOnClickListener(bottomNavListener);
         profileButton.setOnClickListener(bottomNavListener);
         notificationButton.setOnClickListener(bottomNavListener);
     }
+
 
     private void initializeReportPage() {
         initializeAnswers();
@@ -292,14 +341,49 @@ public class MainActivity extends AppCompatActivity {
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
-                System.out.println(closeContacts);
-
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact, BEWARE!");
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
+
+                if (isProf == 1){
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
+                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
+                    for (Course course : courses) {
+                        courseManager.notifyOnline(userId, course.getId());
+                    }
+                }
+
             }
-            // TODO: in future, also notify the ones with symptoms
+
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_input_get)
+                    .setTitle("Success!")
+                    .setMessage("Your form has been recorded")
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .show();
+            for (HashMap.Entry<String, Boolean> set :
+                    answers.entrySet()) {
+                answers.put(set.getKey(), null);
+                int buttonId = getResources().getIdentifier(set.getKey()+"_no", "id", getPackageName());
+                Button button = findViewById(buttonId);
+                button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                button.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+                buttonId = getResources().getIdentifier(set.getKey()+"_yes", "id", getPackageName());
+                button = findViewById(buttonId);
+                button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                button.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+            }
+
+
+
+            System.out.println(answers);
         };
         findViewById(R.id.submit_health_form).setOnClickListener(submitHealthFormHandler);
     }

@@ -20,6 +20,7 @@ public class CourseManager extends DatabaseHandler {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     public static final String KEY_BUILDING_ID = "building_id";
+    public static final String KEY_IS_ONLINE = "is_online";
 
     private static CourseManager instance = null;
 
@@ -37,7 +38,8 @@ public class CourseManager extends DatabaseHandler {
                     " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     KEY_NAME + " TEXT, " +
-                    KEY_BUILDING_ID + " INTEGER " +
+                    KEY_BUILDING_ID + " INTEGER, " +
+                    KEY_IS_ONLINE + " INTEGER " +
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
@@ -48,7 +50,7 @@ public class CourseManager extends DatabaseHandler {
     // Warning: this will not modify the id inside since no insertion happened.
     // Have to insert the created one immediately otherwise will get two course with the same id
     public Course generateNewCourse(String name, long courseBuildingId){
-        return new Course(getNextId(TABLE_NAME), name, courseBuildingId);
+        return new Course(getNextId(TABLE_NAME), name, courseBuildingId, 0);
     }
 
 
@@ -58,17 +60,25 @@ public class CourseManager extends DatabaseHandler {
         values.put(KEY_ID, course.getId());
         values.put(KEY_NAME, course.getName());
         values.put(KEY_BUILDING_ID, course.getBuilding());
+        values.put(KEY_IS_ONLINE, course.getIsOnline());
         return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
 
-    public long addCourse(String courseName, long courseBuildingId){
+    public long addCourse(String courseName, long courseBuildingId, int isOnline){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, courseName);
         values.put(KEY_BUILDING_ID, courseBuildingId);
+        values.put(KEY_IS_ONLINE, isOnline);
         return db.insert(TABLE_NAME, null, values);
     }
+
+    public long addCourse(String courseName, long courseBuildingId){
+        return addCourse(courseName, courseBuildingId, 0);
+    }
+
+
 
 
 
@@ -77,7 +87,7 @@ public class CourseManager extends DatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
-                        KEY_NAME, KEY_BUILDING_ID }, KEY_ID + "=?",
+                        KEY_NAME, KEY_BUILDING_ID, KEY_IS_ONLINE }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -85,7 +95,8 @@ public class CourseManager extends DatabaseHandler {
         Course course = new Course(
                 cursor.getLong(0),
                 cursor.getString(1),
-                cursor.getLong(2)
+                cursor.getLong(2),
+                cursor.getInt(3)
         );
         // return course
         cursor.close();
@@ -94,10 +105,10 @@ public class CourseManager extends DatabaseHandler {
 
     private void createDefaultCourses(){
         // should have course id of 1,2,3
-        addCourse("MarkCourse", 1);
-        addCourse("EnjiCourse", 1);
-        addCourse("ZSNCourse", 1);
-        addCourse("DummyCourse", 3);
+        addCourse("MarkCourse", 1, 0);
+        addCourse("EnjiCourse", 1, 0);
+        addCourse("ZSNCourse", 1, 0);
+        addCourse("DummyCourse", 3, 0);
     }
 
     @Override
@@ -126,7 +137,34 @@ public class CourseManager extends DatabaseHandler {
         for(Student s: list){
             l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now online"));
         }
+        c.setIsOnline(1);
+        addOrUpdateCourse(c);
         return l;
+    }
+
+    public ArrayList<Long> notifyInPerson(long profId, long courseId){
+        // TODO: verify if the professor is teaching the course, or he is actually a professor
+        ManagerFactory.initialize(getContext());
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+        ArrayList<Student> list = em.getStudentsEnrollingIn(courseId);
+        ArrayList<Long> l = new ArrayList<>();
+        Course c = getCourse(courseId);
+        for(Student s: list){
+            l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now in person"));
+        }
+        c.setIsOnline(0);
+        addOrUpdateCourse(c);
+        return l;
+    }
+
+    public ArrayList<Long> toggleClassInPersonOnlineStatus(long profId, long courseId){
+        Course c = getCourse(courseId);
+        if(c.getIsOnline() == 1){
+            return notifyInPerson(profId, courseId);
+        }else{
+            return notifyOnline(profId, courseId);
+        }
     }
 
     public static String getTableName() {

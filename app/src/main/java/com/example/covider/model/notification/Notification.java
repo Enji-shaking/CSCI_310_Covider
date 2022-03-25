@@ -71,4 +71,15 @@ public class Notification {
         Notification that = (Notification) o;
         return getId() == that.getId() && Objects.equals(getFrom(), that.getFrom()) && Objects.equals(getTo(), that.getTo()) && Objects.equals(getRead(), that.getRead()) && Objects.equals(getMessage(), that.getMessage());
     }
+
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "id=" + id +
+                ", from=" + from +
+                ", to=" + to +
+                ", read=" + read +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

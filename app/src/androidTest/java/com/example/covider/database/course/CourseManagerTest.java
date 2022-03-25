@@ -44,7 +44,7 @@ public class CourseManagerTest {
         NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
         try{
             l = um.notifyOnline(3, 1);
-            assertEquals(l.size(), 2);
+            assertEquals(2,l.size());
             Notification not1 = nm.getNotification(l.get(0));
             Notification not2 = nm.getNotification(l.get(1));
             assertEquals(not1.getFrom(), 3);

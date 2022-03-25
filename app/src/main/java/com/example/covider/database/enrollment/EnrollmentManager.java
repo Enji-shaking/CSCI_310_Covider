@@ -69,12 +69,7 @@ public class EnrollmentManager extends DatabaseHandler {
 
     // 3 个default user 都和course1 有联系
     private void createDefaultEnrollment(){
-        addEnrollment(1, 1, 1);
-        addEnrollment(1, 2, 1);
-        addEnrollment(2, 1, 1);
-        addEnrollment(2, 2, 1);
-        addEnrollment(3, 1, 0);
-        addEnrollment(3, 2, 0);
+
     }
 
     public ArrayList<Student> getStudentsEnrollingIn(long courseId){
