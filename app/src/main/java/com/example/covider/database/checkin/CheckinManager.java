@@ -223,6 +223,7 @@ public class CheckinManager extends DatabaseHandler {
         return list;
     }
 
+    // 3 days default
     public ArrayList<Long> getCloseContact(long userId) {
         return getCloseContact(userId,System.currentTimeMillis(),System.currentTimeMillis() - 3 * MILLIS_PER_DAY);
     }

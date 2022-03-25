@@ -85,6 +85,7 @@
     <string name="scb_display">School of Cinematic Arts (SCB)</string>
     <string name="scc">scc</string>
     <string name="scc_full">School of Cinematic Arts</string>
+    <string name="scc_id">School of Cinematic Arts</string>
     <string name="scc_display">School of Cinematic Arts (SCC)</string>
     <string name="sca">sca</string>
     <string name="sca_full">School of Cinematic Arts</string>
@@ -212,6 +213,7 @@
     <string name="sal">sal</string>
     <string name="sal_full">Salvatori Computer Science Center</string>
     <string name="sal_display">Salvatori Computer Science Center (SAL)</string>
+    <string name="sal_id">99</string>
     <string name="sel">sel</string>
     <string name="sel_full">Science &amp; Engineering Library</string>
     <string name="sel_display">Science &amp; Engineering Library</string>

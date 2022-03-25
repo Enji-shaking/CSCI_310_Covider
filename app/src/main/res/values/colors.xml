@@ -14,8 +14,8 @@
     <color name="gold">#FFFFC72C</color>
     <color name="grey">#FFD2D4D3</color>
     <!--    Map Colors    -->
-    <color name="cardinal_transparent">#33990000</color>
-    <color name="gold_transparent">#33FFC72C</color>
+    <color name="cardinal_transparent">#CC990000</color>
+    <color name="gold_transparent">#CCFFC72C</color>
     <color name="green_transparent">#3370C7B1</color>
     <color name="brown_transparent">#33CDA890</color>
     <color name="pink_transparent">#33F3869A</color>

@@ -39,6 +39,7 @@ public class RiskManager extends DatabaseHandler {
     }
 
     public static RiskManager getInstance(Context context){
+        ManagerFactory.initialize(context);
         if (enrollmentManager == null){
             enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         }

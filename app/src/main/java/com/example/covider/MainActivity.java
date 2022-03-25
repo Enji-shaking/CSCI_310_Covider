@@ -25,9 +25,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covider.database.ManagerFactory;
+import com.example.covider.database.checkin.CheckinManager;
+import com.example.covider.database.course.CourseManager;
+import com.example.covider.database.enrollment.EnrollmentManager;
+import com.example.covider.database.report.ReportManager;
+import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
+import com.example.covider.model.course.Course;
+import com.example.covider.model.enrollment.Enrollment;
+import com.example.covider.model.report.BuildingRiskReport;
+import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,8 +51,46 @@ public class MainActivity extends AppCompatActivity {
     private View notificationView = null;
     private LinearLayout buildingsMap = null;
     private LinearLayout buildingsList = null;
-    private String username = null;
+    private String userName = null;
+    private long userId = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
+
+    private void createDummy(){
+        RiskManager riskManager;
+        EnrollmentManager enrollmentManager;
+        CheckinManager checkinManager;
+        ReportManager reportManager;
+        CourseManager courseManager;
+        UserManager userManager;
+
+        riskManager = ManagerFactory.getRiskManagerInstance();
+        reportManager = ManagerFactory.getReportManagerInstance();
+        checkinManager = ManagerFactory.getCheckinManagerInstance();
+        enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
+        courseManager = ManagerFactory.getCourseManagerInstance();
+        userManager = ManagerFactory.getUserManagerInstance();
+
+        reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
+        reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
+        reportManager.addOrUpdateReport(new UserDailyReport(10011, 11, 0, "", System.currentTimeMillis()));
+        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
+
+        checkinManager.addCheckin(9, 99);
+        checkinManager.addCheckin(10, 99);
+        checkinManager.addCheckin(11, 99);
+
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1009, 9, 101, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1010, 10,101,1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
+
+        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99));
+
+        userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
+        userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
+        userManager.addOrUpdateUser(new User(11,"RiskTester3", "12345678", 1));
+        userManager.addOrUpdateUser(new User(12,"RiskTester4", "12345678", 0));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +100,12 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(System.currentTimeMillis());
         getApplicationContext().deleteDatabase("covider"); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
+        createDummy();
+        initializeLogInPage();
+        initializeNavBottom();
         initializeReportPage();
         initializeUserProfile();
         initializeMapView();
-        initializeLogInPage();
     }
 
     private void initializeLogInPage() {
@@ -77,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
             }
             EditText usernameInput = findViewById(R.id.log_in_username);
             EditText passwordInput = findViewById(R.id.log_in_password);
-            username = usernameInput.getText().toString();
+            String userNameTmp = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
 
             UserManager um = ManagerFactory.getUserManagerInstance();
-            User user = um.getUserByName(username);
+            User user = um.getUserByName(userNameTmp);
             if (user == null){
                 new AlertDialog.Builder(this)
                         .setIcon(android.R.drawable.ic_delete)
@@ -98,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
             else if (user.getPassword().equals(password)) {
                 initializeNavBottom();
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+                userName = user.getName();
+                userId = user.getId();
             }
             else{
                 new AlertDialog.Builder(this)
@@ -196,6 +248,37 @@ public class MainActivity extends AppCompatActivity {
         initializeHealthAnswers();
         Button.OnClickListener submitHealthFormHandler = (View view) -> {
             System.out.println("Submit Health Form");
+            String symptom = "";
+            int isPositive = 0;
+            for (HashMap.Entry<String, Boolean> set :
+                    answers.entrySet()) {
+                if(set.getValue() == null){
+                    new AlertDialog.Builder(this)
+                            .setIcon(android.R.drawable.ic_delete)
+                            .setTitle("Error")
+                            .setMessage("Fill out all forms please")
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(getApplicationContext(),"Fill out all forms please",Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .show();
+                    return;
+                }
+                if(set.getValue()){
+                    symptom+=set.getKey() + ",";
+                }
+                if(set.getKey().equals("infection")){
+                    isPositive = 1;
+                }
+            }
+            ReportManager rm = ManagerFactory.getReportManagerInstance();
+            rm.addReport(userId, isPositive, symptom);
+            CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+            ArrayList<Long> closeContacts = cm.getCloseContact(userId);
+            System.out.println(closeContacts);
+            // TODO: in future, also notify the ones with symptoms
         };
         findViewById(R.id.submit_health_form).setOnClickListener(submitHealthFormHandler);
     }
@@ -252,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeUserProfile() {
         ((TextView)findViewById(R.id.username)).setText(
-                Html.fromHtml("Hi, <b>" + username + "</b>!"));
+                Html.fromHtml("Hi, <b>" + userName + "</b>!"));
     }
 
     private void initializeMapView() {
@@ -260,7 +343,6 @@ public class MainActivity extends AppCompatActivity {
         HorizontalScrollView horizontal = findViewById(R.id.usc_map_horizontal);
         horizontal.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
                 horizontal.scrollTo(horizontal.getChildAt(0).getWidth()/2,0));
-        System.out.println(horizontal.getChildAt(0).getWidth()/2);
         vertical.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
                 vertical.scrollTo(0, vertical.getChildAt(0).getHeight()/2));
         initializeMapBuildings();
@@ -286,10 +368,20 @@ public class MainActivity extends AppCompatActivity {
     private void initializeMapBuildings() {
         View.OnClickListener buildingListener = (View view) -> {
             String code = view.getContentDescription().toString();
-            int stringId = getResources().getIdentifier(
+            int stringIdTmp = getResources().getIdentifier(
                     code + "_full", "string", getPackageName());
-            String fullName = getResources().getString(stringId);
-            System.out.println(fullName);
+
+            int buildingIdTmp = getResources().getIdentifier(
+                    code + "_id", "string", getPackageName());
+
+            String fullName = getResources().getString(stringIdTmp);
+            long buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
+            System.out.println(fullName + " " + buildingId);
+            RiskManager rm = ManagerFactory.getRiskManagerInstance();
+            BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
+            System.out.println(brp);
+            // TODO: show building report on click
+            // BuildingRiskReport{description='Last 2 Days', spanStartTime=1647999432901, spanEndTime=1648172232901, numVisitors=3, numLowRiskVisitors=1, numHighRiskVisitors=1, numPositiveVisitors=1}
         };
         findViewById(R.id.usc_map_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_mcc).setOnClickListener(buildingListener);
