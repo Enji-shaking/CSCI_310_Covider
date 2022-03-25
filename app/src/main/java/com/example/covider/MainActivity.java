@@ -38,7 +38,9 @@ import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.User;
+import com.google.android.material.navigation.NavigationBarItemView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout buildingsList = null;
     private String userName = null;
     private long userId = 0;
-    private int isProf = 0;
+    private int isStu = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     private void createDummy(){
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             else if (user.getPassword().equals(password)) {
                 userName = user.getName();
                 userId = user.getId();
+                isStu = user.getIsStudent();
                 ((TextView)findViewById(R.id.username)).setText(
                         Html.fromHtml("Hi, <b>" + userName + "</b>!"));
                 mapView.setVisibility(View.VISIBLE);
@@ -244,6 +247,22 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                    // TODO: front end show all reports
+                    ReportManager rm = ManagerFactory.getReportManagerInstance();
+                    ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
+                    System.out.println(reports);
+                    // [Report{id=10013, userId=10, isPositive=1, note='infection,breathing,gi_symptoms,taste_smell,muscle,chills_fever,conjunctivitis,cough,', timestamp=1648177952924}, Report{id=10010, userId=10, isPositive=0, note='Fever', timestamp=1648177932202}]
+
+                    // TODO: show enrollment
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    ArrayList<Course> courses;
+                    if(isStu == 0){
+                        courses = em.getCoursesTaughtBy(userId);
+                    }else {
+                        courses = em.getCoursesTakenBy(userId);
+                    }
+                    System.out.println(courses);
+                    // [Course{id=101, name='Course For Testing', building=99}]
                     break;
                 case "Notification":
                     NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
