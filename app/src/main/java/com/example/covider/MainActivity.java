@@ -44,6 +44,7 @@ import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
+import com.example.covider.model.report.CourseRiskReport;
 import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
@@ -355,6 +356,19 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         coursesEnrolled2 = em2.getCoursesTakenBy(userId);
                     }
+
+
+                    // getCourseReportByCourse
+                    // RiskManager riskManager = ManagerFactory.getRiskManagerInstance();
+                    // riskManager.getReportForCourse(course.getId());
+
+                    // getCourseBuildingName
+                    // BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+                    // String buildingName = bm.getBuildingById(course.getId()).getName;
+                    ArrayList<Building> courseBuildings = new ArrayList<>();
+
+
+
                     System.out.println("coursesEnrolled2: " +  coursesEnrolled2);
                     // [Course{id=101, name='Course For Testing', building=99}]
 
