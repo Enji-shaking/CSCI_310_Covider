@@ -5,6 +5,7 @@
     <string name="profile">Profile</string>
     <string name="notification">Notification</string>
     <string name="log_in">Log In</string>
+    <string name="log_out">Log Out</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <!--    Map Strings    -->
@@ -85,6 +86,7 @@
     <string name="scb_display">School of Cinematic Arts (SCB)</string>
     <string name="scc">scc</string>
     <string name="scc_full">School of Cinematic Arts</string>
+    <string name="scc_id">School of Cinematic Arts</string>
     <string name="scc_display">School of Cinematic Arts (SCC)</string>
     <string name="sca">sca</string>
     <string name="sca_full">School of Cinematic Arts</string>
@@ -212,6 +214,7 @@
     <string name="sal">sal</string>
     <string name="sal_full">Salvatori Computer Science Center</string>
     <string name="sal_display">Salvatori Computer Science Center (SAL)</string>
+    <string name="sal_id">99</string>
     <string name="sel">sel</string>
     <string name="sel_full">Science &amp; Engineering Library</string>
     <string name="sel_display">Science &amp; Engineering Library</string>
@@ -433,7 +436,7 @@
     <!--    Health Form Strings    -->
     <string name="health_form_title">Wellness Assessment Tool</string>
     <string name="guiding_question1">Do any of these apply to you?</string>
-    <string name="infection">Are you currently required to isolate due to a COVID-19 infection?</string>
+    <string name="infection">Are you tested positive?</string>
     <string name="infection_date">When did you test positive?</string>
     <string name="guiding_question2">Do you currently have any of the following symptoms (please answer regardless of why you believe you have the symptoms):</string>
     <string name="chills_fever"><b>Chills</b> or <b>Fever</b> of 100 degrees or higher</string>

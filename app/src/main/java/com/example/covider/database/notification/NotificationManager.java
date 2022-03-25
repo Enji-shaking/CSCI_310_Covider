@@ -97,6 +97,12 @@ public class NotificationManager extends DatabaseHandler {
         }
     }
 
+    public void markNotificationRead(long id){
+        Notification notification = getNotification(id);
+        notification.setRead(1);
+        addOrUpdateNotification(notification);
+    }
+
     public ArrayList<Notification> getNotificationFor(long userId){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Notification> list = new ArrayList<Notification>();

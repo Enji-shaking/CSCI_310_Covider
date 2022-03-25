@@ -58,7 +58,9 @@ public class ReportManager extends DatabaseHandler {
     }
 
     // add a new report
-    public long addReport(int userId, int isPositive, String note){
+    // if positive, isPositive = true,
+    // if symptom, note not empty
+    public long addReport(long userId, int isPositive, String note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER_ID, userId);

@@ -1,6 +1,7 @@
 package com.example.covider.database.risk;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.covider.database.DatabaseHandler;
@@ -38,6 +39,7 @@ public class RiskManager extends DatabaseHandler {
     }
 
     public static RiskManager getInstance(Context context){
+        ManagerFactory.initialize(context);
         if (enrollmentManager == null){
             enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         }

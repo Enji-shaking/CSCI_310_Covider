@@ -28,6 +28,7 @@ public class ManagerFactory {
     // no need to plug in context when want to getting the instances
     public static void initialize(Context context){
         if(!initialized){
+            initialized = true;
             courseManagerInstance = CourseManager.getInstance(context);
             enrollmentManagerInstance = EnrollmentManager.getInstance(context);
             notificationManagerInstance = NotificationManager.getInstance(context);
