@@ -199,6 +199,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.log_in_submit).setOnClickListener(logInListener);
     }
 
+    private void changeCourseStatus(long courseId){
+        CourseManager cm = ManagerFactory.getCourseManagerInstance();
+        cm.toggleClassInPersonOnlineStatus(userId, courseId);
+    }
+
     private void initializeNavBottom() {
         if (mapButton == null) {
             mapButton = findViewById(R.id.map);
@@ -270,6 +275,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     System.out.println(courses);
                     // [Course{id=101, name='Course For Testing', building=99}]
+
+                    // TODO: add onclick function for change status course
+
                     break;
                 case "Notification":
                     NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
