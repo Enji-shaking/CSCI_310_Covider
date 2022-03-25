@@ -28,6 +28,7 @@ public class BuildingRiskReport {
                 ", numLowRiskVisitors=" + numLowRiskVisitors +
                 ", numHighRiskVisitors=" + numHighRiskVisitors +
                 ", numPositiveVisitors=" + numPositiveVisitors +
+                ", riskIndex=" + getRiskIndex() +
                 '}';
     }
 

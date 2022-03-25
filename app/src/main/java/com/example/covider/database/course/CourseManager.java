@@ -137,7 +137,34 @@ public class CourseManager extends DatabaseHandler {
         for(Student s: list){
             l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now online"));
         }
+        c.setIsOnline(1);
+        addOrUpdateCourse(c);
         return l;
+    }
+
+    public ArrayList<Long> notifyInPerson(long profId, long courseId){
+        // TODO: verify if the professor is teaching the course, or he is actually a professor
+        ManagerFactory.initialize(getContext());
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+        ArrayList<Student> list = em.getStudentsEnrollingIn(courseId);
+        ArrayList<Long> l = new ArrayList<>();
+        Course c = getCourse(courseId);
+        for(Student s: list){
+            l.add(nm.addNotification(profId, s.getId(), "Course " + c.getName() + " is now in person"));
+        }
+        c.setIsOnline(0);
+        addOrUpdateCourse(c);
+        return l;
+    }
+
+    public ArrayList<Long> toggleClassInPersonOnlineStatus(long profId, long courseId){
+        Course c = getCourse(courseId);
+        if(c.getIsOnline() == 1){
+            return notifyInPerson(profId, courseId);
+        }else{
+            return notifyOnline(profId, courseId);
+        }
     }
 
     public static String getTableName() {
