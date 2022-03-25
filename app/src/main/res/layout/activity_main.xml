@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toStartOf="@id/nav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
@@ -4085,7 +4085,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:orientation="vertical" >
         <ScrollView
             android:layout_width="match_parent"
@@ -4103,6 +4103,7 @@
                     android:background="@color/cardinal"
                     android:drawableLeft="@drawable/ic_right_from_bracket_solid"
                     android:textColor="@color/gold"
+                    android:layout_marginBottom="15dp"
                     android:textSize="20sp"
                     android:text="@string/log_out"/>
                 <TextView
@@ -4687,7 +4688,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:orientation="vertical" >
 
         <TextView
