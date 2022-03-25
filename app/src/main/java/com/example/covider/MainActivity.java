@@ -3,7 +3,6 @@ package com.example.covider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
@@ -35,6 +34,7 @@ import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
+import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.User;
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ReportManager reportManager;
         CourseManager courseManager;
         UserManager userManager;
+        NotificationManager notificationManager;
 
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         courseManager = ManagerFactory.getCourseManagerInstance();
         userManager = ManagerFactory.getUserManagerInstance();
+        notificationManager = ManagerFactory.getNotificationManagerInstance();
 
         reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
         reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
@@ -92,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
         userManager.addOrUpdateUser(new User(11,"RiskTester3", "12345678", 1));
         userManager.addOrUpdateUser(new User(12,"RiskTester4", "12345678", 0));
+
+        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+
+
     }
 
     @Override
@@ -229,6 +235,11 @@ public class MainActivity extends AppCompatActivity {
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     break;
                 case "Notification":
+                    NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+                    ArrayList<Notification> notifications = nm.getNotificationFor(userId);
+                    System.out.println(notifications);
+                    // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
+                    
                     notificationView.setVisibility(View.VISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
@@ -239,11 +250,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         };
+
         mapButton.setOnClickListener(bottomNavListener);
         reportButton.setOnClickListener(bottomNavListener);
         profileButton.setOnClickListener(bottomNavListener);
         notificationButton.setOnClickListener(bottomNavListener);
     }
+
 
     private void initializeReportPage() {
         initializeAnswers();

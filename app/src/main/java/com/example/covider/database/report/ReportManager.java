@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.covider.database.DatabaseHandler;
 import com.example.covider.model.report.UserDailyReport;
 
+import java.util.ArrayList;
+
 public class ReportManager extends DatabaseHandler {
 
     public static final String TABLE_NAME = "report";
@@ -19,8 +21,8 @@ public class ReportManager extends DatabaseHandler {
 
     private static ReportManager instance = null;
 
-    public static ReportManager getInstance(Context context){
-        if(instance == null){
+    public static ReportManager getInstance(Context context) {
+        if (instance == null) {
             instance = new ReportManager(context);
         }
         return instance;
@@ -29,7 +31,7 @@ public class ReportManager extends DatabaseHandler {
 
     private ReportManager(Context context) {
         super(context);
-        if(!isTableExist(TABLE_NAME)){
+        if (!isTableExist(TABLE_NAME)) {
             String SQL_CREATE_Query = "CREATE TABLE " + TABLE_NAME +
                     " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -46,7 +48,7 @@ public class ReportManager extends DatabaseHandler {
     }
 
     // take a report object and plug it
-    public long addOrUpdateReport(UserDailyReport userDailyReport){
+    public long addOrUpdateReport(UserDailyReport userDailyReport) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID, userDailyReport.getId());
@@ -60,7 +62,7 @@ public class ReportManager extends DatabaseHandler {
     // add a new report
     // if positive, isPositive = true,
     // if symptom, note not empty
-    public long addReport(long userId, int isPositive, String note){
+    public long addReport(long userId, int isPositive, String note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER_ID, userId);
@@ -70,19 +72,19 @@ public class ReportManager extends DatabaseHandler {
         return db.insert(TABLE_NAME, null, values);
     }
 
-    public void create_default_report(){
-        addOrUpdateReport(new UserDailyReport(10001,1, 0, "",1646896887000L));
-        addOrUpdateReport(new UserDailyReport(10002,2, 0, "",1646896887001L));
-        addOrUpdateReport(new UserDailyReport(10003,1, 1, "Positive",1646896887002L));
+    public void create_default_report() {
+        addOrUpdateReport(new UserDailyReport(10001, 1, 0, "", 1646896887000L));
+        addOrUpdateReport(new UserDailyReport(10002, 2, 0, "", 1646896887001L));
+        addOrUpdateReport(new UserDailyReport(10003, 1, 1, "Positive", 1646896887002L));
     }
 
     // code to get the single contact
     public UserDailyReport getReport(long reportId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER_ID, KEY_IS_POSITIVE, KEY_NOTE, KEY_TIME}, KEY_ID + "=?",
-                new String[] { String.valueOf(reportId) }, null, null, null, null)){
-            if(!cursor.moveToFirst()){
+        try (Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_ID, KEY_USER_ID, KEY_IS_POSITIVE, KEY_NOTE, KEY_TIME}, KEY_ID + "=?",
+                new String[]{String.valueOf(reportId)}, null, null, null, null)) {
+            if (!cursor.moveToFirst()) {
                 return null;
             }
             return new UserDailyReport(
@@ -95,22 +97,39 @@ public class ReportManager extends DatabaseHandler {
         }
     }
 
-    public UserDailyReport getUserMostRecentReport(long userId){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_USER_ID, KEY_IS_POSITIVE, KEY_NOTE, KEY_TIME}, KEY_USER_ID + "=?",
-                new String[] { String.valueOf(userId) }, null, null, KEY_TIME + " DESC", "1")){
-            if(!cursor.moveToFirst()){
-                return null;
-            }
-            return new UserDailyReport(
-                    cursor.getLong(0),
-                    cursor.getLong(1),
-                    cursor.getInt(2),
-                    cursor.getString(3),
-                    cursor.getLong(4)
-            );
+    public UserDailyReport getUserMostRecentReport(long userId) {
+        ArrayList<UserDailyReport> reports = getUserMostRecentReportsTopK(userId, 1);
+        if (reports.isEmpty()){
+            return null;
         }
+        return reports.get(0);
+    }
+
+    public ArrayList<UserDailyReport> getUserMostRecentReportsTopK(long userId, int topk) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<UserDailyReport> reports = new ArrayList<>();
+
+        try (Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_ID, KEY_USER_ID, KEY_IS_POSITIVE, KEY_NOTE, KEY_TIME}, KEY_USER_ID + "=?",
+                new String[]{String.valueOf(userId)}, null, null, KEY_TIME + " DESC", String.valueOf(topk))) {
+            if (!cursor.moveToFirst()) {
+                return reports;
+            }
+
+
+            do{
+                reports.add(new UserDailyReport(
+                        cursor.getLong(0),
+                        cursor.getLong(1),
+                        cursor.getInt(2),
+                        cursor.getString(3),
+                        cursor.getLong(4)
+                ));
+            }
+            while (cursor.moveToNext());
+
+        }
+
+        return reports;
     }
 
     @Override
