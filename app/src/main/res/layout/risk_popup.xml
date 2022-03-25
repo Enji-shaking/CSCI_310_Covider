@@ -21,8 +21,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/ibm_plex_serif_bold"
         android:textSize="20sp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/sal_display"/>
+        android:layout_marginBottom="50dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,32 +44,28 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="15sp"
-            android:layout_marginBottom="3dp"
-            android:text="Total Visitors: 3"/>
+            android:layout_marginBottom="3dp"/>
         <TextView
             android:id="@+id/pop_up_low_risk_visitors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="15sp"
-            android:layout_marginBottom="3dp"
-            android:text="Low Risk Visitors: 1"/>
+            android:layout_marginBottom="3dp"/>
         <TextView
             android:id="@+id/pop_up_high_risk_visitors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="15sp"
-            android:layout_marginBottom="3dp"
-            android:text="High Risk Visitors: 1"/>
+            android:layout_marginBottom="3dp"/>
         <TextView
             android:id="@+id/pop_up_positive_visitors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="15sp"
-            android:layout_marginBottom="30dp"
-            android:text="Positive Visitors: 1"/>
+            android:layout_marginBottom="30dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

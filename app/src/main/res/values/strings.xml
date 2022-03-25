@@ -14,6 +14,10 @@
     <string name="list_view">List View</string>
     <string name="last_3_days">In Last 3 Days</string>
     <string name="go_back">Go Back</string>
+    <string name="total_visitors" formatted="false">Total Visitors: %d</string>
+    <string name="low_risk_visitors" formatted="false">Low Risk Visitors: %d</string>
+    <string name="high_risk_visitors" formatted="false">High Risk Visitors: %d</string>
+    <string name="positive_visitors" formatted="false">Positive Visitors: %d</string>
     <string name="esh">esh</string>
     <string name="esh_full">Engemann Student Health Center</string>
     <string name="esh_display">Engemann Student Health Center (ESH)</string>
