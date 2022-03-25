@@ -433,7 +433,7 @@
     <!--    Health Form Strings    -->
     <string name="health_form_title">Wellness Assessment Tool</string>
     <string name="guiding_question1">Do any of these apply to you?</string>
-    <string name="infection">Are you currently required to isolate due to a COVID-19 infection?</string>
+    <string name="infection">Are you tested positive?</string>
     <string name="infection_date">When did you test positive?</string>
     <string name="guiding_question2">Do you currently have any of the following symptoms (please answer regardless of why you believe you have the symptoms):</string>
     <string name="chills_fever"><b>Chills</b> or <b>Fever</b> of 100 degrees or higher</string>
