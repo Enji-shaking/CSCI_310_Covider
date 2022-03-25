@@ -33,6 +33,7 @@ import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
+import com.example.covider.model.Checkin;
 import com.example.covider.model.building.Building;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
@@ -43,7 +44,7 @@ import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 import com.google.android.material.navigation.NavigationBarItemView;
 
-import java.lang.reflect.Array;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -64,58 +65,93 @@ public class MainActivity extends AppCompatActivity {
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     private void createDummy(){
-        RiskManager riskManager;
-        EnrollmentManager enrollmentManager;
-        CheckinManager checkinManager;
-        ReportManager reportManager;
-        CourseManager courseManager;
         UserManager userManager;
-        NotificationManager notificationManager;
         BuildingManager buildingManager;
+        CheckinManager checkinManager;
+        CourseManager courseManager;
+        EnrollmentManager enrollmentManager;
+        RiskManager riskManager;
+        ReportManager reportManager;
+        NotificationManager notificationManager;
 
+        userManager = ManagerFactory.getUserManagerInstance();
+        buildingManager = ManagerFactory.getBuildingManagerInstance();
+        checkinManager = ManagerFactory.getCheckinManagerInstance();
+        courseManager = ManagerFactory.getCourseManagerInstance();
+        enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
-        checkinManager = ManagerFactory.getCheckinManagerInstance();
-        enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
-        courseManager = ManagerFactory.getCourseManagerInstance();
-        userManager = ManagerFactory.getUserManagerInstance();
         notificationManager = ManagerFactory.getNotificationManagerInstance();
-        buildingManager = ManagerFactory.getBuildingManagerInstance();
 
-        reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10011, 11, 0, "", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
+        userManager.addOrUpdateUser(new User(100,"Enji", "12345678", 1));
+        userManager.addOrUpdateUser(new User(101,"Zhihan", "12345678", 1));
+        userManager.addOrUpdateUser(new User(102,"Shuning", "12345678", 1));
+        userManager.addOrUpdateUser(new User(123,"Negar", "12345678", 0));
+        userManager.addOrUpdateUser(new User(124,"Tanya", "12345678", 0));
+        userManager.addOrUpdateUser(new User(125,"Saty", "12345678", 0));
 
-        checkinManager.addCheckin(9, 99);
-        checkinManager.addCheckin(10, 99);
-        checkinManager.addCheckin(11, 99);
+        buildingManager.addOrUpdateBuilding(new Building(200,"sal"));
+        buildingManager.addOrUpdateBuilding(new Building(201,"thh"));
+        buildingManager.addOrUpdateBuilding(new Building(202,"kap"));
+        buildingManager.addOrUpdateBuilding(new Building(203,"rth"));
 
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1009, 9, 101, 1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1010, 10,101,1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
+        /*
+            CheckIn: User -> List<Building>
+            Enji checked in buildings {sal, thh, kap}
+            Zhihan checked in {sal, thh}
+            Shuning checked in {None}
+         */
+        checkinManager.addCheckin(100, 200);
+        checkinManager.addCheckin(100, 201);
+        checkinManager.addCheckin(100, 202);
+        checkinManager.addCheckin(101, 200);
+        checkinManager.addCheckin(101, 201);
 
-        enrollmentManager.addEnrollment(1, 1, 1);
-        enrollmentManager.addEnrollment(1, 2, 1);
-        enrollmentManager.addEnrollment(2, 1, 1);
-        enrollmentManager.addEnrollment(2, 2, 1);
-        enrollmentManager.addEnrollment(3, 1, 0);
-        enrollmentManager.addEnrollment(3, 2, 0);
+        courseManager.addOrUpdateCourse(new Course(60310, "CS310", 200, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60350, "CS350", 201, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60360, "CS360", 202, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60585, "CS585", 203, 0 ));
 
-        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99, 0));
+        /*
+            Enrollment: User -> List<Courses>
+            Enji takes courses CS310, CS350, CS585
+            Zhihan takes courses CS360, CS310
+            Shuning takes course CS310
+        */
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10000, 100, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10001, 100, 60350, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10002, 100, 60585, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10100, 101, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10101, 101, 60360, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10200, 102, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12300, 123,60310,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12300, 123,60360,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12400, 124,60350,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12500, 125, 60585,0));
 
-        userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
-        userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
-        userManager.addOrUpdateUser(new User(11,"RiskTester3", "12345678", 1));
-        userManager.addOrUpdateUser(new User(12,"RiskTester4", "12345678", 0));
+        reportManager.addOrUpdateReport(new UserDailyReport(300, 100, 1, "Stay Positive", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10011, 11, 0, "", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
 
-        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+        notificationManager.addNotification(100,101,"You got close contact with a positive patient, BEWARE!");
 
-        buildingManager.addBuilding("SA"); // will be overwritten by the next line
-        buildingManager.addOrUpdateBuilding(new Building(91,"SAL"));
-        buildingManager.addOrUpdateBuilding(new Building(92,"KAP"));
-        buildingManager.addOrUpdateBuilding(new Building(94,"LVL"));
+//        checkinManager.addCheckin(9, 99);
+//        checkinManager.addCheckin(10, 99);
+//        checkinManager.addCheckin(11, 99);
+
+
+//        enrollmentManager.addEnrollment(1, 1, 1);
+//        enrollmentManager.addEnrollment(1, 2, 1);
+//        enrollmentManager.addEnrollment(2, 1, 1);
+//        enrollmentManager.addEnrollment(2, 2, 1);
+//        enrollmentManager.addEnrollment(3, 1, 0);
+//        enrollmentManager.addEnrollment(3, 2, 0);
+
+
+
+//        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+
 
     }
 
@@ -250,6 +286,38 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+
+
+                    // TODO: display building corresponds to enrolled courses
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+                    ArrayList<Course> coursesEnrolled;
+                    if(isStu == 0){
+                        coursesEnrolled = em.getCoursesTaughtBy(userId);
+                    }else {
+                        coursesEnrolled = em.getCoursesTakenBy(userId);
+                    }
+                    ArrayList<Building> buildingsCourseEnrolled = new ArrayList<>();
+                    for (Course course : coursesEnrolled){
+                        buildingsCourseEnrolled.add(bm.getBuildingById(course.getBuilding()));
+                    }
+                    System.out.println(buildingsCourseEnrolled);
+
+//                    System.out.println("coursesEnrolled: " +  coursesEnrolled);
+                    // [Course{id=101, name='Course For Testing', building=99}]
+
+                    // TODO: display frequent visits
+                    CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+                    ArrayList<Long> buildingIdsFrequentVisit = cm.getFrequentVisit(userId, 3);
+                    ArrayList<Building> buildingsFrequentVisit = new ArrayList<>();
+                    for (Long buildingId : buildingIdsFrequentVisit){
+                        buildingsFrequentVisit.add(bm.getBuildingById(buildingId));
+                    }
+                    System.out.println(buildingIdsFrequentVisit);
+
+
+
+
                     break;
                 case "Report":
                     reportView.setVisibility(View.VISIBLE);
@@ -268,22 +336,25 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    // TODO: front end show all reports
+                    // TODO: display all reports
                     ReportManager rm = ManagerFactory.getReportManagerInstance();
                     ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
                     System.out.println(reports);
                     // [Report{id=10013, userId=10, isPositive=1, note='infection,breathing,gi_symptoms,taste_smell,muscle,chills_fever,conjunctivitis,cough,', timestamp=1648177952924}, Report{id=10010, userId=10, isPositive=0, note='Fever', timestamp=1648177932202}]
 
-                    // TODO: show enrollment
-                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
-                    ArrayList<Course> courses;
+                    // TODO: display enrolled courses
+                    EnrollmentManager em2 = ManagerFactory.getEnrollmentManagerInstance();
+                    ArrayList<Course> coursesEnrolled2;
                     if(isStu == 0){
-                        courses = em.getCoursesTaughtBy(userId);
+                        coursesEnrolled2 = em2.getCoursesTaughtBy(userId);
                     }else {
-                        courses = em.getCoursesTakenBy(userId);
+                        coursesEnrolled2 = em2.getCoursesTakenBy(userId);
                     }
-                    System.out.println(courses);
+                    System.out.println("coursesEnrolled2: " +  coursesEnrolled2);
                     // [Course{id=101, name='Course For Testing', building=99}]
+
+
+
 
                     // TODO: add onclick function for change status course
 
@@ -495,12 +566,28 @@ public class MainActivity extends AppCompatActivity {
             int buildingIdTmp = getResources().getIdentifier(
                     code + "_id", "string", getPackageName());
 
-            String fullName = getResources().getString(stringIdTmp);
-            long buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
-            System.out.println(fullName + " " + buildingId);
+            long buildingId = -1;
+            if (buildingIdTmp == 0){
+                // code is the building name, eg: lvl, kap, sal, ...
+                BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+                Building building = bm.getBuildingByName(code);
+                if (building == null){
+                    System.out.println("Creating db entry for building:" + code);
+                    bm.addBuilding(code);
+                }
+                building = bm.getBuildingByName(code);
+                buildingId = building.getId();
+            }else{
+                String fullName = getResources().getString(stringIdTmp);
+                buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
+            }
+
+            System.out.println(code + " " + buildingId);
             RiskManager rm = ManagerFactory.getRiskManagerInstance();
             BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
             System.out.println(brp);
+
+
             // TODO: show building report on click
             // BuildingRiskReport{description='Last 2 Days', spanStartTime=1647999432901, spanEndTime=1648172232901, numVisitors=3, numLowRiskVisitors=1, numHighRiskVisitors=1, numPositiveVisitors=1}
         };

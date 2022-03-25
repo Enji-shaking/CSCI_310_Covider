@@ -40,7 +40,7 @@ public class NotificationManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            create_default_notification();
+//            create_default_notification();
         }
     }
 

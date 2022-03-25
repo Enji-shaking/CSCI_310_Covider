@@ -73,7 +73,7 @@ public class CheckinManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            create_default_checkin();
+//            create_default_checkin();
         }
 //        addCheckin(1, 111);
     }
