@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covider.database.ManagerFactory;
+import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.enrollment.EnrollmentManager;
@@ -32,11 +33,13 @@ import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
+import com.example.covider.model.building.Building;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
+import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 import com.google.android.material.navigation.NavigationBarItemView;
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         CourseManager courseManager;
         UserManager userManager;
         NotificationManager notificationManager;
+        BuildingManager buildingManager;
 
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         courseManager = ManagerFactory.getCourseManagerInstance();
         userManager = ManagerFactory.getUserManagerInstance();
         notificationManager = ManagerFactory.getNotificationManagerInstance();
+        buildingManager = ManagerFactory.getBuildingManagerInstance();
 
         reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
         reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
@@ -107,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
         notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
 
+        buildingManager.addBuilding("SA"); // will be overwritten by the next line
+        buildingManager.addOrUpdateBuilding(new Building(91,"SAL"));
+        buildingManager.addOrUpdateBuilding(new Building(92,"KAP"));
+        buildingManager.addOrUpdateBuilding(new Building(94,"LVL"));
 
     }
 
@@ -340,8 +349,6 @@ public class MainActivity extends AppCompatActivity {
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
-                System.out.println(closeContacts);
-
 
                 for (Long closeContactUserId : closeContacts){
                     nm.addNotification(userId, closeContactUserId, "You got close contact with a positive patient, BEWARE!");
@@ -355,7 +362,18 @@ public class MainActivity extends AppCompatActivity {
 
                 for (Long closeContactUserId : closeContacts){
                     nm.addNotification(userId, closeContactUserId, "You got close contact with a student with covid related symptom, BEWARE!");
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
+
+                if (isStu == 0){
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
+                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
+                    for (Course course : courses) {
+                        courseManager.notifyOnline(userId, course.getId());
+                    }
+                }
+
             }
 
             new AlertDialog.Builder(this)

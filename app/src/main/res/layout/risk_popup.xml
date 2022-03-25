@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:background="@color/pop_up_bg"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/pop_up_building_risk_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_circle_solid"
+        app:tint="@color/low_risk_opaque" />
+    <TextView
+        android:id="@+id/pop_up_building_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ibm_plex_serif_bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/sal_display"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:background="@color/pop_up_bg"
+        android:layout_weight="3"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/last_3_days"/>
+        <TextView
+            android:id="@+id/pop_up_total_visitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="3dp"
+            android:text="Total Visitors: 3"/>
+        <TextView
+            android:id="@+id/pop_up_low_risk_visitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="3dp"
+            android:text="Low Risk Visitors: 1"/>
+        <TextView
+            android:id="@+id/pop_up_high_risk_visitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="3dp"
+            android:text="High Risk Visitors: 1"/>
+        <TextView
+            android:id="@+id/pop_up_positive_visitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            android:text="Positive Visitors: 1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:background="@color/pop_up_bg"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/check_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardinal"
+            android:drawableLeft="@drawable/ic_building_circle_check_solid"
+            android:textColor="@color/gold"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:text="@string/check_in"/>
+        <Button
+            android:id="@+id/return_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/ic_reply_solid"
+            android:textColor="@color/pop_up_bg"
+            android:paddingVertical="8dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="@string/go_back"/>
+    </LinearLayout>
+
+</LinearLayout>
