@@ -37,6 +37,7 @@ import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
+import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 
 import java.util.ArrayList;
@@ -313,12 +314,20 @@ public class MainActivity extends AppCompatActivity {
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
-                System.out.println(closeContacts);
-
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact, BEWARE!");
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
+
+                if (isProf == 1){
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
+                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
+                    for (Course course : courses) {
+                        courseManager.notifyOnline(userId, course.getId());
+                    }
+                }
+
             }
 
             new AlertDialog.Builder(this)
