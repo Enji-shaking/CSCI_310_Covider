@@ -12,6 +12,8 @@
     <string name="map">Map</string>
     <string name="map_view">Map View</string>
     <string name="list_view">List View</string>
+    <string name="last_3_days">In Last 3 Days</string>
+    <string name="go_back">Go Back</string>
     <string name="esh">esh</string>
     <string name="esh_full">Engemann Student Health Center</string>
     <string name="esh_display">Engemann Student Health Center (ESH)</string>

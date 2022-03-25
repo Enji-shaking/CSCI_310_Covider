@@ -32,4 +32,9 @@
     <color name="low_risk">#33FFFF24</color>
     <color name="medium_risk">#33FC7B28</color>
     <color name="high_risk">#33F9172B</color>
+    <!--    Risk Levels Colors    -->
+    <color name="low_risk_opaque">#ffcc00</color>
+    <color name="medium_risk_opaque">#ff6600</color>
+    <color name="high_risk_opaque">#cc0000</color>
+    <color name="pop_up_bg">#c9c9c9</color>
 </resources>
