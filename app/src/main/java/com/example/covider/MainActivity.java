@@ -2,22 +2,20 @@ package com.example.covider;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -46,7 +44,11 @@ import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -270,12 +272,42 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    // TODO: front end show all reports
                     ReportManager rm = ManagerFactory.getReportManagerInstance();
                     ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
                     System.out.println(reports);
-                    // [Report{id=10013, userId=10, isPositive=1, note='infection,breathing,gi_symptoms,taste_smell,muscle,chills_fever,conjunctivitis,cough,', timestamp=1648177952924}, Report{id=10010, userId=10, isPositive=0, note='Fever', timestamp=1648177932202}]
+                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                    LinearLayout container = findViewById(R.id.test_records);
+                    for (UserDailyReport i : reports)
+                    {
+                        LinearLayout report = new LinearLayout(this);
+                        report.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        report.setOrientation(LinearLayout.HORIZONTAL);
+                        report.setPadding(0, 0, 0, 20);
 
+                        TextView date = new TextView(this);
+                        Date dateObj = new Date(i.getTimestamp());
+                        String dateString = df.format(dateObj);
+                        date.setText(dateString);
+                        date.setGravity(Gravity.START);
+                        date.setTextSize(16);
+                        date.setPadding(0, 5, 30, 10);
+                        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
+                        date.setTypeface(typeface);
+                        TextView result = new TextView(this);
+                        if (i.getIsPositive() == 1) {
+                            result.setText(getResources().getString(R.string.positive_result));
+                        } else {
+                            result.setText(getResources().getString(R.string.negative_result));
+                        }
+                        result.setGravity(Gravity.START);
+                        result.setTextSize(16);
+                        result.setPadding(0, 5, 0, 10);
+                        result.setTypeface(typeface);
+
+                        report.addView(date);
+                        report.addView(result);
+                        container.addView(report);
+                    }
                     // TODO: show enrollment
                     EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
                     ArrayList<Course> courses;
