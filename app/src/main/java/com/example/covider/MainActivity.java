@@ -355,6 +355,17 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
 
                 for (Long closeContactUserId : closeContacts){
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive patient, BEWARE!");
+                }
+            }else if(!symptom.equals("")){
+                CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+                NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+                ArrayList<Long> closeContacts = cm.getCloseContact(userId);
+                System.out.println(closeContacts);
+
+
+                for (Long closeContactUserId : closeContacts){
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a student with covid related symptom, BEWARE!");
                     nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
                 }
 
