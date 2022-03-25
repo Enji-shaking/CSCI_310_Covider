@@ -46,7 +46,7 @@ public class CheckinManager extends DatabaseHandler {
     }
 
     // add a new checkin
-    public long addCheckin(int userId, int buildingId){
+    public long addCheckin(long userId, long buildingId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER_ID, userId);

@@ -36,6 +36,57 @@ public class BuildingRiskReport {
         return numLowRiskVisitors + numHighRiskVisitors + numPositiveVisitors;
     }
     public double getRiskIndex(){
+        if(getNumVisitors() == 0){
+            return 0;
+        }
         return (1.0 * numPositiveVisitors + 0.3 * numHighRiskVisitors) / getNumVisitors();
     };
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getSpanStartTime() {
+        return spanStartTime;
+    }
+
+    public void setSpanStartTime(long spanStartTime) {
+        this.spanStartTime = spanStartTime;
+    }
+
+    public long getSpanEndTime() {
+        return spanEndTime;
+    }
+
+    public void setSpanEndTime(long spanEndTime) {
+        this.spanEndTime = spanEndTime;
+    }
+
+    public long getNumLowRiskVisitors() {
+        return numLowRiskVisitors;
+    }
+
+    public void setNumLowRiskVisitors(long numLowRiskVisitors) {
+        this.numLowRiskVisitors = numLowRiskVisitors;
+    }
+
+    public long getNumHighRiskVisitors() {
+        return numHighRiskVisitors;
+    }
+
+    public void setNumHighRiskVisitors(long numHighRiskVisitors) {
+        this.numHighRiskVisitors = numHighRiskVisitors;
+    }
+
+    public long getNumPositiveVisitors() {
+        return numPositiveVisitors;
+    }
+
+    public void setNumPositiveVisitors(long numPositiveVisitors) {
+        this.numPositiveVisitors = numPositiveVisitors;
+    }
 }

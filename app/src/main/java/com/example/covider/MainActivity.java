@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
 
         buildingManager.addBuilding("SA"); // will be overwritten by the next line
-        buildingManager.addOrUpdateBuilding(new Building(91,"SAL"));
-        buildingManager.addOrUpdateBuilding(new Building(92,"KAP"));
-        buildingManager.addOrUpdateBuilding(new Building(94,"LVL"));
+        buildingManager.addOrUpdateBuilding(new Building(91,"sal"));
+        buildingManager.addOrUpdateBuilding(new Building(92,"kap"));
+        buildingManager.addOrUpdateBuilding(new Building(94,"lvl"));
 
     }
 
@@ -540,25 +540,30 @@ public class MainActivity extends AppCompatActivity {
         int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        // TODO: can modify risk level color
+        // TODO: ZSN can modify risk level color
         ((ImageView)(popupWindow.getContentView()
                 .findViewById(R.id.pop_up_building_risk_circle)))
                 .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
-        // TODO: modify data
+
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        RiskManager rm = ManagerFactory.getRiskManagerInstance();
+        BuildingRiskReport brp = rm.getReportForBuilding(bm.getBuildingByName(code).getId());
+//        System.out.println(brp);
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
-        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), 2));
-        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), 1));
-        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors)).setText(String.format(getResources().getString(R.string.high_risk_visitors), 1));
-        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors)).setText(String.format(getResources().getString(R.string.positive_visitors), 0));
-        // TODO: display detailed building report
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors)).setText(String.format(getResources().getString(R.string.high_risk_visitors), brp.getNumHighRiskVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors)).setText(String.format(getResources().getString(R.string.positive_visitors), brp.getNumPositiveVisitors()));
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         Button.OnClickListener returnListener = (View popup) -> {
             popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
-        // TODO: Check In Here
         Button.OnClickListener checkInListener = (View popup) -> {
+            CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
             System.out.println("Check In at " + code);
+            cm.addCheckin(userId, bm.getBuildingByName(code).getId());
+            popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.check_in_button).setOnClickListener(checkInListener);
     }
