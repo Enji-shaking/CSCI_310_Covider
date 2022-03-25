@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout buildingsList = null;
     private String userName = null;
     private long userId = 0;
+    private int isProf = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     private void createDummy(){
@@ -319,7 +320,34 @@ public class MainActivity extends AppCompatActivity {
                     nm.addNotification(userId, closeContactUserId, "You got close contact, BEWARE!");
                 }
             }
-            // TODO: in future, also notify the ones with symptoms
+
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_input_get)
+                    .setTitle("Success!")
+                    .setMessage("Your form has been recorded")
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .show();
+            for (HashMap.Entry<String, Boolean> set :
+                    answers.entrySet()) {
+                answers.put(set.getKey(), null);
+                int buttonId = getResources().getIdentifier(set.getKey()+"_no", "id", getPackageName());
+                Button button = findViewById(buttonId);
+                button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                button.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+                buttonId = getResources().getIdentifier(set.getKey()+"_yes", "id", getPackageName());
+                button = findViewById(buttonId);
+                button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                button.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+            }
+
+
+
+            System.out.println(answers);
         };
         findViewById(R.id.submit_health_form).setOnClickListener(submitHealthFormHandler);
     }
