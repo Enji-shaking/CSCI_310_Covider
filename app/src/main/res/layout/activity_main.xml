@@ -4150,8 +4150,8 @@
                             android:paddingEnd="5dp"
                             android:text="Software Engineering Software Engineering"
                             android:theme="@style/PlainTextTheme"
-                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
-                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
+                            app:layout_constraintLeft_toLeftOf="@id/course_code1"
+                            app:layout_constraintRight_toLeftOf="@id/status_course1"/>
 
                         <Button
                             android:id="@+id/status_course1"
@@ -4194,42 +4194,8 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:backgroundTint="@color/hybrid_orange"
-                            android:text="@string/hybrid" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/course_code3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="CSCI 310"
-                            android:layout_weight="0.9"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/course_title3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2.1"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingEnd="5dp"
-                            android:text="Software Engineering Software Engineering"
-                            android:theme="@style/PlainTextTheme"
-                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
-                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
-
-                        <Button
-                            android:id="@+id/status_course3"
-                            android:layout_weight="1.5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
                             android:backgroundTint="@color/in_person_green"
+                            android:contentDescription="id_here"
                             android:text="@string/in_person" />
 
                     </LinearLayout>
@@ -4255,8 +4221,8 @@
                             android:paddingEnd="5dp"
                             android:text="Software Engineering Software Engineering"
                             android:theme="@style/PlainTextTheme"
-                            app:layout_constraintLeft_toLeftOf="@id/course_code2"
-                            app:layout_constraintRight_toLeftOf="@id/status_course2"/>
+                            app:layout_constraintLeft_toLeftOf="@id/course_code4"
+                            app:layout_constraintRight_toLeftOf="@id/status_course4"/>
 
                         <Button
                             android:id="@+id/status_course4"
@@ -4276,239 +4242,11 @@
                     android:text="@string/test_records"
                     android:gravity="start"
                     android:theme="@style/TitleTheme"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/gold"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/ibm_plex_serif_semibold"
-                    android:text="@string/add_records" />
                 <LinearLayout
                     android:id="@+id/test_records"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="03/22/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="03/18/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="03/10/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="03/01/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="02/15/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/positive_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="02/01/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="01/28/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="01/20/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal" >
-                        <TextView
-                            android:id="@+id/test_result_date9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="01/13/2022"
-                            android:layout_weight="1"
-                            android:theme="@style/PlainTextTheme"/>
-                        <TextView
-                            android:id="@+id/test_result9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="0dp"
-                            android:text="@string/negative_result"
-                            android:theme="@style/PlainTextTheme"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:orientation="vertical"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

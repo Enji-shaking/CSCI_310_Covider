@@ -29,6 +29,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 //        System.out.println(System.currentTimeMillis());
-        getApplicationContext().deleteDatabase("covider"); // clear database for debug use
+        getApplicationContext().deleteDatabase(Config.DATABASE_NAME); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
         createDummy();
         initializeLogInPage();
@@ -619,8 +620,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         System.out.println(code + " " + buildingId);
-            BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
-            System.out.println(brp);
+        BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
+        System.out.println(brp);
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
