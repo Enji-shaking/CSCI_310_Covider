@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(System.currentTimeMillis());
         getApplicationContext().deleteDatabase("covider"); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
+        initializeReportPage();
+        initializeUserProfile();
+        initializeMapView();
         initializeLogInPage();
     }
 
@@ -76,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             EditText passwordInput = findViewById(R.id.log_in_password);
             username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
-            System.out.println(username + " " + password);
 
             UserManager um = ManagerFactory.getUserManagerInstance();
             User user = um.getUserByName(username);
@@ -95,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (user.getPassword().equals(password)) {
                 initializeNavBottom();
-                initializeReportPage();
-                initializeUserProfile();
-                initializeMapView();
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
             }
             else{
@@ -261,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
         HorizontalScrollView horizontal = findViewById(R.id.usc_map_horizontal);
         horizontal.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
                 horizontal.scrollTo(horizontal.getChildAt(0).getWidth()/2,0));
+        System.out.println(horizontal.getChildAt(0).getWidth()/2);
         vertical.getChildAt(0).getViewTreeObserver().addOnGlobalLayoutListener(() ->
                 vertical.scrollTo(0, vertical.getChildAt(0).getHeight()/2));
         initializeMapBuildings();
