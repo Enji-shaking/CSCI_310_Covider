@@ -57,7 +57,7 @@ public class RiskManagerTest {
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
 
-        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99));
+        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99, 0));
 
         userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
         userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));

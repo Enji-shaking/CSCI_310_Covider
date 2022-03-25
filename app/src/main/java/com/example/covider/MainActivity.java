@@ -88,7 +88,14 @@ public class MainActivity extends AppCompatActivity {
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
 
-        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99));
+        enrollmentManager.addEnrollment(1, 1, 1);
+        enrollmentManager.addEnrollment(1, 2, 1);
+        enrollmentManager.addEnrollment(2, 1, 1);
+        enrollmentManager.addEnrollment(2, 2, 1);
+        enrollmentManager.addEnrollment(3, 1, 0);
+        enrollmentManager.addEnrollment(3, 2, 0);
+
+        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99, 0));
 
         userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
         userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
