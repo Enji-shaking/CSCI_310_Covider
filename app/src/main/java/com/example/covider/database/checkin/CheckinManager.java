@@ -225,16 +225,19 @@ public class CheckinManager extends DatabaseHandler {
 
     // 3 days default
     public ArrayList<Long> getCloseContact(long userId) {
-        return getCloseContact(userId,System.currentTimeMillis(),System.currentTimeMillis() - 3 * MILLIS_PER_DAY);
+        return getCloseContact(userId,System.currentTimeMillis() - 3 * MILLIS_PER_DAY, System.currentTimeMillis());
     }
 
 
     public ArrayList<Long> getCloseContact(long userId, long startTime, long endTime){
+        System.out.println("getCloseContact" + userId + " | " + startTime + " | " + endTime);
         ArrayList<Checkin> buildingCheckins = getUserCheckinsInTimeSpan(userId, startTime, endTime);
         Set<Long> closeContactUserIds = new HashSet<Long>();
         for (Checkin checkin : buildingCheckins){
+            System.out.println("Checkin:" + buildingCheckins);
             Long buildingId = checkin.getBuildingId();
             ArrayList<Checkin> userCheckinsInBuilding = getBuildingCheckinsInTimeSpan(buildingId, startTime, endTime);
+            System.out.println("BuildingCheckins:" + userCheckinsInBuilding);
             for (Checkin c : userCheckinsInBuilding){
                 closeContactUserIds.add(c.getUserId());
             }

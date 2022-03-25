@@ -3,6 +3,7 @@ package com.example.covider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
@@ -28,6 +29,7 @@ import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.checkin.CheckinManager;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.enrollment.EnrollmentManager;
+import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         Button.OnClickListener submitHealthFormHandler = (View view) -> {
             System.out.println("Submit Health Form");
             String symptom = "";
-            int isPositive = 0;
+            boolean isPositive = false;
             for (HashMap.Entry<String, Boolean> set :
                     answers.entrySet()) {
                 if(set.getValue() == null){
@@ -270,14 +272,23 @@ public class MainActivity extends AppCompatActivity {
                     symptom+=set.getKey() + ",";
                 }
                 if(set.getKey().equals("infection")){
-                    isPositive = 1;
+                    isPositive = true;
                 }
             }
             ReportManager rm = ManagerFactory.getReportManagerInstance();
-            rm.addReport(userId, isPositive, symptom);
-            CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
-            ArrayList<Long> closeContacts = cm.getCloseContact(userId);
-            System.out.println(closeContacts);
+            rm.addReport(userId, isPositive ? 1 : 0, symptom);
+
+            if (isPositive){
+                CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+                NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+                ArrayList<Long> closeContacts = cm.getCloseContact(userId);
+                System.out.println(closeContacts);
+
+
+                for (Long closeContactUserId : closeContacts){
+                    nm.addNotification(userId, closeContactUserId, "You got close contact, BEWARE!");
+                }
+            }
             // TODO: in future, also notify the ones with symptoms
         };
         findViewById(R.id.submit_health_form).setOnClickListener(submitHealthFormHandler);
