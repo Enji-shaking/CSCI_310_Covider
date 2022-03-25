@@ -4096,7 +4096,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
+                <Button
+                    android:id="@+id/log_out_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardinal"
+                    android:drawableLeft="@drawable/ic_right_from_bracket_solid"
+                    android:textColor="@color/gold"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="20sp"
+                    android:text="@string/log_out"/>
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="match_parent"

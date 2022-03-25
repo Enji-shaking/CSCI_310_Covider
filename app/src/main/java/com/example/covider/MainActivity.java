@@ -154,10 +154,20 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
             else if (user.getPassword().equals(password)) {
-                initializeNavBottom();
-                findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
                 userName = user.getName();
                 userId = user.getId();
+                ((TextView)findViewById(R.id.username)).setText(
+                        Html.fromHtml("Hi, <b>" + userName + "</b>!"));
+                mapView.setVisibility(View.VISIBLE);
+                reportView.setVisibility(View.INVISIBLE);
+                profileView.setVisibility(View.INVISIBLE);
+                notificationView.setVisibility(View.INVISIBLE);
+                mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+                reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+
             }
             else{
                 new AlertDialog.Builder(this)
@@ -358,8 +368,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUserProfile() {
-        ((TextView)findViewById(R.id.username)).setText(
-                Html.fromHtml("Hi, <b>" + userName + "</b>!"));
+        Button.OnClickListener logOutListener = (View view) -> {
+            EditText usernameInput = findViewById(R.id.log_in_username);
+            usernameInput.setText(null);
+            EditText passwordInput = findViewById(R.id.log_in_password);
+            passwordInput.setText(null);
+            userName = null;
+            userId = 0;
+            findViewById(R.id.log_in_view).setVisibility(View.VISIBLE);
+        };
+        findViewById(R.id.log_out_button).setOnClickListener(logOutListener);
     }
 
     private void initializeMapView() {

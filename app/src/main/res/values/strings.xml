@@ -5,6 +5,7 @@
     <string name="profile">Profile</string>
     <string name="notification">Notification</string>
     <string name="log_in">Log In</string>
+    <string name="log_out">Log Out</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <!--    Map Strings    -->
