@@ -439,6 +439,12 @@
     <string name="negative_result">Negative</string>
     <string name="positive_result">Positive</string>
     <string name="add_records">Add Test Result</string>
+    <string name="course_risk_report">Course Risk Report</string>
+    <string name="positive_students">Positive Students: %d</string>
+    <string name="high_risk_students">High Risk Students: %d</string>
+    <string name="low_risk_students">Low Risk Students: %d</string>
+    <string name="change_online">Change to Online</string>
+    <string name="change_offline">Change to In-Person</string>
     <!--    Health Form Strings    -->
     <string name="health_form_title">Wellness Assessment Tool</string>
     <string name="guiding_question1">Do any of these apply to you?</string>
