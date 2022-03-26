@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
                         container.addView(report);
                     }
 
-                    // TODO: display enrolled courses
+                    // display enrolled courses
                     EnrollmentManager em2 = ManagerFactory.getEnrollmentManagerInstance();
                     ArrayList<Course> coursesEnrolled2;
                     if(isStu == 0){
@@ -774,15 +774,9 @@ public class MainActivity extends AppCompatActivity {
         int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        // TODO: ZSN can modify risk level color
-        ((ImageView)(popupWindow.getContentView()
-                .findViewById(R.id.pop_up_building_risk_circle)))
-                .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
-
-            int buildingIdTmp = getResources().getIdentifier(
+        int buildingIdTmp = getResources().getIdentifier(
                     code + "_id", "string", getPackageName());
-
-            long buildingId = -1;
+        long buildingId = -1;
         BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
         RiskManager rm = ManagerFactory.getRiskManagerInstance();
         if (buildingIdTmp == 0){
@@ -795,13 +789,28 @@ public class MainActivity extends AppCompatActivity {
             building = bm.getBuildingByName(code);
             buildingId = building.getId();
         }else{
-            String fullName = getResources().getString(stringIdTmp);
             buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
         }
-
-        System.out.println(code + " " + buildingId);
         BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
-        System.out.println(brp);
+        // modify risk level color
+        double riskIndex = brp.getRiskIndex();
+        if (riskIndex <= 0.25) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.success_green));
+        } else if (riskIndex <= 0.5) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque));
+        } else if (riskIndex <= 0.75) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque));
+        } else {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
+        }
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
