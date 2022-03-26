@@ -23,6 +23,8 @@
     <color name="purple_transparent">#33C7B2D5</color>
     <color name="grey_transparent">#33D2D4D3</color>
     <color name="grey_light">#80D2D4D3</color>
+    <color name="cardinal_list_transparent">#73990000</color>
+    <color name="gold_list_transparent">#80FFC72C</color>
     <!--    Profile Colors    -->
     <color name="assess_green">#FF69BBAB</color>
     <color name="in_person_green">#FF00B050</color>

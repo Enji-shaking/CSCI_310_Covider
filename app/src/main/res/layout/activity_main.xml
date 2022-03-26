@@ -1323,13 +1323,42 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/daily_schedule_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SubtitleTheme"
+                            android:text="@string/daily_schedule"/>
+                        <LinearLayout
+                            android:id="@+id/frequently_visited_buildings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"/>
+                        <TextView
+                            android:id="@+id/frequently_visited_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SubtitleTheme"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/frequently_visited"/>
+                        <LinearLayout
+                            android:id="@+id/daily_schedule_buildings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SubtitleTheme"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/all_buildings"/>
                         <LinearLayout
                             android:id="@+id/usc_list_esh"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/esh"
                             android:orientation="horizontal">
                             <TextView
@@ -1346,7 +1375,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/mcc"
                             android:orientation="horizontal">
                             <TextView
@@ -1363,7 +1392,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/flt"
                             android:orientation="horizontal">
                             <TextView
@@ -1380,7 +1409,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/koh"
                             android:orientation="horizontal">
                             <TextView
@@ -1397,7 +1426,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/wto"
                             android:orientation="horizontal">
                             <TextView
@@ -1414,7 +1443,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/lrc"
                             android:orientation="horizontal">
                             <TextView
@@ -1431,7 +1460,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/uac"
                             android:orientation="horizontal">
                             <TextView
@@ -1448,7 +1477,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/jef"
                             android:orientation="horizontal">
                             <TextView
@@ -1465,7 +1494,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/den"
                             android:orientation="horizontal">
                             <TextView
@@ -1482,7 +1511,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/kdc"
                             android:orientation="horizontal">
                             <TextView
@@ -1499,7 +1528,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/urc"
                             android:orientation="horizontal">
                             <TextView
@@ -1516,7 +1545,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/clh"
                             android:orientation="horizontal">
                             <TextView
@@ -1533,7 +1562,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/uuc"
                             android:orientation="horizontal">
                             <TextView
@@ -1550,7 +1579,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ahn"
                             android:orientation="horizontal">
                             <TextView
@@ -1567,7 +1596,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/jep"
                             android:orientation="horizontal">
                             <TextView
@@ -1584,7 +1613,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ksh"
                             android:orientation="horizontal">
                             <TextView
@@ -1601,7 +1630,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/swc"
                             android:orientation="horizontal">
                             <TextView
@@ -1618,7 +1647,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/mrf"
                             android:orientation="horizontal">
                             <TextView
@@ -1635,7 +1664,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ois"
                             android:orientation="horizontal">
                             <TextView
@@ -1652,7 +1681,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/dcc"
                             android:orientation="horizontal">
                             <TextView
@@ -1669,7 +1698,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/mtx"
                             android:orientation="horizontal">
                             <TextView
@@ -1686,7 +1715,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/drc"
                             android:orientation="horizontal">
                             <TextView
@@ -1703,7 +1732,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/sci"
                             android:orientation="horizontal">
                             <TextView
@@ -1720,7 +1749,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/scb"
                             android:orientation="horizontal">
                             <TextView
@@ -1737,7 +1766,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/scc"
                             android:orientation="horizontal">
                             <TextView
@@ -1754,7 +1783,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/sca"
                             android:orientation="horizontal">
                             <TextView
@@ -1771,7 +1800,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/scx"
                             android:orientation="horizontal">
                             <TextView
@@ -1788,7 +1817,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/sce"
                             android:orientation="horizontal">
                             <TextView
@@ -1805,7 +1834,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/aes"
                             android:orientation="horizontal">
                             <TextView
@@ -1822,7 +1851,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ctv"
                             android:orientation="horizontal">
                             <TextView
@@ -1839,7 +1868,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/jws"
                             android:orientation="horizontal">
                             <TextView
@@ -1856,7 +1885,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/tmc"
                             android:orientation="horizontal">
                             <TextView
@@ -1873,7 +1902,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/mus"
                             android:orientation="horizontal">
                             <TextView
@@ -1890,7 +1919,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/rhm"
                             android:orientation="horizontal">
                             <TextView
@@ -1907,7 +1936,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/bmh"
                             android:orientation="horizontal">
                             <TextView
@@ -1924,7 +1953,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/thh"
                             android:orientation="horizontal">
                             <TextView
@@ -1941,7 +1970,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/cas"
                             android:orientation="horizontal">
                             <TextView
@@ -1958,7 +1987,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/wph"
                             android:orientation="horizontal">
                             <TextView
@@ -1975,7 +2004,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/sos"
                             android:orientation="horizontal">
                             <TextView
@@ -1992,7 +2021,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/lvl"
                             android:orientation="horizontal">
                             <TextView
@@ -2009,7 +2038,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/jmc"
                             android:orientation="horizontal">
                             <TextView
@@ -2026,7 +2055,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/gap"
                             android:orientation="horizontal">
                             <TextView
@@ -2043,7 +2072,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/her"
                             android:orientation="horizontal">
                             <TextView
@@ -2060,7 +2089,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/lts"
                             android:orientation="horizontal">
                             <TextView
@@ -2077,7 +2106,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ctf"
                             android:orientation="horizontal">
                             <TextView
@@ -2094,7 +2123,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/mar"
                             android:orientation="horizontal">
                             <TextView
@@ -2111,7 +2140,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/drb"
                             android:orientation="horizontal">
                             <TextView
@@ -2128,7 +2157,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/kap"
                             android:orientation="horizontal">
                             <TextView
@@ -2145,7 +2174,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/rri"
                             android:orientation="horizontal">
                             <TextView
@@ -2162,7 +2191,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/mcb"
                             android:orientation="horizontal">
                             <TextView
@@ -2179,7 +2208,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/sgm"
                             android:orientation="horizontal">
                             <TextView
@@ -2196,7 +2225,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/gfs"
                             android:orientation="horizontal">
                             <TextView
@@ -2213,7 +2242,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/hnb"
                             android:orientation="horizontal">
                             <TextView
@@ -2230,7 +2259,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/dps"
                             android:orientation="horizontal">
                             <TextView
@@ -2247,7 +2276,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/scd"
                             android:orientation="horizontal">
                             <TextView
@@ -2264,7 +2293,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ttl"
                             android:orientation="horizontal">
                             <TextView
@@ -2281,7 +2310,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ger"
                             android:orientation="horizontal">
                             <TextView
@@ -2298,7 +2327,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/pks"
                             android:orientation="horizontal">
                             <TextView
@@ -2315,7 +2344,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/prb"
                             android:orientation="horizontal">
                             <TextView
@@ -2332,7 +2361,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/eeb"
                             android:orientation="horizontal">
                             <TextView
@@ -2349,7 +2378,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/rth"
                             android:orientation="horizontal">
                             <TextView
@@ -2366,7 +2395,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ohe"
                             android:orientation="horizontal">
                             <TextView
@@ -2383,7 +2412,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/pce"
                             android:orientation="horizontal">
                             <TextView
@@ -2400,7 +2429,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/hce"
                             android:orientation="horizontal">
                             <TextView
@@ -2417,7 +2446,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/bhe"
                             android:orientation="horizontal">
                             <TextView
@@ -2434,7 +2463,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ssc"
                             android:orientation="horizontal">
                             <TextView
@@ -2451,7 +2480,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/sal"
                             android:orientation="horizontal">
                             <TextView
@@ -2468,7 +2497,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/sel"
                             android:orientation="horizontal">
                             <TextView
@@ -2485,7 +2514,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/phe"
                             android:orientation="horizontal">
                             <TextView
@@ -2502,7 +2531,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/vhe"
                             android:orientation="horizontal">
                             <TextView
@@ -2519,7 +2548,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/iyh"
                             android:orientation="horizontal">
                             <TextView
@@ -2536,7 +2565,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/wah"
                             android:orientation="horizontal">
                             <TextView
@@ -2553,7 +2582,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/lhi"
                             android:orientation="horizontal">
                             <TextView
@@ -2570,7 +2599,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/rrb"
                             android:orientation="horizontal">
                             <TextView
@@ -2587,7 +2616,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ann"
                             android:orientation="horizontal">
                             <TextView
@@ -2604,7 +2633,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ped"
                             android:orientation="horizontal">
                             <TextView
@@ -2621,7 +2650,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/asc"
                             android:orientation="horizontal">
                             <TextView
@@ -2638,7 +2667,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/bit"
                             android:orientation="horizontal">
                             <TextView
@@ -2655,7 +2684,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/nct"
                             android:orientation="horizontal">
                             <TextView
@@ -2672,7 +2701,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/adm"
                             android:orientation="horizontal">
                             <TextView
@@ -2689,7 +2718,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/bks"
                             android:orientation="horizontal">
                             <TextView
@@ -2706,7 +2735,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/sto"
                             android:orientation="horizontal">
                             <TextView
@@ -2723,7 +2752,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/hsh"
                             android:orientation="horizontal">
                             <TextView
@@ -2740,7 +2769,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/stu"
                             android:orientation="horizontal">
                             <TextView
@@ -2757,7 +2786,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/sks"
                             android:orientation="horizontal">
                             <TextView
@@ -2774,7 +2803,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/cem"
                             android:orientation="horizontal">
                             <TextView
@@ -2791,7 +2820,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ljs"
                             android:orientation="horizontal">
                             <TextView
@@ -2808,7 +2837,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/zhs"
                             android:orientation="horizontal">
                             <TextView
@@ -2825,7 +2854,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/slh"
                             android:orientation="horizontal">
                             <TextView
@@ -2842,7 +2871,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/acb"
                             android:orientation="horizontal">
                             <TextView
@@ -2859,7 +2888,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/har"
                             android:orientation="horizontal">
                             <TextView
@@ -2876,7 +2905,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/mhp"
                             android:orientation="horizontal">
                             <TextView
@@ -2893,7 +2922,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/bri"
                             android:orientation="horizontal">
                             <TextView
@@ -2910,7 +2939,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/acc"
                             android:orientation="horizontal">
                             <TextView
@@ -2927,7 +2956,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/hoh"
                             android:orientation="horizontal">
                             <TextView
@@ -2944,7 +2973,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ahf1"
                             android:orientation="horizontal">
                             <TextView
@@ -2961,7 +2990,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/hmm"
                             android:orientation="horizontal">
                             <TextView
@@ -2978,7 +3007,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ahf2"
                             android:orientation="horizontal">
                             <TextView
@@ -2995,7 +3024,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/jhh"
                             android:orientation="horizontal">
                             <TextView
@@ -3012,7 +3041,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/tgf"
                             android:orientation="horizontal">
                             <TextView
@@ -3029,7 +3058,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/law"
                             android:orientation="horizontal">
                             <TextView
@@ -3046,7 +3075,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/vpd"
                             android:orientation="horizontal">
                             <TextView
@@ -3063,7 +3092,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/rgl"
                             android:orientation="horizontal">
                             <TextView
@@ -3080,7 +3109,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/dml"
                             android:orientation="horizontal">
                             <TextView
@@ -3097,7 +3126,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/cpa"
                             android:orientation="horizontal">
                             <TextView
@@ -3114,7 +3143,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/bsr"
                             android:orientation="horizontal">
                             <TextView
@@ -3131,7 +3160,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/nrc"
                             android:orientation="horizontal">
                             <TextView
@@ -3148,7 +3177,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ptd"
                             android:orientation="horizontal">
                             <TextView
@@ -3165,7 +3194,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/dxm"
                             android:orientation="horizontal">
                             <TextView
@@ -3182,7 +3211,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/alm"
                             android:orientation="horizontal">
                             <TextView
@@ -3199,7 +3228,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/dmt"
                             android:orientation="horizontal">
                             <TextView
@@ -3216,7 +3245,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/tro"
                             android:orientation="horizontal">
                             <TextView
@@ -3233,7 +3262,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/fig"
                             android:orientation="horizontal">
                             <TextView
@@ -3250,7 +3279,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/jkp"
                             android:orientation="horizontal">
                             <TextView
@@ -3267,7 +3296,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/jff"
                             android:orientation="horizontal">
                             <TextView
@@ -3284,7 +3313,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ush"
                             android:orientation="horizontal">
                             <TextView
@@ -3301,7 +3330,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ugb"
                             android:orientation="horizontal">
                             <TextView
@@ -3318,7 +3347,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/gec"
                             android:orientation="horizontal">
                             <TextView
@@ -3335,7 +3364,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/ugw"
                             android:orientation="horizontal">
                             <TextView
@@ -3352,7 +3381,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/shr"
                             android:orientation="horizontal">
                             <TextView
@@ -3369,7 +3398,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/elb"
                             android:orientation="horizontal">
                             <TextView
@@ -3386,7 +3415,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/cdf"
                             android:orientation="horizontal">
                             <TextView
@@ -3403,7 +3432,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/cal"
                             android:orientation="horizontal">
                             <TextView
@@ -3420,7 +3449,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/ift"
                             android:orientation="horizontal">
                             <TextView
@@ -3437,7 +3466,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/rzc"
                             android:orientation="horizontal">
                             <TextView
@@ -3454,7 +3483,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/scs"
                             android:orientation="horizontal">
                             <TextView
@@ -3471,7 +3500,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/trh"
                             android:orientation="horizontal">
                             <TextView
@@ -3488,7 +3517,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/huc"
                             android:orientation="horizontal">
                             <TextView
@@ -3505,7 +3534,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/hjc"
                             android:orientation="horizontal">
                             <TextView
@@ -3522,7 +3551,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/osp"
                             android:orientation="horizontal">
                             <TextView
@@ -3539,7 +3568,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/crc"
                             android:orientation="horizontal">
                             <TextView
@@ -3556,7 +3585,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/nbc"
                             android:orientation="horizontal">
                             <TextView
@@ -3573,7 +3602,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/mrc"
                             android:orientation="horizontal">
                             <TextView
@@ -3590,7 +3619,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/cic"
                             android:orientation="horizontal">
                             <TextView
@@ -3607,7 +3636,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/cardinal_transparent"
+                            android:background="@color/cardinal_list_transparent"
                             android:contentDescription="@string/mhc"
                             android:orientation="horizontal">
                             <TextView
@@ -3624,7 +3653,7 @@
                             android:layout_height="wrap_content"
                             android:minHeight="70dp"
                             android:gravity="center_vertical"
-                            android:background="@color/gold_transparent"
+                            android:background="@color/gold_list_transparent"
                             android:contentDescription="@string/tcc"
                             android:orientation="horizontal">
                             <TextView

@@ -310,11 +310,42 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         coursesEnrolled = em.getCoursesTakenBy(userId);
                     }
-                    ArrayList<Building> buildingsCourseEnrolled = new ArrayList<>();
+                    int count = 0;
+                    Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
+                    View.OnClickListener listener = this::showBuildingPopUp;
+                    LinearLayout scheduleBuildingsContainer = findViewById(R.id.daily_schedule_buildings);
+                    scheduleBuildingsContainer.removeAllViews();
                     for (Course course : coursesEnrolled){
-                        buildingsCourseEnrolled.add(bm.getBuildingById(course.getBuilding()));
+                        Building b = bm.getBuildingById(course.getBuilding());
+                        int buildingStrId = getResources().getIdentifier(
+                                b.getName() + "_display", "string", getPackageName());
+                        LinearLayout bView = new LinearLayout(this);
+                        bView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        bView.setOrientation(LinearLayout.HORIZONTAL);
+                        bView.setMinimumHeight(70);
+                        bView.setGravity(Gravity.CENTER_VERTICAL);
+                        if (count % 2 == 0) {
+                            bView.setBackgroundColor(getResources().getColor(R.color.cardinal_list_transparent));
+                        } else {
+                            bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
+                        }
+                        bView.setContentDescription(b.getName());
+                        bView.setOnClickListener(listener);
+                        TextView bName = new TextView(this);
+                        bName.setText(getString(buildingStrId));
+                        bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        bName.setTextSize(17);
+                        bName.setPadding(10, 0, 0, 0);
+                        bName.setTypeface(typefaceSemibold);
+                        bView.addView(bName);
+                        scheduleBuildingsContainer.addView(bView);
+                        count++;
                     }
-                    System.out.println(buildingsCourseEnrolled);
+                    if (count == 0) {
+                        ((TextView)findViewById(R.id.daily_schedule_title)).setHeight(0);
+                    } else {
+                        ((TextView)findViewById(R.id.daily_schedule_title)).setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                    }
 
 //                    System.out.println("coursesEnrolled: " +  coursesEnrolled);
                     // [Course{id=101, name='Course For Testing', building=99}]
@@ -322,11 +353,40 @@ public class MainActivity extends AppCompatActivity {
                     // TODO: display frequent visits
                     CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                     ArrayList<Long> buildingIdsFrequentVisit = cm.getFrequentVisit(userId, 3);
-                    ArrayList<Building> buildingsFrequentVisit = new ArrayList<>();
+                    count = 0;
+                    LinearLayout frequentBuildingsContainer = findViewById(R.id.daily_schedule_buildings);
+                    frequentBuildingsContainer.removeAllViews();
                     for (Long buildingId : buildingIdsFrequentVisit){
-                        buildingsFrequentVisit.add(bm.getBuildingById(buildingId));
+                        Building b = bm.getBuildingById(buildingId);
+                        int buildingStrId = getResources().getIdentifier(
+                                b.getName() + "_display", "string", getPackageName());
+                        LinearLayout bView = new LinearLayout(this);
+                        bView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        bView.setOrientation(LinearLayout.HORIZONTAL);
+                        bView.setMinimumHeight(70);
+                        bView.setGravity(Gravity.CENTER_VERTICAL);
+                        if (count % 2 == 0) {
+                            bView.setBackgroundColor(getResources().getColor(R.color.cardinal_list_transparent));
+                        } else {
+                            bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
+                        }
+                        bView.setContentDescription(b.getName());
+                        bView.setOnClickListener(listener);
+                        TextView bName = new TextView(this);
+                        bName.setText(getString(buildingStrId));
+                        bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        bName.setTextSize(17);
+                        bName.setPadding(10, 0, 0, 0);
+                        bName.setTypeface(typefaceSemibold);
+                        bView.addView(bName);
+                        frequentBuildingsContainer.addView(bView);
+                        count++;
                     }
-                    System.out.println(buildingIdsFrequentVisit);
+                    if (count == 0) {
+                        ((TextView)findViewById(R.id.frequently_visited_title)).setHeight(0);
+                    } else {
+                        ((TextView)findViewById(R.id.frequently_visited_title)).setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                    }
 
 
 
@@ -437,27 +497,6 @@ public class MainActivity extends AppCompatActivity {
                         course.addView(status);
                         coursesContainer.addView(course);
                     }
-
-
-                    // getCourseReportByCourse
-                    // RiskManager riskManager = ManagerFactory.getRiskManagerInstance();
-                    // riskManager.getReportForCourse(course.getId());
-
-                    // getCourseBuildingName
-                    // BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
-                    // String buildingName = bm.getBuildingById(course.getId()).getName;
-                    ArrayList<Building> courseBuildings = new ArrayList<>();
-
-
-
-                    System.out.println("coursesEnrolled2: " +  coursesEnrolled2);
-                    // [Course{id=101, name='Course For Testing', building=99}]
-
-
-
-
-                    // TODO: add onclick function for change status course
-
                     break;
                 case "Notification":
                     NotificationManager nm = ManagerFactory.getNotificationManagerInstance();

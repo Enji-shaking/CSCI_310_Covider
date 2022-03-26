@@ -98,7 +98,7 @@ public class RiskManager extends DatabaseHandler {
         long spanStartTime = System.currentTimeMillis() - spanTimeMillis;
         long spanEndTime = System.currentTimeMillis();
 
-        BuildingRiskReport buildingRiskReport = new BuildingRiskReport("Last 2 Days", spanStartTime, spanEndTime);
+        BuildingRiskReport buildingRiskReport = new BuildingRiskReport("Last 3 Days", spanStartTime, spanEndTime);
 
         ArrayList<Checkin> checkins = checkinManager.getBuildingCheckinsInTimeSpan(buildingId, spanStartTime, spanEndTime);
         Set<Long> userIdSet = new HashSet<>();
