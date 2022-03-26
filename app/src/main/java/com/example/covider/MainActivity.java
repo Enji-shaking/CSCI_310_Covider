@@ -1,6 +1,7 @@
 package com.example.covider;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
@@ -52,6 +54,7 @@ import com.example.covider.model.report.UserDailyReport;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -354,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
 
                     DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
                     LinearLayout container = findViewById(R.id.test_records);
+                    Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
                     container.removeAllViews();
                     for (UserDailyReport i : reports)
                     {
@@ -369,7 +373,6 @@ public class MainActivity extends AppCompatActivity {
                         date.setGravity(Gravity.START);
                         date.setTextSize(16);
                         date.setPadding(0, 5, 30, 10);
-                        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
                         date.setTypeface(typeface);
                         TextView result = new TextView(this);
                         if (i.getIsPositive() == 1) {
@@ -394,6 +397,46 @@ public class MainActivity extends AppCompatActivity {
                         coursesEnrolled2 = em2.getCoursesTaughtBy(userId);
                     }else {
                         coursesEnrolled2 = em2.getCoursesTakenBy(userId);
+                    }
+
+                    Button.OnClickListener assessListener = (View assess) -> {
+
+                    };
+
+                    LinearLayout coursesContainer = findViewById(R.id.courses);
+                    coursesContainer.removeAllViews();
+                    for (Course c : coursesEnrolled2) {
+                        LinearLayout course = new LinearLayout(this);
+                        course.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        course.setOrientation(LinearLayout.HORIZONTAL);
+                        course.setGravity(Gravity.CENTER_VERTICAL);
+                        TextView courseCode = new TextView(this);
+                        courseCode.setText(c.getName());
+                        courseCode.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+                        courseCode.setGravity(Gravity.START);
+                        courseCode.setTextSize(16);
+                        courseCode.setPadding(0, 5, 10, 10);
+                        courseCode.setTypeface(typeface);
+                        course.addView(courseCode);
+                        Button status = new Button(this);
+                        status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        status.setGravity(Gravity.CENTER_VERTICAL);
+                        status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+                        if (isStu == 0) {
+                            status.setText(R.string.assess);
+                            status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
+                        } else {
+                            if (c.getIsOnline() == 1) {
+                                status.setText(R.string.online);
+                                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
+                            } else if (c.getIsOnline() == 0) {
+                                status.setText(R.string.in_person);
+                                status.setContentDescription(String.valueOf(c.getId()));
+                                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
+                            }
+                        }
+                        course.addView(status);
+                        coursesContainer.addView(course);
                     }
 
 
@@ -440,6 +483,84 @@ public class MainActivity extends AppCompatActivity {
         notificationButton.setOnClickListener(bottomNavListener);
     }
 
+    private void showCoursePopUp(View view) {
+        long code = Long.parseLong(view.getContentDescription().toString());
+        CourseManager cm = ManagerFactory.getCourseManagerInstance();
+        Course c = cm.getCourse(code);
+        RiskManager riskManager = ManagerFactory.getRiskManagerInstance();
+        CourseRiskReport report = riskManager.getReportForCourse(code);
+
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.course_status_popup, null);
+        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        Button courseStatusButton = popupWindow.getContentView().findViewById(R.id.popup_course_status);
+        Button changeStatusButton = popupWindow.getContentView().findViewById(R.id.change_course_status_button);
+        if (c.getIsOnline() == 1) {
+            courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.online_red));
+            changeStatusButton.setText(R.string.change_offline);
+            changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.in_person_green));
+            changeStatusButton.setTextColor(AppCompatResources.getColorStateList(this, R.color.grey_light_text));
+            Drawable img = AppCompatResources.getDrawable(this, R.drawable.ic_user_group_solid);
+            changeStatusButton.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        } else if (c.getIsOnline() == 0) {
+            courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.in_person_green));
+            changeStatusButton.setText(R.string.change_online);
+            changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.cardinal));
+            changeStatusButton.setTextColor(AppCompatResources.getColorStateList(this, R.color.gold));
+            Drawable img = AppCompatResources.getDrawable(this, R.drawable.ic_globe_solid);
+            changeStatusButton.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        }
+        ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_title)).setText(c.getName());
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_students))
+                .setText(String.format(getResources().getString(R.string.positive_students), report.positiveStudents));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_students))
+                .setText(String.format(getResources().getString(R.string.high_risk_students), report.highRiskStudents));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_students))
+                .setText(String.format(getResources().getString(R.string.low_risk_students), report.lowRiskStudents));
+
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        Building b = bm.getBuildingById(c.getBuilding());
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name))
+                .setText(getResources().getIdentifier(b.getName() + "_display", "string", getPackageName()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.total_visitors),
+                                report.buildingRiskReport.getNumVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.low_risk_visitors),
+                                report.buildingRiskReport.getNumLowRiskVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.high_risk_visitors),
+                                report.buildingRiskReport.getNumHighRiskVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.positive_visitors),
+                                report.buildingRiskReport.getNumPositiveVisitors())
+                );
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        Button.OnClickListener returnListener = (View popup) -> {
+            popupWindow.dismiss();
+        };
+        popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
+        Button.OnClickListener changeStatusListener = (View popup) -> {
+
+            popupWindow.dismiss();
+        };
+        changeStatusButton.setOnClickListener(changeStatusListener);
+    }
 
     private void initializeReportPage() {
         initializeAnswers();
@@ -625,7 +746,7 @@ public class MainActivity extends AppCompatActivity {
         initializeListBuildings();
     }
 
-    private void showPopUp(View view) {
+    private void showBuildingPopUp(View view) {
         String code = view.getContentDescription().toString();
         int stringIdTmp = getResources().getIdentifier(
                 code + "_display", "string", getPackageName());
@@ -683,7 +804,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeMapBuildings() {
-        View.OnClickListener buildingListener = this::showPopUp;
+        View.OnClickListener buildingListener = this::showBuildingPopUp;
         findViewById(R.id.usc_map_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_flt).setOnClickListener(buildingListener);
@@ -824,7 +945,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeListBuildings() {
-        LinearLayout.OnClickListener buildingListener = this::showPopUp;
+        LinearLayout.OnClickListener buildingListener = this::showBuildingPopUp;
         findViewById(R.id.usc_list_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_flt).setOnClickListener(buildingListener);
