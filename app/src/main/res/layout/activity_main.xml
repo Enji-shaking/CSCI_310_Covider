@@ -1339,7 +1339,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:theme="@style/SubtitleTheme"
-                            android:layout_marginTop="5dp"
                             android:text="@string/frequently_visited"/>
                         <LinearLayout
                             android:id="@+id/daily_schedule_buildings"
@@ -1351,6 +1350,7 @@
                             android:layout_height="wrap_content"
                             android:theme="@style/SubtitleTheme"
                             android:layout_marginTop="5dp"
+                            android:paddingHorizontal="10dp"
                             android:text="@string/all_buildings"/>
                         <LinearLayout
                             android:id="@+id/usc_list_esh"
