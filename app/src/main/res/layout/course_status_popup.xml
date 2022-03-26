@@ -19,12 +19,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:backgroundTint="@color/black_light"
-            android:textAllCaps="true"
             android:textSize="20sp"
             android:textColor="@color/online_red"
             android:paddingVertical="15dp"
-            android:paddingHorizontal="20dp"
-            android:text="@string/in_person" />
+            android:paddingHorizontal="20dp" />
     </LinearLayout>
     <TextView
         android:id="@+id/popup_course_title"
@@ -32,9 +30,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/ibm_plex_serif_bold"
         android:textSize="29sp"
-        android:text="@string/sto_display"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +54,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="19sp"
-            android:text="@string/positive_students"
             android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/pop_up_high_risk_students"
@@ -65,7 +61,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="19sp"
-            android:text="@string/high_risk_students"
             android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/pop_up_low_risk_students"
@@ -73,7 +68,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_medium"
             android:textSize="19sp"
-            android:text="@string/low_risk_students"
             android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/pop_up_building_name"
@@ -81,8 +75,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_serif_bold"
             android:textSize="22sp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/sal"/>
+            android:layout_marginBottom="10dp" />
         <TextView
             android:id="@+id/pop_up_total_visitors"
             android:layout_width="wrap_content"
@@ -119,19 +112,16 @@
         android:background="@color/pop_up_bg"
         android:layout_weight="1"
         android:gravity="start"
+        android:layout_marginVertical="30dp"
         android:orientation="vertical">
         <Button
             android:id="@+id/change_course_status_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/in_person_green"
-            android:drawableLeft="@drawable/ic_user_group_solid"
-            android:textColor="@color/grey_light_text"
             android:gravity="center"
             android:layout_marginBottom="15dp"
             android:textSize="20sp"
-            android:paddingVertical="10dp"
-            android:text="@string/change_offline"/>
+            android:paddingVertical="10dp" />
         <Button
             android:id="@+id/return_button"
             android:layout_width="match_parent"

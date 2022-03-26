@@ -498,6 +498,7 @@ public class MainActivity extends AppCompatActivity {
         Button courseStatusButton = popupWindow.getContentView().findViewById(R.id.popup_course_status);
         Button changeStatusButton = popupWindow.getContentView().findViewById(R.id.change_course_status_button);
         if (c.getIsOnline() == 1) {
+            ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_status)).setText(R.string.online);
             courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.online_red));
             changeStatusButton.setText(R.string.change_offline);
             changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.in_person_green));
@@ -505,6 +506,7 @@ public class MainActivity extends AppCompatActivity {
             Drawable img = AppCompatResources.getDrawable(this, R.drawable.ic_user_group_solid);
             changeStatusButton.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
         } else if (c.getIsOnline() == 0) {
+            ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_status)).setText(R.string.in_person);
             courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.in_person_green));
             changeStatusButton.setText(R.string.change_online);
             changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.cardinal));

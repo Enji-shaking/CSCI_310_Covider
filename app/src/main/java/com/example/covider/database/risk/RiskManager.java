@@ -76,6 +76,10 @@ public class RiskManager extends DatabaseHandler {
 
     public UserRisk getUserRisk(long userId){
         UserDailyReport userDailyReport = reportManager.getUserMostRecentReport(userId);
+        // if a user does not have any previous report, they are considered Positive
+        if (userDailyReport == null){
+            return UserRisk.POSITIVE;
+        }
         if (userDailyReport.getIsPositive() == 1){
             return UserRisk.POSITIVE;
         }
