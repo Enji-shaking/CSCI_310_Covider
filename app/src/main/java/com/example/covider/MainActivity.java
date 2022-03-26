@@ -720,8 +720,9 @@ public class MainActivity extends AppCompatActivity {
             }
             ReportManager rm = ManagerFactory.getReportManagerInstance();
             rm.addReport(userId, isPositive ? 1 : 0, symptom);
-
+            String message = "Your form has been recorded.";
             if (isPositive){
+                message += " Please stay home and quarantine for at least 7 full days.";
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
@@ -755,7 +756,7 @@ public class MainActivity extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setIcon(R.drawable.ic_circle_check_solid)
                     .setTitle("Success!")
-                    .setMessage("Your form has been recorded")
+                    .setMessage(message)
                     .setNegativeButton("Close", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
