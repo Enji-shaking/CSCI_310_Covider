@@ -492,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.course_status_popup, null);
-        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
+        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.85);
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         Button courseStatusButton = popupWindow.getContentView().findViewById(R.id.popup_course_status);
@@ -557,8 +557,25 @@ public class MainActivity extends AppCompatActivity {
         };
         popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
         Button.OnClickListener changeStatusListener = (View popup) -> {
-
-            popupWindow.dismiss();
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_square_pen_solid)
+                    .setTitle("Change Course Status")
+                    .setMessage("Are you sure to change course status?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            changeCourseStatus(code);
+                            Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_LONG).show();
+                            popupWindow.dismiss();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(getApplicationContext(),"Cancel",Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .show();
         };
         changeStatusButton.setOnClickListener(changeStatusListener);
     }
@@ -627,7 +644,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             new AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_input_get)
+                    .setIcon(R.drawable.ic_circle_check_solid)
                     .setTitle("Success!")
                     .setMessage("Your form has been recorded")
                     .setNegativeButton("Close", new DialogInterface.OnClickListener() {

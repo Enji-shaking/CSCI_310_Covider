@@ -39,4 +39,5 @@
     <color name="pop_up_bg">#c9c9c9</color>
     <color name="grey_light_text">#f2f8f7</color>
     <color name="black_light">#252422</color>
+    <color name="success_green">#00992e</color>
 </resources>
