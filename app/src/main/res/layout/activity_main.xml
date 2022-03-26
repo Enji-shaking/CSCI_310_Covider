@@ -4191,91 +4191,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:id="@+id/notifications_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-                <LinearLayout
-                    android:id="@+id/notification1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="70dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:background="@color/low_risk"
-                    android:orientation="horizontal" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Low risk notification: CSCI 123 (Lecture) Tuesday 2:00 pm - 3:20 pm"
-                        android:layout_weight="1"
-                        android:theme="@style/PlainTextTheme"/>
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:src="@android:drawable/ic_delete"
-                        android:background="@null"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="id_here"
-                        app:tint="@color/cardinal" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/notification2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="70dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:background="@color/medium_risk"
-                    android:orientation="horizontal" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Medium risk notification: Salvatori Computer Science Center (SAL) Tuesday"
-                        android:layout_weight="1"
-                        android:theme="@style/PlainTextTheme"/>
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:src="@android:drawable/ic_delete"
-                        android:background="@null"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="id_here"
-                        app:tint="@color/cardinal" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/notification3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="70dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:background="@color/high_risk"
-                    android:orientation="horizontal" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="High risk notification: CSCI 789 (Discussion) Monday 10:00 am - 11:20 am"
-                        android:layout_weight="1"
-                        android:theme="@style/PlainTextTheme"/>
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:src="@android:drawable/ic_delete"
-                        android:background="@null"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="id_here"
-                        app:tint="@color/cardinal" />
-
-                </LinearLayout>
-            </LinearLayout>
+                android:orientation="vertical" />
         </ScrollView>
     </LinearLayout>
 

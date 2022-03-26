@@ -6,22 +6,20 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -43,7 +41,6 @@ import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
-import com.example.covider.model.Checkin;
 import com.example.covider.model.building.Building;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
@@ -51,15 +48,14 @@ import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.CourseRiskReport;
 import com.example.covider.model.report.UserDailyReport;
-import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 
-import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private View mapButton = null;
@@ -148,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 //        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
 
         notificationManager.addNotification(100,101,"You got close contact with a positive patient, BEWARE!");
+        notificationManager.addNotification(125,101,"You got close contact with a low risk patient, BEWARE!");
 
 //        checkinManager.addCheckin(9, 99);
 //        checkinManager.addCheckin(10, 99);
@@ -400,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton.OnClickListener bottomNavListener = (View view) -> {
             view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
             String content = view.getContentDescription().toString();
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
             switch (content) {
                 case "Map":
                     mapView.setVisibility(View.VISIBLE);
@@ -434,10 +432,8 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
                     System.out.println(reports);
 
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                    LinearLayout container = findViewById(R.id.test_records);
-                    Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
-                    container.removeAllViews();
+                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+                    LinearLayout container = findViewById(R.id.test_records);container.removeAllViews();
                     for (UserDailyReport i : reports)
                     {
                         LinearLayout report = new LinearLayout(this);
@@ -520,9 +516,64 @@ public class MainActivity extends AppCompatActivity {
                 case "Notification":
                     NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                     ArrayList<Notification> notifications = nm.getNotificationFor(userId);
-                    System.out.println(notifications);
+                    LinearLayout notificationContainer = findViewById(R.id.notifications_container);
+                    ColorDrawable borderColorDrawable = new ColorDrawable(getResources().getColor(R.color.cardinal));
+                    ColorDrawable backgroundColorDrawable = new ColorDrawable(getResources().getColor(R.color.white));
+                    LayerDrawable bottomBorder = new LayerDrawable(new Drawable[]{
+                            borderColorDrawable,
+                            backgroundColorDrawable
+                    });
+                    bottomBorder.setLayerInset(
+                            1, // Index of the drawable to adjust [background color layer]
+                            0, // Number of pixels to add to the left bound [left border]
+                            0, // Number of pixels to add to the top bound [top border]
+                            0, // Number of pixels to add to the right bound [right border]
+                            8 // Number of pixels to add to the bottom bound [bottom border]
+                    );
+                    ImageButton.OnClickListener listener = (View v) -> {
+                        long nId = Long.parseLong(v.getContentDescription().toString());
+                        LinearLayout containingLayout = (LinearLayout) v.getParent();
+                        notificationContainer.removeView(containingLayout);
+                        nm.markNotificationRead(nId);
+                    };
+                    final float scale = getResources().getDisplayMetrics().density;
+                    notificationContainer.removeAllViews();
+                    for (Notification n : notifications) {
+                        LinearLayout nView = new LinearLayout(this);
+                        nView.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                        ));
+                        nView.setOrientation(LinearLayout.HORIZONTAL);
+                        nView.setMinimumHeight((int)(70 * scale + 0.5f));
+                        nView.setGravity(Gravity.CENTER_VERTICAL);
+                        nView.setPadding((int)(15 * scale + 0.5f), 0, (int)(15 * scale + 0.5f), 0);
+                        nView.setBackground(bottomBorder);
+
+                        TextView nContent = new TextView(this);
+                        nContent.setText(n.getMessage());
+                        nContent.setGravity(Gravity.START);
+                        nContent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+                        nContent.setTextSize(16);
+                        nContent.setPadding(0, 0, (int)(10 * scale + 0.5f), 0);
+                        nContent.setTypeface(typeface);
+                        nView.addView(nContent);
+
+                        ImageButton deleteBtn = new ImageButton(this);
+                        deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                        deleteBtn.setMaxHeight((int)(70 * scale + 0.5f));
+                        deleteBtn.setMinimumWidth((int)(70 * scale + 0.5f));
+                        deleteBtn.setImageResource(android.R.drawable.ic_delete);
+                        deleteBtn.setBackground(null);
+                        deleteBtn.setContentDescription(String.valueOf(n.getId()));
+                        deleteBtn.setOnClickListener(listener);
+
+                        nView.addView(deleteBtn);
+                        notificationContainer.addView(nView);
+                        System.out.println("added");
+                    }
                     // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
-                    
+
                     notificationView.setVisibility(View.VISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
