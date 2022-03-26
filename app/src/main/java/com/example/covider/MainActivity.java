@@ -399,9 +399,7 @@ public class MainActivity extends AppCompatActivity {
                         coursesEnrolled2 = em2.getCoursesTakenBy(userId);
                     }
 
-                    Button.OnClickListener assessListener = (View assess) -> {
-
-                    };
+                    Button.OnClickListener assessListener = this::showCoursePopUp;
 
                     LinearLayout coursesContainer = findViewById(R.id.courses);
                     coursesContainer.removeAllViews();
@@ -420,10 +418,12 @@ public class MainActivity extends AppCompatActivity {
                         course.addView(courseCode);
                         Button status = new Button(this);
                         status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        status.setGravity(Gravity.CENTER_VERTICAL);
+                        status.setGravity(Gravity.CENTER);
                         status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
                         if (isStu == 0) {
+                            status.setOnClickListener(assessListener);
                             status.setText(R.string.assess);
+                            status.setContentDescription(String.valueOf(c.getId()));
                             status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
                         } else {
                             if (c.getIsOnline() == 1) {
@@ -431,7 +431,6 @@ public class MainActivity extends AppCompatActivity {
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
                             } else if (c.getIsOnline() == 0) {
                                 status.setText(R.string.in_person);
-                                status.setContentDescription(String.valueOf(c.getId()));
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
                             }
                         }
