@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 ((Switch)findViewById(R.id.toggle_view)).setChecked(true);
+                displayCustomizedBuildings();
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
 
             }
@@ -382,203 +383,206 @@ public class MainActivity extends AppCompatActivity {
         if (notificationView == null) {
             notificationView = findViewById(R.id.notification_view);
         }
-        ImageButton.OnClickListener bottomNavListener = (View view) -> {
-            view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
-            String content = view.getContentDescription().toString();
-            Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
-            switch (content) {
-                case "Map":
-                    displayDailySchedule();
-                    mapView.setVisibility(View.VISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
-                case "Report":
-                    reportView.setVisibility(View.VISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
-                case "Profile":
-                    profileView.setVisibility(View.VISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
 
-                    // display all reports
-                    ReportManager rm = ManagerFactory.getReportManagerInstance();
-                    ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
-                    System.out.println(reports);
+        mapButton.setOnClickListener(this::mapNavOnClickListener);
+        reportButton.setOnClickListener(this::reportNavOnClickListener);
+        profileButton.setOnClickListener(this::profileNavOnClickListener);
+        notificationButton.setOnClickListener(this::notificationNavOnClickListener);
+    }
 
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-                    LinearLayout container = findViewById(R.id.test_records);container.removeAllViews();
-                    for (UserDailyReport i : reports)
-                    {
-                        LinearLayout report = new LinearLayout(this);
-                        report.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        report.setOrientation(LinearLayout.HORIZONTAL);
-                        report.setPadding(0, 0, 0, 20);
+    private void mapNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        displayDailySchedule();
+        mapView.setVisibility(View.VISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+    }
 
-                        TextView date = new TextView(this);
-                        Date dateObj = new Date(i.getTimestamp());
-                        String dateString = df.format(dateObj);
-                        date.setText(dateString);
-                        date.setGravity(Gravity.START);
-                        date.setTextSize(16);
-                        date.setPadding(0, 5, 30, 10);
-                        date.setTypeface(typeface);
-                        TextView result = new TextView(this);
-                        if (i.getIsPositive() == 1) {
-                            result.setText(getResources().getString(R.string.positive_result));
-                        } else {
-                            result.setText(getResources().getString(R.string.negative_result));
-                        }
-                        result.setGravity(Gravity.START);
-                        result.setTextSize(16);
-                        result.setPadding(0, 5, 0, 10);
-                        result.setTypeface(typeface);
+    private void reportNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        reportView.setVisibility(View.VISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+    }
 
-                        report.addView(date);
-                        report.addView(result);
-                        container.addView(report);
-                    }
+    private void profileNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
+        profileView.setVisibility(View.VISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
 
-                    // display enrolled courses
-                    EnrollmentManager em2 = ManagerFactory.getEnrollmentManagerInstance();
-                    ArrayList<Course> coursesEnrolled2;
-                    if(isStu == 0){
-                        coursesEnrolled2 = em2.getCoursesTaughtBy(userId);
-                    }else {
-                        coursesEnrolled2 = em2.getCoursesTakenBy(userId);
-                    }
+        // display all reports
+        ReportManager rm = ManagerFactory.getReportManagerInstance();
+        ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
+        System.out.println(reports);
 
-                    Button.OnClickListener statusButtonListener = this::showCoursePopUp;
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        LinearLayout container = findViewById(R.id.test_records);container.removeAllViews();
+        for (UserDailyReport i : reports)
+        {
+            LinearLayout report = new LinearLayout(this);
+            report.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            report.setOrientation(LinearLayout.HORIZONTAL);
+            report.setPadding(0, 0, 0, 20);
 
-                    LinearLayout coursesContainer = findViewById(R.id.courses);
-                    coursesContainer.removeAllViews();
-                    for (Course c : coursesEnrolled2) {
-                        LinearLayout course = new LinearLayout(this);
-                        course.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        course.setOrientation(LinearLayout.HORIZONTAL);
-                        course.setGravity(Gravity.CENTER_VERTICAL);
-                        TextView courseCode = new TextView(this);
-                        courseCode.setText(c.getName());
-                        courseCode.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
-                        courseCode.setGravity(Gravity.START);
-                        courseCode.setTextSize(16);
-                        courseCode.setPadding(0, 5, 10, 10);
-                        courseCode.setTypeface(typeface);
-                        course.addView(courseCode);
-                        Button status = new Button(this);
-                        status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        status.setGravity(Gravity.CENTER);
-                        status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-                        status.setContentDescription(String.valueOf(c.getId()));
-                        status.setOnClickListener(statusButtonListener);
-                        // equal width
-                        status.setEms(7);
-                        if (isStu == 0) {
-                            status.setText(R.string.assess);
-                            status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
-                        } else {
-                            if (c.getIsOnline() == 1) {
-                                status.setText(R.string.online);
-                                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
-                            } else if (c.getIsOnline() == 0) {
-                                status.setText(R.string.in_person);
-                                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
-                            }
-                        }
-                        course.addView(status);
-                        coursesContainer.addView(course);
-                    }
-                    break;
-                case "Notification":
-                    NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
-                    ArrayList<Notification> notifications = nm.getNotificationFor(userId);
-                    LinearLayout notificationContainer = findViewById(R.id.notifications_container);
-                    ColorDrawable borderColorDrawable = new ColorDrawable(getResources().getColor(R.color.cardinal));
-                    ColorDrawable backgroundColorDrawable = new ColorDrawable(getResources().getColor(R.color.white));
-                    LayerDrawable bottomBorder = new LayerDrawable(new Drawable[]{
-                            borderColorDrawable,
-                            backgroundColorDrawable
-                    });
-                    bottomBorder.setLayerInset(
-                            1, // Index of the drawable to adjust [background color layer]
-                            0, // Number of pixels to add to the left bound [left border]
-                            0, // Number of pixels to add to the top bound [top border]
-                            0, // Number of pixels to add to the right bound [right border]
-                            8 // Number of pixels to add to the bottom bound [bottom border]
-                    );
-                    ImageButton.OnClickListener listener = (View v) -> {
-                        long nId = Long.parseLong(v.getContentDescription().toString());
-                        LinearLayout containingLayout = (LinearLayout) v.getParent();
-                        notificationContainer.removeView(containingLayout);
-                        nm.markNotificationRead(nId);
-                    };
-                    final float scale = getResources().getDisplayMetrics().density;
-                    notificationContainer.removeAllViews();
-                    for (Notification n : notifications) {
-                        LinearLayout nView = new LinearLayout(this);
-                        nView.setLayoutParams(new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                        ));
-                        nView.setOrientation(LinearLayout.HORIZONTAL);
-                        nView.setMinimumHeight((int)(70 * scale + 0.5f));
-                        nView.setGravity(Gravity.CENTER_VERTICAL);
-                        nView.setPadding((int)(15 * scale + 0.5f), 0, (int)(15 * scale + 0.5f), 0);
-                        nView.setBackground(bottomBorder);
-
-                        TextView nContent = new TextView(this);
-                        nContent.setText(n.getMessage());
-                        nContent.setGravity(Gravity.START);
-                        nContent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
-                        nContent.setTextSize(16);
-                        nContent.setPadding(0, 0, (int)(10 * scale + 0.5f), 0);
-                        nContent.setTypeface(typeface);
-                        nView.addView(nContent);
-
-                        ImageButton deleteBtn = new ImageButton(this);
-                        deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                        deleteBtn.setMaxHeight((int)(70 * scale + 0.5f));
-                        deleteBtn.setMinimumWidth((int)(70 * scale + 0.5f));
-                        deleteBtn.setImageResource(android.R.drawable.ic_delete);
-                        deleteBtn.setBackground(null);
-                        deleteBtn.setContentDescription(String.valueOf(n.getId()));
-                        deleteBtn.setOnClickListener(listener);
-
-                        nView.addView(deleteBtn);
-                        notificationContainer.addView(nView);
-                        System.out.println("added");
-                    }
-                    // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
-
-                    notificationView.setVisibility(View.VISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
+            TextView date = new TextView(this);
+            Date dateObj = new Date(i.getTimestamp());
+            String dateString = df.format(dateObj);
+            date.setText(dateString);
+            date.setGravity(Gravity.START);
+            date.setTextSize(16);
+            date.setPadding(0, 5, 30, 10);
+            date.setTypeface(typeface);
+            TextView result = new TextView(this);
+            if (i.getIsPositive() == 1) {
+                result.setText(getResources().getString(R.string.positive_result));
+            } else {
+                result.setText(getResources().getString(R.string.negative_result));
             }
-        };
+            result.setGravity(Gravity.START);
+            result.setTextSize(16);
+            result.setPadding(0, 5, 0, 10);
+            result.setTypeface(typeface);
 
-        mapButton.setOnClickListener(bottomNavListener);
-        reportButton.setOnClickListener(bottomNavListener);
-        profileButton.setOnClickListener(bottomNavListener);
-        notificationButton.setOnClickListener(bottomNavListener);
+            report.addView(date);
+            report.addView(result);
+            container.addView(report);
+        }
+
+        // display enrolled courses
+        EnrollmentManager em2 = ManagerFactory.getEnrollmentManagerInstance();
+        ArrayList<Course> coursesEnrolled2;
+        if(isStu == 0){
+            coursesEnrolled2 = em2.getCoursesTaughtBy(userId);
+        }else {
+            coursesEnrolled2 = em2.getCoursesTakenBy(userId);
+        }
+
+        Button.OnClickListener statusButtonListener = this::showCoursePopUp;
+
+        LinearLayout coursesContainer = findViewById(R.id.courses);
+        coursesContainer.removeAllViews();
+        for (Course c : coursesEnrolled2) {
+            LinearLayout course = new LinearLayout(this);
+            course.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            course.setOrientation(LinearLayout.HORIZONTAL);
+            course.setGravity(Gravity.CENTER_VERTICAL);
+            TextView courseCode = new TextView(this);
+            courseCode.setText(c.getName());
+            courseCode.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+            courseCode.setGravity(Gravity.START);
+            courseCode.setTextSize(16);
+            courseCode.setPadding(0, 5, 10, 10);
+            courseCode.setTypeface(typeface);
+            course.addView(courseCode);
+            Button status = new Button(this);
+            status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            status.setGravity(Gravity.CENTER);
+            status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+            status.setContentDescription(String.valueOf(c.getId()));
+            status.setOnClickListener(statusButtonListener);
+            // equal width
+            status.setEms(7);
+            if (isStu == 0) {
+                status.setText(R.string.assess);
+                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
+            } else {
+                if (c.getIsOnline() == 1) {
+                    status.setText(R.string.online);
+                    status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
+                } else if (c.getIsOnline() == 0) {
+                    status.setText(R.string.in_person);
+                    status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
+                }
+            }
+            course.addView(status);
+            coursesContainer.addView(course);
+        }
+    }
+
+    private void notificationNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        ArrayList<Notification> notifications = nm.getNotificationFor(userId);
+        LinearLayout notificationContainer = findViewById(R.id.notifications_container);
+        ColorDrawable borderColorDrawable = new ColorDrawable(getResources().getColor(R.color.cardinal));
+        ColorDrawable backgroundColorDrawable = new ColorDrawable(getResources().getColor(R.color.white));
+        LayerDrawable bottomBorder = new LayerDrawable(new Drawable[]{
+                borderColorDrawable,
+                backgroundColorDrawable
+        });
+        bottomBorder.setLayerInset(
+                1, // Index of the drawable to adjust [background color layer]
+                0, // Number of pixels to add to the left bound [left border]
+                0, // Number of pixels to add to the top bound [top border]
+                0, // Number of pixels to add to the right bound [right border]
+                8 // Number of pixels to add to the bottom bound [bottom border]
+        );
+        ImageButton.OnClickListener listener = (View v) -> {
+            long nId = Long.parseLong(v.getContentDescription().toString());
+            LinearLayout containingLayout = (LinearLayout) v.getParent();
+            notificationContainer.removeView(containingLayout);
+            nm.markNotificationRead(nId);
+        };
+        final float scale = getResources().getDisplayMetrics().density;
+        notificationContainer.removeAllViews();
+        for (Notification n : notifications) {
+            LinearLayout nView = new LinearLayout(this);
+            nView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            nView.setOrientation(LinearLayout.HORIZONTAL);
+            nView.setMinimumHeight((int)(70 * scale + 0.5f));
+            nView.setGravity(Gravity.CENTER_VERTICAL);
+            nView.setPadding((int)(15 * scale + 0.5f), 0, (int)(15 * scale + 0.5f), 0);
+            nView.setBackground(bottomBorder);
+
+            TextView nContent = new TextView(this);
+            nContent.setText(n.getMessage());
+            nContent.setGravity(Gravity.START);
+            nContent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+            nContent.setTextSize(16);
+            nContent.setPadding(0, 0, (int)(10 * scale + 0.5f), 0);
+            nContent.setTypeface(typeface);
+            nView.addView(nContent);
+
+            ImageButton deleteBtn = new ImageButton(this);
+            deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            deleteBtn.setMaxHeight((int)(70 * scale + 0.5f));
+            deleteBtn.setMinimumWidth((int)(70 * scale + 0.5f));
+            deleteBtn.setImageResource(android.R.drawable.ic_delete);
+            deleteBtn.setBackground(null);
+            deleteBtn.setContentDescription(String.valueOf(n.getId()));
+            deleteBtn.setOnClickListener(listener);
+
+            nView.addView(deleteBtn);
+            notificationContainer.addView(nView);
+            System.out.println("added");
+        }
+        // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
+
+        notificationView.setVisibility(View.VISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
     }
 
     private void showCoursePopUp(View view) {
@@ -869,7 +873,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         initializeListBuildings();
-        displayCustomizedBuildings();
     }
 
     private void showBuildingPopUp(View view) {
