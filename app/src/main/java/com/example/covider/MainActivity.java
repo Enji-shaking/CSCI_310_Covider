@@ -730,12 +730,23 @@ public class MainActivity extends AppCompatActivity {
             String message = "Your form has been recorded.";
             if (isPositive){
                 message += " Please stay home and quarantine for at least 7 full days.";
+                if(isStu == 0){
+                    message += " All your students have received notification that their courses are changed to online.";
+                }
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive patient, BEWARE!");
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive covid case, BEWARE!");
+                }
+                if (isStu == 0){
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
+                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
+                    for (Course course : courses) {
+                        courseManager.notifyOnline(userId, course.getId());
+                    }
                 }
             }else if(!symptom.equals("")){
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
@@ -745,17 +756,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with a student with covid related symptom, BEWARE!");
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
-                }
-
-                if (isStu == 0){
-                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
-                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
-                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
-                    for (Course course : courses) {
-                        courseManager.notifyOnline(userId, course.getId());
-                    }
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a user with covid related symptom, BEWARE!");
                 }
 
             }
