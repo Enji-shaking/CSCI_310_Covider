@@ -497,17 +497,16 @@ public class MainActivity extends AppCompatActivity {
                         status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
                         status.setContentDescription(String.valueOf(c.getId()));
                         status.setOnClickListener(statusButtonListener);
+                        // equal width
+                        status.setEms(7);
                         if (isStu == 0) {
                             status.setText(R.string.assess);
                             status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
                         } else {
-                            System.out.println("is student");
                             if (c.getIsOnline() == 1) {
-                                System.out.println("online " + c.getName());
                                 status.setText(R.string.online);
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
                             } else if (c.getIsOnline() == 0) {
-                                System.out.println("in person " + c.getName());
                                 status.setText(R.string.in_person);
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
                             }
