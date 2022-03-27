@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10101, 101, 60360, 1));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10200, 102, 60310, 1));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12300, 123,60310,0));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12300, 123,60360,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12301, 123,60360,0));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12400, 124,60350,0));
         enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12500, 125, 60585,0));
 
