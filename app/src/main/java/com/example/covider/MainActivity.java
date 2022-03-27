@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                displayCustomizedBuildings();
+                ((Switch)findViewById(R.id.toggle_view)).setChecked(true);
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
 
             }
@@ -262,6 +262,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayCustomizedBuildings() {
         // display building corresponds to enrolled courses
+        displayDailySchedule();
+        // display frequent visits
+        displayFrequentVisit();
+    }
+
+    private void displayDailySchedule() {
         EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
         BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
         ArrayList<Course> coursesEnrolled;
@@ -273,7 +279,6 @@ public class MainActivity extends AppCompatActivity {
         int count = 0;
         final float scale = getResources().getDisplayMetrics().density;
         Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
-        View.OnClickListener listener = this::showBuildingPopUp;
         LinearLayout scheduleBuildingsContainer = findViewById(R.id.daily_schedule_buildings);
         scheduleBuildingsContainer.removeAllViews();
         for (Course course : coursesEnrolled){
@@ -291,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
             }
             bView.setContentDescription(b.getName());
-            bView.setOnClickListener(listener);
+            bView.setOnClickListener(this::showBuildingPopUp);
             TextView bName = new TextView(this);
             bName.setText(getString(buildingStrId));
             bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -303,26 +308,19 @@ public class MainActivity extends AppCompatActivity {
             count++;
         }
         if (count == 0) {
-            ((TextView)findViewById(R.id.daily_schedule_title)).setHeight(0);
+            findViewById(R.id.daily_schedule_title).setVisibility(View.GONE);
         } else {
-            findViewById(R.id.daily_schedule_title)
-                    .setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
-                    );
-            findViewById(R.id.daily_schedule_title)
-                    .setPadding(
-                            (int)(10 * scale + 0.5f),
-                            0,
-                            (int)(10 * scale + 0.5f),
-                            (int)(10 * scale + 0.5f)
-                    );
+            findViewById(R.id.daily_schedule_title).setVisibility(View.VISIBLE);
         }
+    }
 
-        // display frequent visits
+    private void displayFrequentVisit() {
+        Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
+        final float scale = getResources().getDisplayMetrics().density;
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
         CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
         ArrayList<Long> buildingIdsFrequentVisit = cm.getFrequentVisit(userId, 3);
-        count = 0;
+        int count = 0;
         LinearLayout frequentBuildingsContainer = findViewById(R.id.frequently_visited_buildings);
         frequentBuildingsContainer.removeAllViews();
         for (Long buildingId : buildingIdsFrequentVisit){
@@ -340,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                 bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
             }
             bView.setContentDescription(b.getName());
-            bView.setOnClickListener(listener);
+            bView.setOnClickListener(this::showBuildingPopUp);
             TextView bName = new TextView(this);
             bName.setText(getString(buildingStrId));
             bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -351,21 +349,11 @@ public class MainActivity extends AppCompatActivity {
             frequentBuildingsContainer.addView(bView);
             count++;
         }
+
         if (count == 0) {
-            ((TextView)findViewById(R.id.frequently_visited_title)).setHeight(0);
+            findViewById(R.id.frequently_visited_title).setVisibility(View.GONE);
         } else {
-            findViewById(R.id.frequently_visited_title)
-                    .setPadding(
-                            (int)(10 * scale + 0.5f),
-                            (int)(5 * scale + 0.5f),
-                            (int)(10 * scale + 0.5f),
-                            (int)(10 * scale + 0.5f)
-                    );
-            findViewById(R.id.frequently_visited_title)
-                    .setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
-                    );
+            findViewById(R.id.frequently_visited_title).setVisibility(View.VISIBLE);
         }
     }
 
@@ -400,6 +388,7 @@ public class MainActivity extends AppCompatActivity {
             Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
             switch (content) {
                 case "Map":
+                    displayDailySchedule();
                     mapView.setVisibility(View.VISIBLE);
                     reportView.setVisibility(View.INVISIBLE);
                     profileView.setVisibility(View.INVISIBLE);
@@ -407,7 +396,6 @@ public class MainActivity extends AppCompatActivity {
                     reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                     notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    displayCustomizedBuildings();
                     break;
                 case "Report":
                     reportView.setVisibility(View.VISIBLE);
@@ -875,11 +863,13 @@ public class MainActivity extends AppCompatActivity {
                 buildingsMap.setVisibility(View.VISIBLE);
                 buildingsList.setVisibility(View.INVISIBLE);
             } else {
+                displayDailySchedule();
                 buildingsMap.setVisibility(View.INVISIBLE);
                 buildingsList.setVisibility(View.VISIBLE);
             }
         });
         initializeListBuildings();
+        displayCustomizedBuildings();
     }
 
     private void showBuildingPopUp(View view) {
@@ -943,6 +933,7 @@ public class MainActivity extends AppCompatActivity {
             CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
             System.out.println("Check In at " + code);
             cm.addCheckin(userId, bm.getBuildingByName(code).getId());
+            displayFrequentVisit();
             popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.check_in_button).setOnClickListener(checkInListener);

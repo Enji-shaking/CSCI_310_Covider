@@ -1327,10 +1327,12 @@
                             android:id="@+id/daily_schedule_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingHorizontal="10dp"
                             android:theme="@style/SubtitleTheme"
                             android:text="@string/daily_schedule"/>
                         <LinearLayout
-                            android:id="@+id/frequently_visited_buildings"
+                            android:id="@+id/daily_schedule_buildings"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"/>
@@ -1339,9 +1341,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:theme="@style/SubtitleTheme"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingHorizontal="10dp"
                             android:text="@string/frequently_visited"/>
                         <LinearLayout
-                            android:id="@+id/daily_schedule_buildings"
+                            android:id="@+id/frequently_visited_buildings"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"/>
