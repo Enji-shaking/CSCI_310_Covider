@@ -200,7 +200,7 @@ public class CheckinManager extends DatabaseHandler {
         String sql = "SELECT building_id " +
                 "FROM " + CheckinManager.getTableName() + " " +
                 "WHERE user_id = ? " +
-                "GROUP BY user_id " +
+                "GROUP BY building_id " +
                 "ORDER BY COUNT(*) DESC " +
                 "LIMIT ?";
         try(
