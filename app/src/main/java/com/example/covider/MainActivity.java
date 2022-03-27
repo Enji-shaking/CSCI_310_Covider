@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
                         coursesEnrolled2 = em2.getCoursesTakenBy(userId);
                     }
 
-                    Button.OnClickListener assessListener = this::showCoursePopUp;
+                    Button.OnClickListener statusButtonListener = this::showCoursePopUp;
 
                     LinearLayout coursesContainer = findViewById(R.id.courses);
                     coursesContainer.removeAllViews();
@@ -495,16 +495,19 @@ public class MainActivity extends AppCompatActivity {
                         status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                         status.setGravity(Gravity.CENTER);
                         status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+                        status.setContentDescription(String.valueOf(c.getId()));
+                        status.setOnClickListener(statusButtonListener);
                         if (isStu == 0) {
-                            status.setOnClickListener(assessListener);
                             status.setText(R.string.assess);
-                            status.setContentDescription(String.valueOf(c.getId()));
                             status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
                         } else {
+                            System.out.println("is student");
                             if (c.getIsOnline() == 1) {
+                                System.out.println("online " + c.getName());
                                 status.setText(R.string.online);
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
                             } else if (c.getIsOnline() == 0) {
+                                System.out.println("in person " + c.getName());
                                 status.setText(R.string.in_person);
                                 status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
                             }
@@ -665,28 +668,33 @@ public class MainActivity extends AppCompatActivity {
             popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
-        Button.OnClickListener changeStatusListener = (View popup) -> {
-            new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.ic_square_pen_solid)
-                    .setTitle("Change Course Status")
-                    .setMessage("Are you sure to change course status?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            changeCourseStatus(code);
-                            Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_LONG).show();
-                            popupWindow.dismiss();
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(getApplicationContext(),"Cancel",Toast.LENGTH_LONG).show();
-                        }
-                    })
-                    .show();
-        };
-        changeStatusButton.setOnClickListener(changeStatusListener);
+        if (isStu == 0) {
+            changeStatusButton.setVisibility(View.VISIBLE);
+            Button.OnClickListener changeStatusListener = (View popup) -> {
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.ic_square_pen_solid)
+                        .setTitle("Change Course Status")
+                        .setMessage("Are you sure to change course status?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                changeCourseStatus(code);
+                                Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_LONG).show();
+                                popupWindow.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Cancel",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+            };
+            changeStatusButton.setOnClickListener(changeStatusListener);
+        } else {
+            changeStatusButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void initializeReportPage() {
