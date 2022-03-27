@@ -8,11 +8,11 @@
 ## Testing
 ### Prefilled values in database:
 
-There are four courses {CS310, CS350, CS360, CS585}
-There are there buildings {sal, thh, kap, rth}
-There are three student_users {Enji, Zhihan, Shuning}
-There are one instructor {Negar, Tanya, Saty}
-The default password for all users are 12345678
+There are four courses {CS310, CS350, CS360, CS585}  
+There are there buildings {sal, thh, kap, rth}  
+There are three student_users {Enji, Zhihan, Shuning}  
+There are one instructor {Negar, Tanya, Saty}  
+The default password for all users are 12345678  
 
 #### Course -> Building
 
@@ -24,34 +24,38 @@ The default password for all users are 12345678
 |   60585   | CS585    | rth     | Saty     |
 
 #### CheckIn: User -> List\<Building\>
-​    Enji checked in buildings {sal, thh, kap}
-​    Zhihan checked in {sal, thh}
-​    Shuning checked in {}
+Enji checked in buildings {sal, thh, kap}  
+Zhihan checked in {sal, thh}  
+Shuning checked in {} (None)  
 
 #### Enrollment: User -> List\<Courses\>
-Enji takes courses CS310, CS350, CS585
-Zhihan takes courses CS360, CS310
-Shuning takes course CS310
-Negar teach courses: CS310, CS360
-Tanya teach courses: CS350
-Saty teach courses: CS585
+Enji takes courses CS310, CS350, CS585  
+Zhihan takes courses CS360, CS310  
+Shuning takes course CS310  
+Negar teach courses: CS310, CS360  
+Tanya teach courses: CS350  
+Saty teach courses: CS585  
 
 #### TestResult:
-Enji reported positive.
+Enji reported positive.  
 (Zhihan should have a notifications of being in close contact with a positive patient.)
 
 ### Terms 
 
-The testing procedure we want you to follow:
 4 base pages:
 **Map/List view** : The first tab from left in the navigation bar. This is where user browser buildings on campus
+
 **Report view** : The second tab in the navigation bar. This is where user fill and submit their daily report a.k.a. Trojan Check
+
 **(Personal) Profile view** : The third tab in the navigation bar. This is where the user brows their courses and submit Daily reports (ordered in Date submitted in descending order)
+
 **Notification view** : The forth tab from left in the navigation bar, This is where the user read their incoming notifications.
 
 We used the term ***view*** and ***page*** interchangeably in our document.
 
 ### Start Testing
+
+(The testing procedure we want you to follow:  )
 
 **Log in as Zhihan (pwd: 12345678).**
 
@@ -101,3 +105,7 @@ We used the term ***view*** and ***page*** interchangeably in our document.
 - Go to the notification page to see the notification that the course CS310 and CS360 has been made online. 
 - Go to the personal page to see the course CS310 and CS360 status has been changed to online.
 - Log out.
+
+
+
+### Thank You : )
