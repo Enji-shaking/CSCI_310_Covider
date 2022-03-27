@@ -42,7 +42,7 @@ Enji reported positive.
 
 ### Terms 
 
-4 base pages:
+4 base pages:  
 **Map/List view** : The first tab from left in the navigation bar. This is where user browser buildings on campus
 
 **Report view** : The second tab in the navigation bar. This is where user fill and submit their daily report a.k.a. Trojan Check
