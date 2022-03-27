@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 //        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
 
         notificationManager.addNotification(100,101,"You got close contact with a positive patient, BEWARE!");
-        notificationManager.addNotification(125,101,"You got close contact with a low risk patient, BEWARE!");
+//        notificationManager.addNotification(125,101,"You got close contact with a low risk patient, BEWARE!");
 
 //        checkinManager.addCheckin(9, 99);
 //        checkinManager.addCheckin(10, 99);
