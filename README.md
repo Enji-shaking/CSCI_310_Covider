@@ -113,4 +113,35 @@ We used the term ***view*** and ***page*** interchangeably in our document.
 ### Special Note:
 If a user check in a building and they have no previous daily report record they will be by default considered as positive, so that the other user can get prepared for the worst case scenario.
 
+### Optional: Page and functionalities
+1. Map page   
+Click the first button on the bottom navigation bar to show you the map view.  
+1.1 Test checking building status:  
+Click on any building in the map or in the list will show you a pop up window, indicating the risk of building and the number of people checking in, including high risk users and low risk users.  
+In the check in button, you may select check in to check in a building.  
+1.2 View user’s frequently visited locations, and locations that they should visit based on their daily schedule.
+Click on the Map View toggle on the top right to show the list. You can also click any building in the list to see the building risk level and check in the building. 
+
+
+2. Daily report page:  
+Click the second button on the bottom navigation bar to show you the form to fill out.   
+2.1. Test reporting negative:  
+Select everything to be "no" to report a safe report. You will see a success pop up afterward.  
+2.2. Test reporting positive:  
+Select true for the first question. Every other student/professor who has been in close contact with you will see the notification of "You got close contact with a positive patient, BEWARE!". I will talk about how to view the notification soon. You will see a success pop up afterward.  
+2.3 Test reporting with symptoms:  
+Select true for the first question. Every other student/professor who has been in close contact with you will see the notification of "You got close contact with a student with covid related symptoms, BEWARE!". I will talk about how to view the notification soon. You will see a success pop up afterward.  
+
+3. Personal profile page  
+Click the third button on the bottom navigation bar to show you the form to fill out.   
+3.1 View personal schedule and past reports  
+You can directly see the classes you take/teach on the top section. Then in the following section, you can see the past reports you made. This list will only show "positive" and "negative" but not including the symptoms.  
+3.2 Log out  
+If you click the log out button on the top, you will be logged out.  
+3.3 View course status  
+You can view course status, including the risk factor and number of students is positive by clicking the button "in person/ online"  
+3.4 Change course status if the user if professor  
+And all students in the course status will receive notification  
+
+
 ### Thank You : )
