@@ -6,6 +6,10 @@
 
 
 ## Testing
+
+### Required device
+Pixel 5 API 27
+
 ### Prefilled values in database:
 
 There are four courses {CS310, CS350, CS360, CS585}  
