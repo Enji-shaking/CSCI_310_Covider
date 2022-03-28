@@ -15,7 +15,7 @@ Pixel 5 API 27
 There are four courses {CS310, CS350, CS360, CS585}  
 There are there buildings {sal, thh, kap, rth}  
 There are three student_users {Enji, Zhihan, Shuning}  
-There are one instructor {Negar, Tanya, Saty}  
+There are three instructors {Negar, Tanya, Saty}  
 The default password for all users are 12345678  
 
 #### Course -> Building
