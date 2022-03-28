@@ -110,6 +110,7 @@ We used the term ***view*** and ***page*** interchangeably in our document.
 - Go to the personal page to see the course CS310 and CS360 status has been changed to online.
 - Log out.
 
-
+### Special Note:
+If a user check in a building and they have no previous daily report record they will be by default considered as positive, so that the other user can get prepared for the worst case scenario.
 
 ### Thank You : )
