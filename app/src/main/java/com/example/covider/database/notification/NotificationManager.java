@@ -40,7 +40,7 @@ public class NotificationManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            create_default_notification();
+//            create_default_notification();
         }
     }
 
@@ -107,8 +107,8 @@ public class NotificationManager extends DatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Notification> list = new ArrayList<Notification>();
         try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID, KEY_FROM,
-                        KEY_TO, KEY_READ, KEY_MSG }, KEY_TO + "=?",
-                new String[] { String.valueOf(userId) }, null, null, null, null)){
+                        KEY_TO, KEY_READ, KEY_MSG }, KEY_TO + "=? AND " + KEY_READ + "=?",
+                new String[] { String.valueOf(userId), String.valueOf(0) }, null, null, null, null)){
             if(!cursor.moveToFirst()){
                 return list;
             }

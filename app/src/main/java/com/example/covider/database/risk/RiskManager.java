@@ -76,6 +76,10 @@ public class RiskManager extends DatabaseHandler {
 
     public UserRisk getUserRisk(long userId){
         UserDailyReport userDailyReport = reportManager.getUserMostRecentReport(userId);
+        // if a user does not have any previous report, they are considered Positive
+        if (userDailyReport == null){
+            return UserRisk.POSITIVE;
+        }
         if (userDailyReport.getIsPositive() == 1){
             return UserRisk.POSITIVE;
         }
@@ -94,7 +98,7 @@ public class RiskManager extends DatabaseHandler {
         long spanStartTime = System.currentTimeMillis() - spanTimeMillis;
         long spanEndTime = System.currentTimeMillis();
 
-        BuildingRiskReport buildingRiskReport = new BuildingRiskReport("Last 2 Days", spanStartTime, spanEndTime);
+        BuildingRiskReport buildingRiskReport = new BuildingRiskReport("Last 3 Days", spanStartTime, spanEndTime);
 
         ArrayList<Checkin> checkins = checkinManager.getBuildingCheckinsInTimeSpan(buildingId, spanStartTime, spanEndTime);
         Set<Long> userIdSet = new HashSet<>();

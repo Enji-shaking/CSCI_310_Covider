@@ -44,7 +44,7 @@ public class CourseManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            createDefaultCourses();
+//            createDefaultCourses();
         }
     }
 

@@ -14,6 +14,9 @@
     <string name="list_view">List View</string>
     <string name="last_3_days">In Last 3 Days</string>
     <string name="go_back">Go Back</string>
+    <string name="frequently_visited">Frequently Visited</string>
+    <string name="daily_schedule">Daily Schedule</string>
+    <string name="all_buildings">All Buildings</string>
     <string name="total_visitors" formatted="false">Total Visitors: %d</string>
     <string name="low_risk_visitors" formatted="false">Low Risk Visitors: %d</string>
     <string name="high_risk_visitors" formatted="false">High Risk Visitors: %d</string>
@@ -220,7 +223,6 @@
     <string name="sal">sal</string>
     <string name="sal_full">Salvatori Computer Science Center</string>
     <string name="sal_display">Salvatori Computer Science Center (SAL)</string>
-    <string name="sal_id">99</string>
     <string name="sel">sel</string>
     <string name="sel_full">Science &amp; Engineering Library</string>
     <string name="sel_display">Science &amp; Engineering Library</string>
@@ -439,6 +441,12 @@
     <string name="negative_result">Negative</string>
     <string name="positive_result">Positive</string>
     <string name="add_records">Add Test Result</string>
+    <string name="course_risk_report">Course Risk Report</string>
+    <string name="positive_students">Positive Students: %d</string>
+    <string name="high_risk_students">High Risk Students: %d</string>
+    <string name="low_risk_students">Low Risk Students: %d</string>
+    <string name="change_online">Change to Online</string>
+    <string name="change_offline">Change to In-Person</string>
     <!--    Health Form Strings    -->
     <string name="health_form_title">Wellness Assessment Tool</string>
     <string name="guiding_question1">Do any of these apply to you?</string>

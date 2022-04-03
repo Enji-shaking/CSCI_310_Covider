@@ -37,7 +37,7 @@ public class UserManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            createDefaultUsers();
+//            createDefaultUsers();
         }
     }
 

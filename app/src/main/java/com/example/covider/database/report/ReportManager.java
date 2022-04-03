@@ -43,7 +43,7 @@ public class ReportManager extends DatabaseHandler {
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
 
-            create_default_report();
+//            create_default_report();
         }
     }
 

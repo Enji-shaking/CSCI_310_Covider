@@ -152,11 +152,11 @@ public class EnrollmentManager extends DatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
 
 
-        //  eg: SELECT c.id, c.name, c.building_id
+        //  eg: SELECT c.id, c.name, c.building_id, c.is_online
         //      FROM enrollment INNER JOIN course AS c
         //          ON enrollment.courseId = c.id
         //      WHERE enrollment.isStudent = 1 AND enrollment.userId = ?
-        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() + ", c." + CourseManager.KEY_BUILDING_ID+
+        String MY_QUERY = "SELECT " + "c." + CourseManager.getKeyId() + ", c." + CourseManager.getKeyName() + ", c." + CourseManager.KEY_BUILDING_ID + ", c." + CourseManager.KEY_IS_ONLINE+
                 " FROM " +
                 TABLE_NAME + " INNER JOIN " + CourseManager.getTableName()  + " c ON " +
                 TABLE_NAME + "." + KEY_COURSE_ID + " = " + "c." + CourseManager.getKeyId() +
@@ -178,7 +178,8 @@ public class EnrollmentManager extends DatabaseHandler {
                 list.add(new Course(
                         cursor.getLong(0),
                         cursor.getString(1),
-                        cursor.getLong(2)
+                        cursor.getLong(2),
+                        cursor.getInt(3)
                 ));
             }
             while (cursor.moveToNext());

@@ -1,6 +1,7 @@
 package com.example.covider;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -9,6 +10,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
@@ -27,6 +31,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
@@ -41,8 +46,8 @@ import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
 import com.example.covider.model.report.BuildingRiskReport;
+import com.example.covider.model.report.CourseRiskReport;
 import com.example.covider.model.report.UserDailyReport;
-import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
 
 import java.text.DateFormat;
@@ -50,6 +55,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private View mapButton = null;
@@ -68,58 +74,94 @@ public class MainActivity extends AppCompatActivity {
     private final HashMap<String, Boolean> answers = new HashMap<>();
 
     private void createDummy(){
-        RiskManager riskManager;
-        EnrollmentManager enrollmentManager;
-        CheckinManager checkinManager;
-        ReportManager reportManager;
-        CourseManager courseManager;
         UserManager userManager;
-        NotificationManager notificationManager;
         BuildingManager buildingManager;
+        CheckinManager checkinManager;
+        CourseManager courseManager;
+        EnrollmentManager enrollmentManager;
+        RiskManager riskManager;
+        ReportManager reportManager;
+        NotificationManager notificationManager;
 
+        userManager = ManagerFactory.getUserManagerInstance();
+        buildingManager = ManagerFactory.getBuildingManagerInstance();
+        checkinManager = ManagerFactory.getCheckinManagerInstance();
+        courseManager = ManagerFactory.getCourseManagerInstance();
+        enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
         riskManager = ManagerFactory.getRiskManagerInstance();
         reportManager = ManagerFactory.getReportManagerInstance();
-        checkinManager = ManagerFactory.getCheckinManagerInstance();
-        enrollmentManager = ManagerFactory.getEnrollmentManagerInstance();
-        courseManager = ManagerFactory.getCourseManagerInstance();
-        userManager = ManagerFactory.getUserManagerInstance();
         notificationManager = ManagerFactory.getNotificationManagerInstance();
-        buildingManager = ManagerFactory.getBuildingManagerInstance();
 
-        reportManager.addOrUpdateReport(new UserDailyReport(10009, 9, 1, "Stay Positive", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10011, 11, 0, "", System.currentTimeMillis()));
-        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
+        userManager.addOrUpdateUser(new User(100,"Enji", "12345678", 1));
+        userManager.addOrUpdateUser(new User(101,"Zhihan", "12345678", 1));
+        userManager.addOrUpdateUser(new User(102,"Shuning", "12345678", 1));
+        userManager.addOrUpdateUser(new User(123,"Negar", "12345678", 0));
+        userManager.addOrUpdateUser(new User(124,"Tanya", "12345678", 0));
+        userManager.addOrUpdateUser(new User(125,"Saty", "12345678", 0));
 
-        checkinManager.addCheckin(9, 99);
-        checkinManager.addCheckin(10, 99);
-        checkinManager.addCheckin(11, 99);
+        buildingManager.addOrUpdateBuilding(new Building(200,"sal"));
+        buildingManager.addOrUpdateBuilding(new Building(201,"thh"));
+        buildingManager.addOrUpdateBuilding(new Building(202,"kap"));
+        buildingManager.addOrUpdateBuilding(new Building(203,"rth"));
 
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1009, 9, 101, 1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1010, 10,101,1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1011, 11,101,1));
-        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 1012, 12, 101,0));
+        /*
+            CheckIn: User -> List<Building>
+            Enji checked in buildings {sal, thh, kap}
+            Zhihan checked in {sal, thh}
+            Shuning checked in {None}
+         */
+        checkinManager.addCheckin(100, 200);
+        checkinManager.addCheckin(100, 201);
+        checkinManager.addCheckin(100, 202);
+        checkinManager.addCheckin(101, 200);
+        checkinManager.addCheckin(101, 201);
 
-        enrollmentManager.addEnrollment(1, 1, 1);
-        enrollmentManager.addEnrollment(1, 2, 1);
-        enrollmentManager.addEnrollment(2, 1, 1);
-        enrollmentManager.addEnrollment(2, 2, 1);
-        enrollmentManager.addEnrollment(3, 1, 0);
-        enrollmentManager.addEnrollment(3, 2, 0);
+        courseManager.addOrUpdateCourse(new Course(60310, "CS310", 200, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60350, "CS350", 201, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60360, "CS360", 202, 0 ));
+        courseManager.addOrUpdateCourse(new Course(60585, "CS585", 203, 0 ));
 
-        courseManager.addOrUpdateCourse(new Course(101,"Course For Testing", 99, 0));
+        /*
+            Enrollment: User -> List<Courses>
+            Enji takes courses CS310, CS350, CS585
+            Zhihan takes courses CS360, CS310
+            Shuning takes course CS310
+        */
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10000, 100, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10001, 100, 60350, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10002, 100, 60585, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10100, 101, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10101, 101, 60360, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 10200, 102, 60310, 1));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12300, 123,60310,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12301, 123,60360,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12400, 124,60350,0));
+        enrollmentManager.addOrUpdateEnrollment(new Enrollment( 12500, 125, 60585,0));
 
-        userManager.addOrUpdateUser(new User(9,"RiskTester1", "12345678", 1));
-        userManager.addOrUpdateUser(new User(10,"RiskTester2", "12345678", 1));
-        userManager.addOrUpdateUser(new User(11,"RiskTester3", "12345678", 1));
-        userManager.addOrUpdateUser(new User(12,"RiskTester4", "12345678", 0));
+        reportManager.addOrUpdateReport(new UserDailyReport(300, 100, 1, "Stay Positive", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10010, 10, 0, "Fever", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10011, 11, 0, "", System.currentTimeMillis()));
+//        reportManager.addOrUpdateReport(new UserDailyReport(10012, 12, 1, "", System.currentTimeMillis()));
 
-        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+        notificationManager.addNotification(100,101,"You got close contact with a positive patient, BEWARE!");
+//        notificationManager.addNotification(125,101,"You got close contact with a low risk patient, BEWARE!");
 
-        buildingManager.addBuilding("SA"); // will be overwritten by the next line
-        buildingManager.addOrUpdateBuilding(new Building(91,"sal"));
-        buildingManager.addOrUpdateBuilding(new Building(92,"kap"));
-        buildingManager.addOrUpdateBuilding(new Building(94,"lvl"));
+//        checkinManager.addCheckin(9, 99);
+//        checkinManager.addCheckin(10, 99);
+//        checkinManager.addCheckin(11, 99);
+
+
+//        enrollmentManager.addEnrollment(1, 1, 1);
+//        enrollmentManager.addEnrollment(1, 2, 1);
+//        enrollmentManager.addEnrollment(2, 1, 1);
+//        enrollmentManager.addEnrollment(2, 2, 1);
+//        enrollmentManager.addEnrollment(3, 1, 0);
+//        enrollmentManager.addEnrollment(3, 2, 0);
+
+
+
+//        notificationManager.addOrUpdateNotification(new Notification(1009, 11, 10, 0,"Testing notification"));
+
 
     }
 
@@ -129,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 //        System.out.println(System.currentTimeMillis());
-        getApplicationContext().deleteDatabase("covider"); // clear database for debug use
+        getApplicationContext().deleteDatabase(Config.DATABASE_NAME); // clear database for debug use
         ManagerFactory.initialize(getApplicationContext());
         createDummy();
         initializeLogInPage();
@@ -190,6 +232,8 @@ public class MainActivity extends AppCompatActivity {
                 reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+                ((Switch)findViewById(R.id.toggle_view)).setChecked(true);
+                displayCustomizedBuildings();
                 findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
 
             }
@@ -217,6 +261,103 @@ public class MainActivity extends AppCompatActivity {
         cm.toggleClassInPersonOnlineStatus(userId, courseId);
     }
 
+    private void displayCustomizedBuildings() {
+        // display building corresponds to enrolled courses
+        displayDailySchedule();
+        // display frequent visits
+        displayFrequentVisit();
+    }
+
+    private void displayDailySchedule() {
+        EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        ArrayList<Course> coursesEnrolled;
+        if(isStu == 0){
+            coursesEnrolled = em.getCoursesTaughtBy(userId);
+        }else {
+            coursesEnrolled = em.getCoursesTakenBy(userId);
+        }
+        int count = 0;
+        final float scale = getResources().getDisplayMetrics().density;
+        Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
+        LinearLayout scheduleBuildingsContainer = findViewById(R.id.daily_schedule_buildings);
+        scheduleBuildingsContainer.removeAllViews();
+        for (Course course : coursesEnrolled){
+            Building b = bm.getBuildingById(course.getBuilding());
+            int buildingStrId = getResources().getIdentifier(
+                    b.getName() + "_display", "string", getPackageName());
+            LinearLayout bView = new LinearLayout(this);
+            bView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            bView.setOrientation(LinearLayout.HORIZONTAL);
+            bView.setMinimumHeight((int)(70 * scale + 0.5f));
+            bView.setGravity(Gravity.CENTER_VERTICAL);
+            if (count % 2 == 0) {
+                bView.setBackgroundColor(getResources().getColor(R.color.cardinal_list_transparent));
+            } else {
+                bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
+            }
+            bView.setContentDescription(b.getName());
+            bView.setOnClickListener(this::showBuildingPopUp);
+            TextView bName = new TextView(this);
+            bName.setText(getString(buildingStrId));
+            bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            bName.setTextSize(17);
+            bName.setPadding(10, 0, 0, 0);
+            bName.setTypeface(typefaceSemibold);
+            bView.addView(bName);
+            scheduleBuildingsContainer.addView(bView);
+            count++;
+        }
+        if (count == 0) {
+            findViewById(R.id.daily_schedule_title).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.daily_schedule_title).setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void displayFrequentVisit() {
+        Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
+        final float scale = getResources().getDisplayMetrics().density;
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+        ArrayList<Long> buildingIdsFrequentVisit = cm.getFrequentVisit(userId, 3);
+        int count = 0;
+        LinearLayout frequentBuildingsContainer = findViewById(R.id.frequently_visited_buildings);
+        frequentBuildingsContainer.removeAllViews();
+        for (Long buildingId : buildingIdsFrequentVisit){
+            Building b = bm.getBuildingById(buildingId);
+            int buildingStrId = getResources().getIdentifier(
+                    b.getName() + "_display", "string", getPackageName());
+            LinearLayout bView = new LinearLayout(this);
+            bView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            bView.setOrientation(LinearLayout.HORIZONTAL);
+            bView.setMinimumHeight((int)(70 * scale + 0.5f));
+            bView.setGravity(Gravity.CENTER_VERTICAL);
+            if (count % 2 == 0) {
+                bView.setBackgroundColor(getResources().getColor(R.color.cardinal_list_transparent));
+            } else {
+                bView.setBackgroundColor(getResources().getColor(R.color.gold_list_transparent));
+            }
+            bView.setContentDescription(b.getName());
+            bView.setOnClickListener(this::showBuildingPopUp);
+            TextView bName = new TextView(this);
+            bName.setText(getString(buildingStrId));
+            bName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            bName.setTextSize(17);
+            bName.setPadding(10, 0, 0, 0);
+            bName.setTypeface(typefaceSemibold);
+            bView.addView(bName);
+            frequentBuildingsContainer.addView(bView);
+            count++;
+        }
+
+        if (count == 0) {
+            findViewById(R.id.frequently_visited_title).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.frequently_visited_title).setVisibility(View.VISIBLE);
+        }
+    }
+
     private void initializeNavBottom() {
         if (mapButton == null) {
             mapButton = findViewById(R.id.map);
@@ -242,109 +383,310 @@ public class MainActivity extends AppCompatActivity {
         if (notificationView == null) {
             notificationView = findViewById(R.id.notification_view);
         }
-        ImageButton.OnClickListener bottomNavListener = (View view) -> {
-            view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
-            String content = view.getContentDescription().toString();
-            switch (content) {
-                case "Map":
-                    mapView.setVisibility(View.VISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
-                case "Report":
-                    reportView.setVisibility(View.VISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
-                case "Profile":
-                    profileView.setVisibility(View.VISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    notificationView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    ReportManager rm = ManagerFactory.getReportManagerInstance();
-                    ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
-                    System.out.println(reports);
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                    LinearLayout container = findViewById(R.id.test_records);
-                    for (UserDailyReport i : reports)
-                    {
-                        LinearLayout report = new LinearLayout(this);
-                        report.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        report.setOrientation(LinearLayout.HORIZONTAL);
-                        report.setPadding(0, 0, 0, 20);
 
-                        TextView date = new TextView(this);
-                        Date dateObj = new Date(i.getTimestamp());
-                        String dateString = df.format(dateObj);
-                        date.setText(dateString);
-                        date.setGravity(Gravity.START);
-                        date.setTextSize(16);
-                        date.setPadding(0, 5, 30, 10);
-                        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
-                        date.setTypeface(typeface);
-                        TextView result = new TextView(this);
-                        if (i.getIsPositive() == 1) {
-                            result.setText(getResources().getString(R.string.positive_result));
-                        } else {
-                            result.setText(getResources().getString(R.string.negative_result));
-                        }
-                        result.setGravity(Gravity.START);
-                        result.setTextSize(16);
-                        result.setPadding(0, 5, 0, 10);
-                        result.setTypeface(typeface);
-
-                        report.addView(date);
-                        report.addView(result);
-                        container.addView(report);
-                    }
-                    // TODO: show enrollment
-                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
-                    ArrayList<Course> courses;
-                    if(isStu == 0){
-                        courses = em.getCoursesTaughtBy(userId);
-                    }else {
-                        courses = em.getCoursesTakenBy(userId);
-                    }
-                    System.out.println(courses);
-                    // [Course{id=101, name='Course For Testing', building=99}]
-
-                    // TODO: add onclick function for change status course
-
-                    break;
-                case "Notification":
-                    NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
-                    ArrayList<Notification> notifications = nm.getNotificationFor(userId);
-                    System.out.println(notifications);
-                    // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
-                    
-                    notificationView.setVisibility(View.VISIBLE);
-                    profileView.setVisibility(View.INVISIBLE);
-                    reportView.setVisibility(View.INVISIBLE);
-                    mapView.setVisibility(View.INVISIBLE);
-                    reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
-                    break;
-            }
-        };
-
-        mapButton.setOnClickListener(bottomNavListener);
-        reportButton.setOnClickListener(bottomNavListener);
-        profileButton.setOnClickListener(bottomNavListener);
-        notificationButton.setOnClickListener(bottomNavListener);
+        mapButton.setOnClickListener(this::mapNavOnClickListener);
+        reportButton.setOnClickListener(this::reportNavOnClickListener);
+        profileButton.setOnClickListener(this::profileNavOnClickListener);
+        notificationButton.setOnClickListener(this::notificationNavOnClickListener);
     }
 
+    private void mapNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        displayDailySchedule();
+        mapView.setVisibility(View.VISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+    }
+
+    private void reportNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        reportView.setVisibility(View.VISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+    }
+
+    private void profileNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
+        profileView.setVisibility(View.VISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        notificationView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+
+        // display all reports
+        ReportManager rm = ManagerFactory.getReportManagerInstance();
+        ArrayList<UserDailyReport> reports = rm.getUserMostRecentReportsTopK(userId, 10);
+        System.out.println(reports);
+
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        LinearLayout container = findViewById(R.id.test_records);container.removeAllViews();
+        for (UserDailyReport i : reports)
+        {
+            LinearLayout report = new LinearLayout(this);
+            report.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            report.setOrientation(LinearLayout.HORIZONTAL);
+            report.setPadding(0, 0, 0, 20);
+
+            TextView date = new TextView(this);
+            Date dateObj = new Date(i.getTimestamp());
+            String dateString = df.format(dateObj);
+            date.setText(dateString);
+            date.setGravity(Gravity.START);
+            date.setTextSize(16);
+            date.setPadding(0, 5, 30, 10);
+            date.setTypeface(typeface);
+            TextView result = new TextView(this);
+            if (i.getIsPositive() == 1) {
+                result.setText(getResources().getString(R.string.positive_result));
+            } else {
+                result.setText(getResources().getString(R.string.negative_result));
+            }
+            result.setGravity(Gravity.START);
+            result.setTextSize(16);
+            result.setPadding(0, 5, 0, 10);
+            result.setTypeface(typeface);
+
+            report.addView(date);
+            report.addView(result);
+            container.addView(report);
+        }
+
+        // display enrolled courses
+        EnrollmentManager em2 = ManagerFactory.getEnrollmentManagerInstance();
+        ArrayList<Course> coursesEnrolled2;
+        if(isStu == 0){
+            coursesEnrolled2 = em2.getCoursesTaughtBy(userId);
+        }else {
+            coursesEnrolled2 = em2.getCoursesTakenBy(userId);
+        }
+
+        Button.OnClickListener statusButtonListener = this::showCoursePopUp;
+
+        LinearLayout coursesContainer = findViewById(R.id.courses);
+        coursesContainer.removeAllViews();
+        for (Course c : coursesEnrolled2) {
+            LinearLayout course = new LinearLayout(this);
+            course.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            course.setOrientation(LinearLayout.HORIZONTAL);
+            course.setGravity(Gravity.CENTER_VERTICAL);
+            TextView courseCode = new TextView(this);
+            courseCode.setText(c.getName());
+            courseCode.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+            courseCode.setGravity(Gravity.START);
+            courseCode.setTextSize(16);
+            courseCode.setPadding(0, 5, 10, 10);
+            courseCode.setTypeface(typeface);
+            course.addView(courseCode);
+            Button status = new Button(this);
+            status.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            status.setGravity(Gravity.CENTER);
+            status.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+            status.setContentDescription(String.valueOf(c.getId()));
+            status.setOnClickListener(statusButtonListener);
+            // equal width
+            status.setEms(7);
+            if (isStu == 0) {
+                status.setText(R.string.assess);
+                status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.assess_green)));
+            } else {
+                if (c.getIsOnline() == 1) {
+                    status.setText(R.string.online);
+                    status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.online_red)));
+                } else if (c.getIsOnline() == 0) {
+                    status.setText(R.string.in_person);
+                    status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.in_person_green)));
+                }
+            }
+            course.addView(status);
+            coursesContainer.addView(course);
+        }
+    }
+
+    private void notificationNavOnClickListener(View view) {
+        view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
+        NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
+        ArrayList<Notification> notifications = nm.getNotificationFor(userId);
+        LinearLayout notificationContainer = findViewById(R.id.notifications_container);
+        ColorDrawable borderColorDrawable = new ColorDrawable(getResources().getColor(R.color.cardinal));
+        ColorDrawable backgroundColorDrawable = new ColorDrawable(getResources().getColor(R.color.white));
+        LayerDrawable bottomBorder = new LayerDrawable(new Drawable[]{
+                borderColorDrawable,
+                backgroundColorDrawable
+        });
+        bottomBorder.setLayerInset(
+                1, // Index of the drawable to adjust [background color layer]
+                0, // Number of pixels to add to the left bound [left border]
+                0, // Number of pixels to add to the top bound [top border]
+                0, // Number of pixels to add to the right bound [right border]
+                8 // Number of pixels to add to the bottom bound [bottom border]
+        );
+        ImageButton.OnClickListener listener = (View v) -> {
+            long nId = Long.parseLong(v.getContentDescription().toString());
+            LinearLayout containingLayout = (LinearLayout) v.getParent();
+            notificationContainer.removeView(containingLayout);
+            nm.markNotificationRead(nId);
+        };
+        final float scale = getResources().getDisplayMetrics().density;
+        notificationContainer.removeAllViews();
+        for (Notification n : notifications) {
+            LinearLayout nView = new LinearLayout(this);
+            nView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            nView.setOrientation(LinearLayout.HORIZONTAL);
+            nView.setMinimumHeight((int)(70 * scale + 0.5f));
+            nView.setGravity(Gravity.CENTER_VERTICAL);
+            nView.setPadding((int)(15 * scale + 0.5f), 0, (int)(15 * scale + 0.5f), 0);
+            nView.setBackground(bottomBorder);
+
+            TextView nContent = new TextView(this);
+            nContent.setText(n.getMessage());
+            nContent.setGravity(Gravity.START);
+            nContent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+            nContent.setTextSize(16);
+            nContent.setPadding(0, 0, (int)(10 * scale + 0.5f), 0);
+            nContent.setTypeface(typeface);
+            nView.addView(nContent);
+
+            ImageButton deleteBtn = new ImageButton(this);
+            deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            deleteBtn.setMaxHeight((int)(70 * scale + 0.5f));
+            deleteBtn.setMinimumWidth((int)(70 * scale + 0.5f));
+            deleteBtn.setImageResource(android.R.drawable.ic_delete);
+            deleteBtn.setBackground(null);
+            deleteBtn.setContentDescription(String.valueOf(n.getId()));
+            deleteBtn.setOnClickListener(listener);
+
+            nView.addView(deleteBtn);
+            notificationContainer.addView(nView);
+            System.out.println("added");
+        }
+        // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
+
+        notificationView.setVisibility(View.VISIBLE);
+        profileView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.INVISIBLE);
+        reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+        profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+    }
+
+    private void showCoursePopUp(View view) {
+        long code = Long.parseLong(view.getContentDescription().toString());
+        CourseManager cm = ManagerFactory.getCourseManagerInstance();
+        Course c = cm.getCourse(code);
+        RiskManager riskManager = ManagerFactory.getRiskManagerInstance();
+        CourseRiskReport report = riskManager.getReportForCourse(code);
+
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.course_status_popup, null);
+        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.85);
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        Button courseStatusButton = popupWindow.getContentView().findViewById(R.id.popup_course_status);
+        Button changeStatusButton = popupWindow.getContentView().findViewById(R.id.change_course_status_button);
+        if (c.getIsOnline() == 1) {
+            ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_status)).setText(R.string.online);
+            courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.online_red));
+            changeStatusButton.setText(R.string.change_offline);
+            changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.in_person_green));
+            changeStatusButton.setTextColor(AppCompatResources.getColorStateList(this, R.color.grey_light_text));
+            Drawable img = AppCompatResources.getDrawable(this, R.drawable.ic_user_group_solid);
+            changeStatusButton.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        } else if (c.getIsOnline() == 0) {
+            ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_status)).setText(R.string.in_person);
+            courseStatusButton.setTextColor(ContextCompat.getColor(view.getContext(), R.color.in_person_green));
+            changeStatusButton.setText(R.string.change_online);
+            changeStatusButton.setBackgroundTintList(AppCompatResources.getColorStateList(this, R.color.cardinal));
+            changeStatusButton.setTextColor(AppCompatResources.getColorStateList(this, R.color.gold));
+            Drawable img = AppCompatResources.getDrawable(this, R.drawable.ic_globe_solid);
+            changeStatusButton.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        }
+        ((TextView)popupWindow.getContentView().findViewById(R.id.popup_course_title)).setText(c.getName());
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_students))
+                .setText(String.format(getResources().getString(R.string.positive_students), report.positiveStudents));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_students))
+                .setText(String.format(getResources().getString(R.string.high_risk_students), report.highRiskStudents));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_students))
+                .setText(String.format(getResources().getString(R.string.low_risk_students), report.lowRiskStudents));
+
+        BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
+        Building b = bm.getBuildingById(c.getBuilding());
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name))
+                .setText(getResources().getIdentifier(b.getName() + "_display", "string", getPackageName()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.total_visitors),
+                                report.buildingRiskReport.getNumVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.low_risk_visitors),
+                                report.buildingRiskReport.getNumLowRiskVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.high_risk_visitors),
+                                report.buildingRiskReport.getNumHighRiskVisitors())
+                );
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors))
+                .setText(
+                        String.format(
+                                getResources().getString(R.string.positive_visitors),
+                                report.buildingRiskReport.getNumPositiveVisitors())
+                );
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        Button.OnClickListener returnListener = (View popup) -> {
+            popupWindow.dismiss();
+        };
+        popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
+        if (isStu == 0) {
+            changeStatusButton.setVisibility(View.VISIBLE);
+            Button.OnClickListener changeStatusListener = (View popup) -> {
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.ic_square_pen_solid)
+                        .setTitle("Change Course Status")
+                        .setMessage("Are you sure to change course status?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                changeCourseStatus(code);
+                                Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_LONG).show();
+                                popupWindow.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Cancel",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+            };
+            changeStatusButton.setOnClickListener(changeStatusListener);
+        } else {
+            changeStatusButton.setVisibility(View.INVISIBLE);
+        }
+    }
 
     private void initializeReportPage() {
         initializeAnswers();
@@ -371,20 +713,32 @@ public class MainActivity extends AppCompatActivity {
                 if(set.getValue()){
                     symptom+=set.getKey() + ",";
                 }
-                if(set.getKey().equals("infection")){
+                if(set.getKey().equals("infection") && set.getValue()){
                     isPositive = true;
                 }
             }
             ReportManager rm = ManagerFactory.getReportManagerInstance();
             rm.addReport(userId, isPositive ? 1 : 0, symptom);
-
+            String message = "Your form has been recorded.";
             if (isPositive){
+                message += " Please stay home and quarantine for at least 7 full days.";
+                if(isStu == 0){
+                    message += " All your students have received notification that their courses are changed to online.";
+                }
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
                 NotificationManager nm = ManagerFactory.getNotificationManagerInstance();
                 ArrayList<Long> closeContacts = cm.getCloseContact(userId);
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive patient, BEWARE!");
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a positive covid case, BEWARE!");
+                }
+                if (isStu == 0){
+                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
+                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
+                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
+                    for (Course course : courses) {
+                        courseManager.notifyOnline(userId, course.getId());
+                    }
                 }
             }else if(!symptom.equals("")){
                 CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
@@ -394,25 +748,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                 for (Long closeContactUserId : closeContacts){
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with a student with covid related symptom, BEWARE!");
-                    nm.addNotification(userId, closeContactUserId, "You got close contact with positive covid case, BEWARE!");
-                }
-
-                if (isStu == 0){
-                    EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
-                    CourseManager courseManager = ManagerFactory.getCourseManagerInstance();
-                    ArrayList<Course> courses =  em.getCoursesTaughtBy(userId);
-                    for (Course course : courses) {
-                        courseManager.notifyOnline(userId, course.getId());
-                    }
+                    nm.addNotification(userId, closeContactUserId, "You got close contact with a user with covid related symptom, BEWARE!");
                 }
 
             }
 
             new AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_input_get)
+                    .setIcon(R.drawable.ic_circle_check_solid)
                     .setTitle("Success!")
-                    .setMessage("Your form has been recorded")
+                    .setMessage(message)
                     .setNegativeButton("Close", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -523,6 +867,7 @@ public class MainActivity extends AppCompatActivity {
                 buildingsMap.setVisibility(View.VISIBLE);
                 buildingsList.setVisibility(View.INVISIBLE);
             } else {
+                displayDailySchedule();
                 buildingsMap.setVisibility(View.INVISIBLE);
                 buildingsList.setVisibility(View.VISIBLE);
             }
@@ -530,7 +875,7 @@ public class MainActivity extends AppCompatActivity {
         initializeListBuildings();
     }
 
-    private void showPopUp(View view) {
+    private void showBuildingPopUp(View view) {
         String code = view.getContentDescription().toString();
         int stringIdTmp = getResources().getIdentifier(
                 code + "_display", "string", getPackageName());
@@ -540,15 +885,43 @@ public class MainActivity extends AppCompatActivity {
         int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.75);
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        // TODO: ZSN can modify risk level color
-        ((ImageView)(popupWindow.getContentView()
-                .findViewById(R.id.pop_up_building_risk_circle)))
-                .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
-
+        int buildingIdTmp = getResources().getIdentifier(
+                    code + "_id", "string", getPackageName());
+        long buildingId = -1;
         BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
         RiskManager rm = ManagerFactory.getRiskManagerInstance();
-        BuildingRiskReport brp = rm.getReportForBuilding(bm.getBuildingByName(code).getId());
-//        System.out.println(brp);
+        if (buildingIdTmp == 0){
+            // code is the building name, eg: lvl, kap, sal, ...
+            Building building = bm.getBuildingByName(code);
+            if (building == null){
+                    System.out.println("Creating db entry for building:" + code);
+                    bm.addBuilding(code);
+                }
+            building = bm.getBuildingByName(code);
+            buildingId = building.getId();
+        }else{
+            buildingId = Long.parseLong(getResources().getString(buildingIdTmp));
+        }
+        BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
+        // modify risk level color
+        double riskIndex = brp.getRiskIndex();
+        if (riskIndex <= 0.25) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.success_green));
+        } else if (riskIndex <= 0.5) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque));
+        } else if (riskIndex <= 0.75) {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque));
+        } else {
+            ((ImageView)(popupWindow.getContentView()
+                    .findViewById(R.id.pop_up_building_risk_circle)))
+                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
+        }
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
@@ -563,13 +936,14 @@ public class MainActivity extends AppCompatActivity {
             CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
             System.out.println("Check In at " + code);
             cm.addCheckin(userId, bm.getBuildingByName(code).getId());
+            displayFrequentVisit();
             popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.check_in_button).setOnClickListener(checkInListener);
     }
 
     private void initializeMapBuildings() {
-        View.OnClickListener buildingListener = this::showPopUp;
+        View.OnClickListener buildingListener = this::showBuildingPopUp;
         findViewById(R.id.usc_map_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_map_flt).setOnClickListener(buildingListener);
@@ -710,7 +1084,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeListBuildings() {
-        LinearLayout.OnClickListener buildingListener = this::showPopUp;
+        LinearLayout.OnClickListener buildingListener = this::showBuildingPopUp;
         findViewById(R.id.usc_list_esh).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_mcc).setOnClickListener(buildingListener);
         findViewById(R.id.usc_list_flt).setOnClickListener(buildingListener);

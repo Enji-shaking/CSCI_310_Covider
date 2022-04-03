@@ -73,7 +73,7 @@ public class CheckinManager extends DatabaseHandler {
                     ")";
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(SQL_CREATE_Query);
-            create_default_checkin();
+//            create_default_checkin();
         }
 //        addCheckin(1, 111);
     }
@@ -200,7 +200,7 @@ public class CheckinManager extends DatabaseHandler {
         String sql = "SELECT building_id " +
                 "FROM " + CheckinManager.getTableName() + " " +
                 "WHERE user_id = ? " +
-                "GROUP BY user_id " +
+                "GROUP BY building_id " +
                 "ORDER BY COUNT(*) DESC " +
                 "LIMIT ?";
         try(
