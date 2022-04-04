@@ -224,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 isStu = user.getIsStudent();
                 ((TextView)findViewById(R.id.username)).setText(
                         Html.fromHtml("Hi, <b>" + userName + "</b>!"));
+                findViewById(R.id.nav).setVisibility(View.VISIBLE);
                 mapView.setVisibility(View.VISIBLE);
                 reportView.setVisibility(View.GONE);
                 profileView.setVisibility(View.GONE);
@@ -843,6 +844,11 @@ public class MainActivity extends AppCompatActivity {
             userName = null;
             userId = 0;
             findViewById(R.id.log_in_view).setVisibility(View.VISIBLE);
+            findViewById(R.id.nav).setVisibility(View.GONE);
+            mapView.setVisibility(View.GONE);
+            reportView.setVisibility(View.GONE);
+            profileView.setVisibility(View.GONE);
+            notificationView.setVisibility(View.GONE);
         };
         findViewById(R.id.log_out_button).setOnClickListener(logOutListener);
     }
