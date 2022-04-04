@@ -1,13 +1,16 @@
 package com.example.covider.frontend;
 
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static androidx.test.espresso.matcher.RootMatchers.isDialog;
-
 import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -16,11 +19,6 @@ import com.example.covider.MainActivity;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.user.UserManager;
 import com.example.covider.model.user.User;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class LogInViewInstrumentedTest {
@@ -38,12 +36,12 @@ public class LogInViewInstrumentedTest {
 
     @Test
     public void TestInitialView() {
-        checkIsVisible(R.id.log_in_view);
-        checkIsGone(R.id.nav);
-        checkIsGone(R.id.map_view);
-        checkIsGone(R.id.report_view);
-        checkIsGone(R.id.profile_view);
-        checkIsGone(R.id.notification_view);
+        Helpers.checkIsVisible(R.id.log_in_view);
+        Helpers.checkIsGone(R.id.nav);
+        Helpers.checkIsGone(R.id.map_view);
+        Helpers.checkIsGone(R.id.report_view);
+        Helpers.checkIsGone(R.id.profile_view);
+        Helpers.checkIsGone(R.id.notification_view);
     }
 
     @Test
@@ -103,12 +101,12 @@ public class LogInViewInstrumentedTest {
         onView(withId(R.id.log_in_password))
                 .perform(clearText(), replaceText("Aa12345678"));
         onView(withId(R.id.log_in_submit)).perform(click());
-        checkIsGone(R.id.log_in_view);
-        checkIsVisible(R.id.nav);
-        checkIsVisible(R.id.map_view);
-        checkIsGone(R.id.report_view);
-        checkIsGone(R.id.profile_view);
-        checkIsGone(R.id.notification_view);
+        Helpers.checkIsGone(R.id.log_in_view);
+        Helpers.checkIsVisible(R.id.nav);
+        Helpers.checkIsVisible(R.id.map_view);
+        Helpers.checkIsGone(R.id.report_view);
+        Helpers.checkIsGone(R.id.profile_view);
+        Helpers.checkIsGone(R.id.notification_view);
         onView(withId(R.id.toggle_view)).check(matches(isChecked()));
         onView(withId(R.id.username))
                 .check(matches(withText("Hi, Enji!")));
@@ -124,13 +122,5 @@ public class LogInViewInstrumentedTest {
                 .check(matches(isDisplayed()));
         onView(withText("Cancel")).perform(click());
         onView(isRoot()).inRoot(isDialog()).noActivity();
-    }
-
-    private void checkIsVisible(int id) {
-        onView(withId(id)).check(matches(ViewMatchers.withEffectiveVisibility(Visibility.VISIBLE)));
-    }
-
-    private void checkIsGone(int id) {
-        onView(withId(id)).check(matches(ViewMatchers.withEffectiveVisibility(Visibility.GONE)));
     }
 }
