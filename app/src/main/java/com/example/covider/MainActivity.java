@@ -225,16 +225,16 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView)findViewById(R.id.username)).setText(
                         Html.fromHtml("Hi, <b>" + userName + "</b>!"));
                 mapView.setVisibility(View.VISIBLE);
-                reportView.setVisibility(View.INVISIBLE);
-                profileView.setVisibility(View.INVISIBLE);
-                notificationView.setVisibility(View.INVISIBLE);
+                reportView.setVisibility(View.GONE);
+                profileView.setVisibility(View.GONE);
+                notificationView.setVisibility(View.GONE);
                 mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
                 reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 ((Switch)findViewById(R.id.toggle_view)).setChecked(true);
                 displayCustomizedBuildings();
-                findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+                findViewById(R.id.log_in_view).setVisibility(View.GONE);
 
             }
             else{
@@ -394,9 +394,9 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         displayDailySchedule();
         mapView.setVisibility(View.VISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.GONE);
+        profileView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -405,9 +405,9 @@ public class MainActivity extends AppCompatActivity {
     private void reportNavOnClickListener(View view) {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         reportView.setVisibility(View.VISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.GONE);
+        profileView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -417,9 +417,9 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
         profileView.setVisibility(View.VISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.GONE);
+        mapView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -577,9 +577,9 @@ public class MainActivity extends AppCompatActivity {
         // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
 
         notificationView.setVisibility(View.VISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.GONE);
+        reportView.setVisibility(View.GONE);
+        mapView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -684,7 +684,7 @@ public class MainActivity extends AppCompatActivity {
             };
             changeStatusButton.setOnClickListener(changeStatusListener);
         } else {
-            changeStatusButton.setVisibility(View.INVISIBLE);
+            changeStatusButton.setVisibility(View.GONE);
         }
     }
 
@@ -865,10 +865,10 @@ public class MainActivity extends AppCompatActivity {
         viewToggleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 buildingsMap.setVisibility(View.VISIBLE);
-                buildingsList.setVisibility(View.INVISIBLE);
+                buildingsList.setVisibility(View.GONE);
             } else {
                 displayDailySchedule();
-                buildingsMap.setVisibility(View.INVISIBLE);
+                buildingsMap.setVisibility(View.GONE);
                 buildingsList.setVisibility(View.VISIBLE);
             }
         });
