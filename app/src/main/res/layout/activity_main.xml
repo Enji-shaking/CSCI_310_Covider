@@ -3174,7 +3174,7 @@
                                 android:layout_marginStart="10dp"
                                 android:textSize="17sp"
                                 android:fontFamily="@font/ibm_plex_serif_semibold"
-                                android:text="@string/cpa_display"/>
+                                android:text="@string/nrc_display"/>
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/usc_list_ptd"
