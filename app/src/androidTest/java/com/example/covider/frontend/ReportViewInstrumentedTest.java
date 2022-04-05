@@ -1,10 +1,7 @@
 package com.example.covider.frontend;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
@@ -13,14 +10,9 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import androidx.core.content.ContextCompat;
-import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -80,91 +72,91 @@ public class ReportViewInstrumentedTest {
         // check infection buttons
         onView(withId(R.id.infection_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.infection_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.infection_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.infection_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.infection_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.infection_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.infection_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.infection_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.infection_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.infection_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.infection_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.infection_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.infection_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.infection_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check chills_fever buttons
         onView(withId(R.id.chills_fever_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.chills_fever_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.chills_fever_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.chills_fever_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.chills_fever_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.chills_fever_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.chills_fever_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.chills_fever_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.chills_fever_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.chills_fever_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.chills_fever_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.chills_fever_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.chills_fever_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.chills_fever_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check taste_smell buttons
         onView(withId(R.id.taste_smell_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.taste_smell_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.taste_smell_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.taste_smell_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.taste_smell_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.taste_smell_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.taste_smell_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.taste_smell_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.taste_smell_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.taste_smell_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.taste_smell_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.taste_smell_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.taste_smell_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.taste_smell_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check muscle buttons
         onView(withId(R.id.muscle_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.muscle_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.muscle_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.muscle_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.muscle_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.muscle_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.muscle_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.muscle_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.muscle_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.muscle_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.muscle_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.muscle_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.muscle_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.muscle_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check cough buttons
         onView(withId(R.id.cough_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.cough_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.cough_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.cough_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.cough_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.cough_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.cough_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.cough_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.cough_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.cough_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.cough_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.cough_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.cough_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.cough_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check breathing buttons
         onView(withId(R.id.breathing_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.breathing_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.breathing_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.breathing_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.breathing_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.breathing_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.breathing_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.breathing_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.breathing_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.breathing_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.breathing_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.breathing_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.breathing_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.breathing_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check conjunctivitis buttons
         onView(withId(R.id.conjunctivitis_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.conjunctivitis_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.conjunctivitis_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.conjunctivitis_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.conjunctivitis_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.conjunctivitis_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.conjunctivitis_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.conjunctivitis_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.conjunctivitis_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.conjunctivitis_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.conjunctivitis_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.conjunctivitis_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.conjunctivitis_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.conjunctivitis_yes)).check(matches(Helpers.withTextColor(R.color.black)));
         // check gi_symptoms buttons
         onView(withId(R.id.gi_symptoms_yes)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.gi_symptoms_yes)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.gi_symptoms_yes)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.gi_symptoms_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.gi_symptoms_no)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.gi_symptoms_no)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.gi_symptoms_no)).check(matches(Helpers.withTextColor(R.color.black)));
         onView(withId(R.id.gi_symptoms_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.gi_symptoms_no)).check(matches(withTintColorList(R.color.cardinal)));
-        onView(withId(R.id.gi_symptoms_no)).check(matches(withTextColor(R.color.gold)));
+        onView(withId(R.id.gi_symptoms_no)).check(matches(Helpers.withTextColor(R.color.gold)));
         onView(withId(R.id.gi_symptoms_yes)).check(matches(withTintColorList(R.color.switch_off_track)));
-        onView(withId(R.id.gi_symptoms_yes)).check(matches(withTextColor(R.color.black)));
+        onView(withId(R.id.gi_symptoms_yes)).check(matches(Helpers.withTextColor(R.color.black)));
     }
 
     @Test
@@ -263,20 +255,6 @@ public class ReportViewInstrumentedTest {
             @Override
             public void describeTo(Description description) {
                 description.appendText("with tint background color: ");
-            }
-        };
-    }
-
-    public static Matcher<View> withTextColor(final int color) {
-        Checks.checkNotNull(color);
-        return new BoundedMatcher<View, Button>(Button.class) {
-            @Override
-            public boolean matchesSafely(Button b) {
-                return b.getTextColors().equals(ColorStateList.valueOf(b.getContext().getResources().getColor(color)));
-            }
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with button text color: ");
             }
         };
     }

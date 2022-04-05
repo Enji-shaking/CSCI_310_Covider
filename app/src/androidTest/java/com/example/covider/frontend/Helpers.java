@@ -7,17 +7,26 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.core.internal.deps.guava.base.Predicate;
 import androidx.test.espresso.core.internal.deps.guava.collect.Iterables;
 import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
+import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.espresso.util.TreeIterables;
+import androidx.test.internal.util.Checks;
 
 import com.example.covider.R;
 
@@ -66,6 +75,48 @@ public class Helpers {
 
     protected static void checkIsGone(int id) {
         onView(withId(id)).check(matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+    }
+
+    protected static Matcher<View> withTextColor(final int color) {
+        Checks.checkNotNull(color);
+        return new BoundedMatcher<View, Button>(Button.class) {
+            @Override
+            public boolean matchesSafely(Button b) {
+                return b.getTextColors().equals(ColorStateList.valueOf(b.getContext().getResources().getColor(color)));
+            }
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with button text color: ");
+            }
+        };
+    }
+
+    protected static Matcher<View> withButtonString (final String str) {
+        Checks.checkNotNull(str);
+        return new BoundedMatcher<View, Button>(Button.class) {
+            @Override
+            public boolean matchesSafely(Button b) {
+                return String.valueOf(b.getText()).equals(str);
+            }
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Button with text: ");
+            }
+        };
+    }
+
+    protected static Matcher<View> withTextviewString (final String str) {
+        Checks.checkNotNull(str);
+        return new BoundedMatcher<View, TextView>(TextView.class) {
+            @Override
+            public boolean matchesSafely(TextView t) {
+                return String.valueOf(t.getText()).equals(str);
+            }
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("TextView with text: ");
+            }
+        };
     }
 
     protected static Matcher<View> withLinearLayoutSize (final int size) {
