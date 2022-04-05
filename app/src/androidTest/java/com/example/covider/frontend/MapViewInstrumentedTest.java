@@ -10,16 +10,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.core.internal.deps.guava.base.Predicate;
-import androidx.test.espresso.core.internal.deps.guava.collect.Iterables;
-import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
 import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.espresso.util.TreeIterables;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.internal.util.Checks;
@@ -37,7 +31,6 @@ import com.example.covider.model.user.User;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -201,16 +194,16 @@ public class MapViewInstrumentedTest {
         // check daily schedule
         Helpers.checkIsVisible(R.id.daily_schedule_title);
         onView(withId(R.id.daily_schedule_buildings))
-                .check(matches(withLinearLayoutSize(3)));
+                .check(matches(Helpers.withLinearLayoutSize(3)));
         // check frequent visit
         Helpers.checkIsVisible(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
-                .check(matches(withLinearLayoutSize(3)));
+                .check(matches(Helpers.withLinearLayoutSize(3)));
         // should have 3 sal entries, 3 thh entries, 2 rth entries, and 2 kap entries
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.sal_display), 3)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.thh_display), 3)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.rth_display), 2)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.kap_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.sal_display), 3)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.thh_display), 3)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.rth_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.kap_display), 2)));
 
     }
 
@@ -230,15 +223,15 @@ public class MapViewInstrumentedTest {
         // check daily schedule
         Helpers.checkIsVisible(R.id.daily_schedule_title);
         onView(withId(R.id.daily_schedule_buildings))
-                .check(matches(withLinearLayoutSize(2)));
+                .check(matches(Helpers.withLinearLayoutSize(2)));
         // check frequent visit
         Helpers.checkIsVisible(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
-                .check(matches(withLinearLayoutSize(2)));
+                .check(matches(Helpers.withLinearLayoutSize(2)));
         // should have 3 sal entries, 2 thh entries, and 2 kap entries
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.sal_display), 3)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.thh_display), 2)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.kap_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.sal_display), 3)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.thh_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.kap_display), 2)));
 
     }
 
@@ -258,14 +251,14 @@ public class MapViewInstrumentedTest {
         // check daily schedule
         Helpers.checkIsVisible(R.id.daily_schedule_title);
         onView(withId(R.id.daily_schedule_buildings))
-                .check(matches(withLinearLayoutSize(1)));
+                .check(matches(Helpers.withLinearLayoutSize(1)));
         // check frequent visit
         Helpers.checkIsVisible(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
-                .check(matches(withLinearLayoutSize(1)));
+                .check(matches(Helpers.withLinearLayoutSize(1)));
         // should have 2 sal entries and 2 cpa entries
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.sal_display), 2)));
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.cpa_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.sal_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.cpa_display), 2)));
 
     }
 
@@ -285,11 +278,11 @@ public class MapViewInstrumentedTest {
         // check daily schedule
         Helpers.checkIsGone(R.id.daily_schedule_title);
         onView(withId(R.id.daily_schedule_buildings))
-                .check(matches(withLinearLayoutSize(0)));
+                .check(matches(Helpers.withLinearLayoutSize(0)));
         // check frequent visit
         Helpers.checkIsGone(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
-                .check(matches(withLinearLayoutSize(0)));
+                .check(matches(Helpers.withLinearLayoutSize(0)));
 
     }
 
@@ -330,9 +323,9 @@ public class MapViewInstrumentedTest {
         // check frequent visit
         Helpers.checkIsVisible(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
-                .check(matches(withLinearLayoutSize(1)));
+                .check(matches(Helpers.withLinearLayoutSize(1)));
         // should have 2 esh entries
-        onView(isRoot()).check(matches(withViewCount(withText(R.string.esh_display), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.esh_display), 2)));
         // check check-in data
         onView(withId(R.id.usc_map_esh)).perform(Helpers.clickOnNotDisplayed);
         temp = onView(withId(R.id.pop_up_building_risk_circle));
@@ -393,51 +386,6 @@ public class MapViewInstrumentedTest {
             @Override
             public void describeTo(Description description) {
                 description.appendText("with tint color: ");
-            }
-        };
-    }
-
-    public static Matcher<View> withLinearLayoutSize (final int size) {
-        return new TypeSafeMatcher<View>() {
-            @Override public boolean matchesSafely (final View view) {
-                return ((LinearLayout) view).getChildCount() == size;
-            }
-
-            @Override public void describeTo (final Description description) {
-                description.appendText ("LinearLayout should have " + size + " items");
-            }
-        };
-    }
-
-    public static Matcher<View> withViewCount(final Matcher<View> viewMatcher, final int expectedCount) {
-        return new TypeSafeMatcher<View>() {
-            int actualCount = -1;
-
-            @Override
-            public void describeTo(Description description) {
-                if (actualCount >= 0) {
-                    description.appendText("With expected number of items: " + expectedCount);
-                    description.appendText("\n With matcher: ");
-                    viewMatcher.describeTo(description);
-                    description.appendText("\n But got: " + actualCount);
-                }
-            }
-
-            @Override
-            protected boolean matchesSafely(View root) {
-                actualCount = 0;
-                Iterable<View> iterable = TreeIterables.breadthFirstViewTraversal(root);
-                actualCount = Lists.newArrayList(Iterables.filter(iterable, withMatcherPredicate(viewMatcher))).size();
-                return actualCount == expectedCount;
-            }
-        };
-    }
-
-    private static Predicate<View> withMatcherPredicate(final Matcher<View> matcher) {
-        return new Predicate<View>() {
-            @Override
-            public boolean apply(@Nullable View view) {
-                return matcher.matches(view);
             }
         };
     }
