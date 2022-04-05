@@ -41,13 +41,11 @@ import java.util.ArrayList;
 
 @RunWith(AndroidJUnit4.class)
 public class MapViewInstrumentedTest {
-    private ArrayList<Long> checkIns;
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(MainActivity.class);
     @Before
     public void setup(){
-        checkIns = new ArrayList<>();
         // add user
         UserManager userManager = ManagerFactory.getUserManagerInstance();
         userManager.addOrUpdateUser(new User(100,"Enji", "Aa12345678", 1));
@@ -57,22 +55,13 @@ public class MapViewInstrumentedTest {
         buildingManager.addOrUpdateBuilding(new Building(301,"cpa"));
         // add check-ins
         CheckinManager checkinManager = ManagerFactory.getCheckinManagerInstance();
-        checkIns.add(checkinManager.addCheckin(100, 200));
-        checkIns.add(checkinManager.addCheckin(101, 200));
-        checkIns.add(checkinManager.addCheckin(100, 301));
-        checkIns.add(checkinManager.addCheckin(102, 301));
+        checkinManager.addCheckin(100, 200);
+        checkinManager.addCheckin(101, 200);
+        checkinManager.addCheckin(100, 301);
+        checkinManager.addCheckin(102, 301);
         ReportManager reportManager = ManagerFactory.getReportManagerInstance();
         reportManager.addOrUpdateReport(new UserDailyReport(301, 101, 0, "", System.currentTimeMillis()));
         reportManager.addOrUpdateReport(new UserDailyReport(302, 102, 0, "Symptom", System.currentTimeMillis()));
-    }
-
-    @After
-    public void tearDown() {
-        CheckinManager checkinManager = ManagerFactory.getCheckinManagerInstance();
-        for (long checkInId : checkIns)
-        {
-            checkinManager.deleteCheckin(checkInId);
-        }
     }
 
     @Test
