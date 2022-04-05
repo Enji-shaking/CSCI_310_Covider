@@ -1,5 +1,6 @@
 package com.example.covider.frontend;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.action.ViewActions.replaceText;
@@ -20,6 +21,7 @@ import androidx.test.internal.util.Checks;
 
 import com.example.covider.MainActivity;
 import com.example.covider.R;
+import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
@@ -300,12 +302,12 @@ public class MapViewInstrumentedTest {
                 .perform(click());
         Helpers.checkIsVisible(R.id.usc_list_view);
 
-        // click on esh should display a no risk popup
-        onView(withId(R.id.usc_map_esh)).perform(Helpers.clickOnNotDisplayed);
+        // click on sgm should display a no risk popup
+        onView(withId(R.id.usc_map_sgm)).perform(Helpers.clickOnNotDisplayed);
         ViewInteraction temp = onView(withId(R.id.pop_up_building_risk_circle));
         temp.check(matches(isDisplayed()));
         temp.check(matches(withTintColor(R.color.success_green)));
-        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.esh_display)));
+        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.sgm_display)));
         onView(withId(R.id.pop_up_total_visitors)).check(matches(withText("Total Visitors: 0")));
         onView(withId(R.id.pop_up_low_risk_visitors)).check(matches(withText("Low Risk Visitors: 0")));
         onView(withId(R.id.pop_up_high_risk_visitors)).check(matches(withText("High Risk Visitors: 0")));
@@ -316,7 +318,7 @@ public class MapViewInstrumentedTest {
         onView(withId(R.id.return_button)).perform(click());
         temp.check(doesNotExist());
         // test check in button
-        onView(withId(R.id.usc_map_esh)).perform(Helpers.clickOnNotDisplayed);
+        onView(withId(R.id.usc_map_sgm)).perform(Helpers.clickOnNotDisplayed);
         temp = onView(withId(R.id.pop_up_building_risk_circle));
         onView(withId(R.id.check_in_button)).perform(click());
         temp.check(doesNotExist());
@@ -324,23 +326,23 @@ public class MapViewInstrumentedTest {
         Helpers.checkIsVisible(R.id.frequently_visited_title);
         onView(withId(R.id.frequently_visited_buildings))
                 .check(matches(Helpers.withLinearLayoutSize(1)));
-        // should have 2 esh entries
-        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.esh_display), 2)));
+        // should have 2 sgm entries
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText(R.string.sgm_display), 2)));
         // check check-in data
-        onView(withId(R.id.usc_map_esh)).perform(Helpers.clickOnNotDisplayed);
+        onView(withId(R.id.usc_map_sgm)).perform(Helpers.clickOnNotDisplayed);
         temp = onView(withId(R.id.pop_up_building_risk_circle));
         temp.check(matches(withTintColor(R.color.high_risk_opaque)));
-        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.esh_display)));
+        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.sgm_display)));
         onView(withId(R.id.pop_up_total_visitors)).check(matches(withText("Total Visitors: 1")));
         onView(withId(R.id.pop_up_low_risk_visitors)).check(matches(withText("Low Risk Visitors: 0")));
         onView(withId(R.id.pop_up_high_risk_visitors)).check(matches(withText("High Risk Visitors: 0")));
         onView(withId(R.id.pop_up_positive_visitors)).check(matches(withText("Positive Visitors: 1")));
         onView(withId(R.id.check_in_button)).perform(click());
         // check in again should not change anything
-        onView(withId(R.id.usc_map_esh)).perform(Helpers.clickOnNotDisplayed);
+        onView(withId(R.id.usc_map_sgm)).perform(Helpers.clickOnNotDisplayed);
         temp = onView(withId(R.id.pop_up_building_risk_circle));
         temp.check(matches(withTintColor(R.color.high_risk_opaque)));
-        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.esh_display)));
+        onView(withId(R.id.pop_up_building_name)).check(matches(withText(R.string.sgm_display)));
         onView(withId(R.id.pop_up_total_visitors)).check(matches(withText("Total Visitors: 1")));
         onView(withId(R.id.pop_up_low_risk_visitors)).check(matches(withText("Low Risk Visitors: 0")));
         onView(withId(R.id.pop_up_high_risk_visitors)).check(matches(withText("High Risk Visitors: 0")));
