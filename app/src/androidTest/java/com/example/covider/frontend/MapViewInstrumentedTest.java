@@ -1,14 +1,10 @@
 package com.example.covider.frontend;
 
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
-
-import static org.hamcrest.Matchers.allOf;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -16,19 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.internal.util.Checks;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.covider.MainActivity;
 import com.example.covider.R;
-import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.building.BuildingManager;
 import com.example.covider.database.checkin.CheckinManager;
@@ -45,9 +36,7 @@ import com.example.covider.model.user.User;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
