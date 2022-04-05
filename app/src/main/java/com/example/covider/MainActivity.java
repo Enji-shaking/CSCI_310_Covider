@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -914,19 +916,28 @@ public class MainActivity extends AppCompatActivity {
         if (riskIndex <= 0.25) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.success_green));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.success_green),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else if (riskIndex <= 0.5) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else if (riskIndex <= 0.75) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
+                    .setColorFilter(
+                            new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         }
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));
