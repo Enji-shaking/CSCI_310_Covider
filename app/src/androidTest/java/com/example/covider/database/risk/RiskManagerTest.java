@@ -24,6 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RiskManagerTest {
+    /*
+
     RiskManager riskManager;
     EnrollmentManager enrollmentManager;
     CheckinManager checkinManager;
@@ -95,7 +97,7 @@ public class RiskManagerTest {
     }
 
 
-
+    */
 
 
 }

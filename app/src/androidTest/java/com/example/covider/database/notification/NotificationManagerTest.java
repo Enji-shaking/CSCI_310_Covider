@@ -6,50 +6,41 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
+import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
 
 public class NotificationManagerTest {
     NotificationManager nm;
+//    boolean setUpDone = false;
     @Before
     public void setUp() {
-        Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        instrumentationContext.deleteDatabase("covider");
-        ManagerFactory.initialize(instrumentationContext);
-        nm = ManagerFactory.getNotificationManagerInstance();
+//        if(!setUpDone){
+            Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+            Config.Change_Test();
+//            instrumentationContext.deleteDatabase(Config.DATABASE_NAME);
+            ManagerFactory.initialize(instrumentationContext);
+            nm = ManagerFactory.getNotificationManagerInstance();
+//            setUpDone = true;
+//        }
     }
 
     @Test
-    public void testDefaultMessage(){
-//        System.out.println(Notification.getId_inc());
-        Notification notification = nm.getNotification(10L);
-        assertEquals(notification.getFrom(), 999);
-        assertEquals(notification.getTo(), 888);
-        assertEquals(notification.getRead(), 0);
-        assertEquals(notification.getMessage(), "Hi Enji");
-    }
-
-    @Test
-    public void testDeletion(){
-        Notification notification = nm.generateNewNotification(999, 888, 0, "Test");
-        nm.addOrUpdateNotification(notification);
-        nm.deleteNotification(notification.getId());
-        Notification got = nm.getNotification(notification.getId());
-        assertNull(got);
-    }
-
-    @Test
-    public void testAddNotification(){
+    public void testAddAndDeleteNotification(){
         Notification notification = nm.generateNewNotification(999, 888, 0, "Test");
         nm.addOrUpdateNotification(notification);
         Notification got = nm.getNotification(notification.getId());
         assertEquals(notification, got);
         nm.deleteNotification(notification.getId());
+        got = nm.getNotification(notification.getId());
+        assertNull(got);
     }
 
     @Test
@@ -72,8 +63,9 @@ public class NotificationManagerTest {
             nm.deleteNotification(id3);
         }
     }
-    @Test
-    public void testGetId(){
-        assertNotEquals(nm.getNextId(NotificationManager.getTableName()), -1);
+
+    @After
+    public void clean(){
+        Config.Change_Normal();
     }
 }

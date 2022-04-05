@@ -68,7 +68,10 @@ public class UserManager extends DatabaseHandler {
         return (int) db.insert(TABLE_NAME, null, values);
     }
 
-
+    public void deleteUser(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
+    }
 
     // code to get the single contact
     public User getUser(long id) {

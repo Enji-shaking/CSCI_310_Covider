@@ -6,10 +6,14 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.covider.config.Config;
+import com.example.covider.database.ManagerFactory;
 import com.example.covider.model.checkin.Checkin;
 
 import junit.framework.TestCase;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,23 +22,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CheckinManagerTest extends TestCase {
+public class CheckinManagerTest {
     CheckinManager cm;
-
     @Before
     public void setUp() {
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        instrumentationContext.deleteDatabase("covider");
-        cm = CheckinManager.getInstance(instrumentationContext);
+        Config.Change_Test();
+        ManagerFactory.initialize(instrumentationContext);
+        cm = ManagerFactory.getCheckinManagerInstance();
     }
+
+//    @Test
+//    public void once(){
+//        Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+//        Config.Change_Test();
+//        instrumentationContext.deleteDatabase(Config.DATABASE_NAME);
+//    }
 
     @Test
     public void testDefaultCheckin(){
+        cm.addOrUpdateCheckin(new Checkin(10, 999, 111, 1646896886094L));
         Checkin c = cm.getCheckin(10);
-        assertEquals(c.getId(), 10);
-        assertEquals(c.getUserId(), 999);
-        assertEquals(c.getBuildingId(), 111);
-        assertEquals(c.getTimestamp(), 1646896886094L);
+        Assert.assertEquals(c.getId(), 10);
+        Assert.assertEquals(c.getUserId(), 999);
+        Assert.assertEquals(c.getBuildingId(), 111);
+        Assert.assertEquals(c.getTimestamp(), 1646896886094L);
+        cm.deleteCheckin(10);
     }
 
     @Test
@@ -43,22 +56,13 @@ public class CheckinManagerTest extends TestCase {
         cm.addOrUpdateCheckin(checkin);
         cm.deleteCheckin(checkin.getId());
         Checkin got = cm.getCheckin(checkin.getId());
-        assertNull(got);
-    }
-
-    @Test
-    public void testAddNotification(){
-        Checkin checkin = cm.generateNewCheckin(999, 888, 5555555);
-        cm.addOrUpdateCheckin(checkin);
-        Checkin got = cm.getCheckin(checkin.getId());
-        assertEquals(checkin, got);
-        cm.deleteCheckin(checkin.getId());
+        Assert.assertNull(got);
     }
 
     @Test
     public void testGetId(){
         assertNotEquals(cm.getNextId(CheckinManager.getTableName()), -1);
-        System.out.println(cm.getNextId(CheckinManager.getTableName()));
+//        System.out.println(cm.getNextId(CheckinManager.getTableName()));
     }
 
     @Test
@@ -69,14 +73,16 @@ public class CheckinManagerTest extends TestCase {
         cm.addOrUpdateCheckin(checkin2);
 
         ArrayList<Checkin> list =  cm.getBuildingCheckinsInTimeSpan(888, 100000000L, 100000004L);
-        assertEquals(2,list.size());
+        Assert.assertEquals(2, list.size());
 
         ArrayList<Checkin> listOne =  cm.getBuildingCheckinsInTimeSpan(888, 100000000L, 100000001L);
-        assertEquals(1,listOne.size());
+        Assert.assertEquals(1, listOne.size());
 
         ArrayList<Checkin> listEmpty =  cm.getBuildingCheckinsInTimeSpan(888, 0L, 1L);
-        assertEquals(0, listEmpty.size());
+        Assert.assertEquals(0, listEmpty.size());
 
+        cm.deleteCheckin(checkin.getId());
+        cm.deleteCheckin(checkin2.getId());
     }
 
     @Test
@@ -87,32 +93,44 @@ public class CheckinManagerTest extends TestCase {
         cm.addOrUpdateCheckin(checkin2);
 
         ArrayList<Checkin> list =  cm.getUserCheckinsInTimeSpan(1006, 100000000L, 100000004L);
-        assertEquals(2,list.size());
+        Assert.assertEquals(2, list.size());
 
         ArrayList<Checkin> listOne =  cm.getUserCheckinsInTimeSpan(1006, 100000000L, 100000002L); //Inclusive
-        assertEquals(1,listOne.size());
+        Assert.assertEquals(1, listOne.size());
 
         ArrayList<Checkin> listEmpty =  cm.getUserCheckinsInTimeSpan(1006, 0L, 1L);
-        assertEquals(0, listEmpty.size());
+        Assert.assertEquals(0, listEmpty.size());
 
+        cm.deleteCheckin(checkin1.getId());
+        cm.deleteCheckin(checkin2.getId());
     }
 
     @Test
     public void testGetFrequentVisit(){
+        cm.addOrUpdateCheckin(new Checkin(10, 999, 111, 1646896886094L));
         ArrayList<Long> buildingIds = cm.getFrequentVisit(999);
-        assertEquals(1,buildingIds.size());
-        assertEquals(Long.valueOf(111),buildingIds.get(0));
+        Assert.assertEquals(1, buildingIds.size());
+        Assert.assertEquals(Long.valueOf(111), buildingIds.get(0));
 
         ArrayList<Long> buildingIds2 = cm.getFrequentVisit(999,0);
-        assertEquals(0,buildingIds2.size());
+        Assert.assertEquals(0, buildingIds2.size());
     }
 
 
     @Test
     public void testGetCloseContact(){ // TODO: ADD DUMMY DATA
+        cm.addOrUpdateCheckin(new Checkin(11, 998, 111, System.currentTimeMillis()-10));
+        cm.addOrUpdateCheckin(new Checkin(10, 999, 111, System.currentTimeMillis()));
         ArrayList<Long> closeContacts = cm.getCloseContact(999);
-        assertEquals(0,closeContacts.size());
+        Assert.assertEquals(1, closeContacts.size());
+        Assert.assertEquals(998L, (long)closeContacts.get(0));
+        cm.deleteCheckin(10);
+        cm.deleteCheckin(11);
     }
 
+    @After
+    public void clean(){
+        Config.Change_Normal();
+    }
 
 }

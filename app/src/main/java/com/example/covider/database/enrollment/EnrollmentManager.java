@@ -67,6 +67,11 @@ public class EnrollmentManager extends DatabaseHandler {
         return (int) db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
+    public void deleteEnrollment(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
+    }
+
     // 3 个default user 都和course1 有联系
     private void createDefaultEnrollment(){
 

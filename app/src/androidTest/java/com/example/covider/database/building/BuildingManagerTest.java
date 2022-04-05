@@ -7,9 +7,11 @@ import static org.junit.Assert.*;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.model.building.Building;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,13 +24,18 @@ public class BuildingManagerTest {
     @Before
     public void setup(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        instrumentationContext.deleteDatabase("covider");
+        Config.Change_Test();
+//        instrumentationContext.deleteDatabase(Config.DATABASE_NAME);
         ManagerFactory.initialize(instrumentationContext);
         buildingManager = ManagerFactory.getBuildingManagerInstance();
     }
 
     @Test
-    public void testDefaultBuildings(){
+    public void testInsertAndRetrieveBuildings(){
+        buildingManager.addOrUpdateBuilding(new Building(1,"SAL"));
+        buildingManager.addOrUpdateBuilding(new Building(2,"KAP"));
+        buildingManager.addOrUpdateBuilding(new Building(4,"LVL"));
+
         Building buildingExpected = new Building(1, "SAL");
 
         Building buildingGetById = buildingManager.getBuildingById(buildingExpected.getId());
@@ -41,5 +48,9 @@ public class BuildingManagerTest {
         assertEquals(buildingExpected, buildingList.get(0));
         assertEquals(3, buildingList.size());
 
+    }
+    @After
+    public void clean(){
+        Config.Change_Normal();
     }
 }

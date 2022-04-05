@@ -12,6 +12,7 @@ import com.example.covider.database.ManagerFactory;
 import com.example.covider.database.enrollment.EnrollmentManager;
 import com.example.covider.database.notification.NotificationManager;
 import com.example.covider.database.user.UserManager;
+import com.example.covider.model.checkin.Checkin;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.user.Student;
 import com.example.covider.model.user.User;
@@ -79,37 +80,36 @@ public class CourseManager extends DatabaseHandler {
         return addCourse(courseName, courseBuildingId, 0);
     }
 
-
-
-
+    public void deleteCourse(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
+    }
 
     // code to get the single contact
     public Course getCourse(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
+        try(Cursor cursor = db.query(TABLE_NAME, new String[] { KEY_ID,
                         KEY_NAME, KEY_BUILDING_ID, KEY_IS_ONLINE }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        Course course = new Course(
-                cursor.getLong(0),
-                cursor.getString(1),
-                cursor.getLong(2),
-                cursor.getInt(3)
-        );
-        // return course
-        cursor.close();
-        return course;
+                new String[] { String.valueOf(id) }, null, null, null, null)){
+            if(!cursor.moveToFirst()){
+                return null;
+            }
+            return new Course(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getLong(2),
+                    cursor.getInt(3)
+            );
+        }
     }
 
     private void createDefaultCourses(){
         // should have course id of 1,2,3
-        addCourse("MarkCourse", 1, 0);
-        addCourse("EnjiCourse", 1, 0);
-        addCourse("ZSNCourse", 1, 0);
-        addCourse("DummyCourse", 3, 0);
+//        addCourse("MarkCourse", 1, 0);
+//        addCourse("EnjiCourse", 1, 0);
+//        addCourse("ZSNCourse", 1, 0);
+//        addCourse("DummyCourse", 3, 0);
     }
 
     @Override
