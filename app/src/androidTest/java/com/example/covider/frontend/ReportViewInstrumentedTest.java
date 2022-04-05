@@ -190,6 +190,9 @@ public class ReportViewInstrumentedTest {
         onView(withId(R.id.gi_symptoms_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.submit_health_form)).perform(Helpers.clickOnNotDisplayed);
         checkReportDialogWithText("Success!", "Your form has been recorded.", "Close");
+        onView(withId(R.id.profile)).perform(click());
+        onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText("Negative"), 1)));
     }
 
     @Test
@@ -215,6 +218,9 @@ public class ReportViewInstrumentedTest {
         onView(withId(R.id.gi_symptoms_no)).perform(Helpers.clickOnNotDisplayed);
         onView(withId(R.id.submit_health_form)).perform(Helpers.clickOnNotDisplayed);
         checkReportDialogWithText("Success!", "Your form has been recorded. Please stay home and quarantine for at least 7 full days.", "Close");
+        onView(withId(R.id.profile)).perform(click());
+        onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText("Positive"), 2)));
     }
 
     @Test
@@ -242,6 +248,9 @@ public class ReportViewInstrumentedTest {
         checkReportDialogWithText("Success!",
                 "Your form has been recorded. Please stay home and quarantine for at least 7 full days. All your students have received notification that their courses are changed to online.",
                 "Close");
+        onView(withId(R.id.profile)).perform(click());
+        onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText("Positive"), 1)));
     }
 
     public static Matcher<View> withTintColorList(final int color) {
