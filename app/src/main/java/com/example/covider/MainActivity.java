@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -224,17 +226,18 @@ public class MainActivity extends AppCompatActivity {
                 isStu = user.getIsStudent();
                 ((TextView)findViewById(R.id.username)).setText(
                         Html.fromHtml("Hi, <b>" + userName + "</b>!"));
+                findViewById(R.id.nav).setVisibility(View.VISIBLE);
                 mapView.setVisibility(View.VISIBLE);
-                reportView.setVisibility(View.INVISIBLE);
-                profileView.setVisibility(View.INVISIBLE);
-                notificationView.setVisibility(View.INVISIBLE);
+                reportView.setVisibility(View.GONE);
+                profileView.setVisibility(View.GONE);
+                notificationView.setVisibility(View.GONE);
                 mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
                 reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
                 ((Switch)findViewById(R.id.toggle_view)).setChecked(true);
                 displayCustomizedBuildings();
-                findViewById(R.id.log_in_view).setVisibility(View.INVISIBLE);
+                findViewById(R.id.log_in_view).setVisibility(View.GONE);
 
             }
             else{
@@ -394,9 +397,9 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         displayDailySchedule();
         mapView.setVisibility(View.VISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.GONE);
+        profileView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -405,9 +408,9 @@ public class MainActivity extends AppCompatActivity {
     private void reportNavOnClickListener(View view) {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         reportView.setVisibility(View.VISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.GONE);
+        profileView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -417,9 +420,9 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal_selected)));
         Typeface typeface = ResourcesCompat.getFont(this, R.font.ibm_plex_serif);
         profileView.setVisibility(View.VISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
-        notificationView.setVisibility(View.INVISIBLE);
+        reportView.setVisibility(View.GONE);
+        mapView.setVisibility(View.GONE);
+        notificationView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         notificationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -577,9 +580,9 @@ public class MainActivity extends AppCompatActivity {
         // [Notification{id=1009, from=11, to=10, read=0, message='Testing notification'}]
 
         notificationView.setVisibility(View.VISIBLE);
-        profileView.setVisibility(View.INVISIBLE);
-        reportView.setVisibility(View.INVISIBLE);
-        mapView.setVisibility(View.INVISIBLE);
+        profileView.setVisibility(View.GONE);
+        reportView.setVisibility(View.GONE);
+        mapView.setVisibility(View.GONE);
         reportButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         mapButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
         profileButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
@@ -684,7 +687,7 @@ public class MainActivity extends AppCompatActivity {
             };
             changeStatusButton.setOnClickListener(changeStatusListener);
         } else {
-            changeStatusButton.setVisibility(View.INVISIBLE);
+            changeStatusButton.setVisibility(View.GONE);
         }
     }
 
@@ -843,6 +846,11 @@ public class MainActivity extends AppCompatActivity {
             userName = null;
             userId = 0;
             findViewById(R.id.log_in_view).setVisibility(View.VISIBLE);
+            findViewById(R.id.nav).setVisibility(View.GONE);
+            mapView.setVisibility(View.GONE);
+            reportView.setVisibility(View.GONE);
+            profileView.setVisibility(View.GONE);
+            notificationView.setVisibility(View.GONE);
         };
         findViewById(R.id.log_out_button).setOnClickListener(logOutListener);
     }
@@ -865,10 +873,10 @@ public class MainActivity extends AppCompatActivity {
         viewToggleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 buildingsMap.setVisibility(View.VISIBLE);
-                buildingsList.setVisibility(View.INVISIBLE);
+                buildingsList.setVisibility(View.GONE);
             } else {
                 displayDailySchedule();
-                buildingsMap.setVisibility(View.INVISIBLE);
+                buildingsMap.setVisibility(View.GONE);
                 buildingsList.setVisibility(View.VISIBLE);
             }
         });
@@ -908,19 +916,28 @@ public class MainActivity extends AppCompatActivity {
         if (riskIndex <= 0.25) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.success_green));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.success_green),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else if (riskIndex <= 0.5) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.low_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else if (riskIndex <= 0.75) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque));
+                    .setColorFilter(new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.medium_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         } else {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))
-                    .setColorFilter(ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque));
+                    .setColorFilter(
+                            new PorterDuffColorFilter(
+                                    ContextCompat.getColor(view.getContext(), R.color.high_risk_opaque),
+                                    PorterDuff.Mode.SRC_ATOP));
         }
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_building_name)).setText(getResources().getString(stringIdTmp));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_total_visitors)).setText(String.format(getResources().getString(R.string.total_visitors), brp.getNumVisitors()));

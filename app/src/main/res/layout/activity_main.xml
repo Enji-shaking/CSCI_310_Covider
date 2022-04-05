@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toStartOf="@id/nav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
@@ -1315,7 +1315,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="top"
-                android:visibility="invisible">
+                android:visibility="gone">
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -3174,7 +3174,7 @@
                                 android:layout_marginStart="10dp"
                                 android:textSize="17sp"
                                 android:fontFamily="@font/ibm_plex_serif_semibold"
-                                android:text="@string/cpa_display"/>
+                                android:text="@string/nrc_display"/>
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/usc_list_ptd"
@@ -3686,7 +3686,7 @@
         app:layout_constraintEnd_toStartOf="@id/nav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
@@ -4119,7 +4119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:orientation="vertical" >
         <ScrollView
             android:layout_width="match_parent"
@@ -4190,7 +4190,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:orientation="vertical" >
         <ScrollView
             android:layout_width="match_parent"
@@ -4217,6 +4217,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
+        android:visibility="gone"
         android:orientation="horizontal" >
         <ImageButton
             android:id="@+id/map"
