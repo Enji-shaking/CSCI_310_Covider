@@ -1,7 +1,5 @@
 package com.example.covider.database.checkin;
 
-import static org.junit.Assert.assertNotEquals;
-
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -10,16 +8,12 @@ import com.example.covider.config.Config;
 import com.example.covider.database.ManagerFactory;
 import com.example.covider.model.checkin.Checkin;
 
-import junit.framework.TestCase;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class CheckinManagerTest {
@@ -59,11 +53,11 @@ public class CheckinManagerTest {
         Assert.assertNull(got);
     }
 
-    @Test
-    public void testGetId(){
-        assertNotEquals(cm.getNextId(CheckinManager.getTableName()), -1);
-//        System.out.println(cm.getNextId(CheckinManager.getTableName()));
-    }
+//    @Test
+//    public void testGetId(){
+//        assertNotEquals(cm.getNextId(CheckinManager.getTableName()), -1);
+////        System.out.println(cm.getNextId(CheckinManager.getTableName()));
+//    }
 
     @Test
     public void testGetBuildingCheckinsInTimeSpan(){
