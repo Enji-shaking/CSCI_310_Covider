@@ -31,7 +31,7 @@ public class LogInViewInstrumentedTest {
     public void createUser(){
         // add users
         UserManager userManager = ManagerFactory.getUserManagerInstance();
-        userManager.addOrUpdateUser(new User(100,"LogInTester", "Aa12345678", 1));
+        userManager.addOrUpdateUser(new User(1000,"LogInTester", "Aa12345678", 1));
     }
 
     @Test
