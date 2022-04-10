@@ -15,6 +15,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.covider.MainActivity;
 import com.example.covider.R;
+import com.example.covider.database.ManagerFactory;
+import com.example.covider.database.notification.NotificationManager;
+import com.example.covider.database.user.UserManager;
+import com.example.covider.model.user.User;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,11 +32,11 @@ public class NotificationViewInstrumentedTest {
             new ActivityScenarioRule<>(MainActivity.class);
     @Before
     public void LogIn(){
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Zhihan"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        UserManager userManager = ManagerFactory.getUserManagerInstance();
+        userManager.addOrUpdateUser(new User(800,"NotificationTester", "12345678", 1));
+        NotificationManager notificationManager = ManagerFactory.getNotificationManagerInstance();
+        notificationManager.addNotification(100,800,"You got close contact with a positive patient, BEWARE!");
+        Helpers.UserLogIn("NotificationTester", "12345678");
     }
 
     @Test
