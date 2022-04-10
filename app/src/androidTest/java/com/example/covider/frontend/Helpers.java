@@ -53,20 +53,20 @@ public class Helpers {
         }
     };
 
-    protected static void StudentUserLogIn() {
+    protected static void UserLogIn(String username, String password) {
         onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Enji"));
+                .perform(clearText(), replaceText(username));
         onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("Aa12345678"));
+                .perform(clearText(), replaceText(password));
         onView(withId(R.id.log_in_submit)).perform(click());
     }
 
+    protected static void StudentUserLogIn() {
+        UserLogIn("Enji", "12345678");
+    }
+
     protected static void ProfessorUserLogIn() {
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Negar"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        UserLogIn("Negar", "12345678");
     }
 
     protected static void checkIsVisible(int id) {
