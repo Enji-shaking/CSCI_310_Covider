@@ -31,7 +31,7 @@ public class LogInViewInstrumentedTest {
     public void createUser(){
         // add users
         UserManager userManager = ManagerFactory.getUserManagerInstance();
-        userManager.addOrUpdateUser(new User(100,"Enji", "Aa12345678", 1));
+        userManager.addOrUpdateUser(new User(100,"LogInTester", "Aa12345678", 1));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class LogInViewInstrumentedTest {
 
         // wrong username case with correct password
         onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("enji"));
+                .perform(clearText(), replaceText("logInTester"));
         onView(withId(R.id.log_in_password))
                 .perform(clearText(), replaceText("Aa12345678"));
         onView(withId(R.id.log_in_submit)).perform(click());
@@ -76,7 +76,7 @@ public class LogInViewInstrumentedTest {
     @Test
     public void TestWrongPassword() {
         onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Enji"));
+                .perform(clearText(), replaceText("LogInTester"));
         // no password input
         onView(withId(R.id.log_in_submit)).perform(click());
         checkLogInDialogWithText("Wrong Password");
@@ -97,7 +97,7 @@ public class LogInViewInstrumentedTest {
     @Test
     public void TestLogInSuccess() {
         onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Enji"));
+                .perform(clearText(), replaceText("LogInTester"));
         onView(withId(R.id.log_in_password))
                 .perform(clearText(), replaceText("Aa12345678"));
         onView(withId(R.id.log_in_submit)).perform(click());
@@ -109,7 +109,7 @@ public class LogInViewInstrumentedTest {
         Helpers.checkIsGone(R.id.notification_view);
         onView(withId(R.id.toggle_view)).check(matches(isChecked()));
         onView(withId(R.id.username))
-                .check(matches(withText("Hi, Enji!")));
+                .check(matches(withText("Hi, LogInTester!")));
     }
 
     private void checkLogInDialogWithText(String message) {
