@@ -73,14 +73,6 @@ public class Helpers {
         ClickLogInSubmitButton();
     }
 
-    protected static void StudentUserLogIn() {
-        UserLogIn("Enji", "12345678");
-    }
-
-    protected static void ProfessorUserLogIn() {
-        UserLogIn("Negar", "12345678");
-    }
-
     protected static void checkIsVisible(int id) {
         onView(withId(id)).check(matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
     }

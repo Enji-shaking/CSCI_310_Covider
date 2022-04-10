@@ -48,7 +48,7 @@ public class ProfileViewInstrumentedTest {
     @Test
     public void TestStudentBasicComponents() {
         {
-            Helpers.StudentUserLogIn();
+            Helpers.UserLogIn("Enji", "12345678");
             // go to profile page
             onView(withId(R.id.profile)).perform(click());
             onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
@@ -129,7 +129,7 @@ public class ProfileViewInstrumentedTest {
     @Test
     public void TestProfessorBasicComponents() {
         {
-            Helpers.ProfessorUserLogIn();
+            Helpers.UserLogIn("Negar", "12345678");
             // go to profile page
             onView(withId(R.id.profile)).perform(click());
             onView(withId(R.id.profile_view)).check(matches(isDisplayed()));

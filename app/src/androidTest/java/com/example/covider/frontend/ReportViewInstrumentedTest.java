@@ -37,16 +37,18 @@ public class ReportViewInstrumentedTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(MainActivity.class);
+
     @Before
-    public void LogIn(){
+    public void setup(){
         // add users
         UserManager userManager = ManagerFactory.getUserManagerInstance();
-        userManager.addOrUpdateUser(new User(100,"Enji", "Aa12345678", 1));
+        userManager.addOrUpdateUser(new User(1100,"ReportViewStudentTester", "12345678", 1));
+        userManager.addOrUpdateUser(new User(1101,"ReportViewProfessorTester", "12345678", 0));
     }
 
     @Test
     public void TestSubmitEmptyReport() {
-        Helpers.StudentUserLogIn();
+        Helpers.UserLogIn("ReportViewStudentTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         onView(withId(R.id.submit_health_form)).perform(Helpers.clickOnNotDisplayed);
@@ -55,7 +57,7 @@ public class ReportViewInstrumentedTest {
 
     @Test
     public void TestSubmitPartiallyFilledReport() {
-        Helpers.StudentUserLogIn();
+        Helpers.UserLogIn("ReportViewStudentTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         onView(withId(R.id.muscle_yes)).perform(Helpers.clickOnNotDisplayed);
@@ -66,7 +68,7 @@ public class ReportViewInstrumentedTest {
 
     @Test
     public void TestReportSelectionProcess() {
-        Helpers.StudentUserLogIn();
+        Helpers.UserLogIn("ReportViewStudentTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         // check infection buttons
@@ -161,7 +163,7 @@ public class ReportViewInstrumentedTest {
 
     @Test
     public void TestSubmitNegativeReport() {
-        Helpers.StudentUserLogIn();
+        Helpers.UserLogIn("ReportViewStudentTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         // check infection buttons
@@ -189,7 +191,7 @@ public class ReportViewInstrumentedTest {
 
     @Test
     public void TestStudentSubmitPositiveReport() {
-        Helpers.StudentUserLogIn();
+        Helpers.UserLogIn("ReportViewStudentTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         // check infection buttons
@@ -212,12 +214,12 @@ public class ReportViewInstrumentedTest {
         checkReportDialogWithText("Success!", "Your form has been recorded. Please stay home and quarantine for at least 7 full days.", "Close");
         onView(withId(R.id.profile)).perform(click());
         onView(withId(R.id.profile_view)).check(matches(isDisplayed()));
-        onView(isRoot()).check(matches(Helpers.withViewCount(withText("Positive"), 2)));
+        onView(isRoot()).check(matches(Helpers.withViewCount(withText("Positive"), 1)));
     }
 
     @Test
     public void TestProfessorSubmitPositiveReport() {
-        Helpers.ProfessorUserLogIn();
+        Helpers.UserLogIn("ReportViewProfessorTester", "12345678");
         onView(withId(R.id.report)).perform(click());
         onView(withId(R.id.report_view)).check(matches(isDisplayed()));
         // check infection buttons
