@@ -53,12 +53,24 @@ public class Helpers {
         }
     };
 
-    protected static void UserLogIn(String username, String password) {
+    protected static void SetLogInUsername(String username) {
         onView(withId(R.id.log_in_username))
                 .perform(clearText(), replaceText(username));
+    }
+
+    protected static void SetLogInPassword(String password) {
         onView(withId(R.id.log_in_password))
                 .perform(clearText(), replaceText(password));
+    }
+
+    protected static void ClickLogInSubmitButton() {
         onView(withId(R.id.log_in_submit)).perform(click());
+    }
+
+    protected static void UserLogIn(String username, String password) {
+        SetLogInUsername(username);
+        SetLogInPassword(password);
+        ClickLogInSubmitButton();
     }
 
     protected static void StudentUserLogIn() {

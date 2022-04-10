@@ -47,60 +47,44 @@ public class LogInViewInstrumentedTest {
     @Test
     public void TestNonexistentUser() {
         // no input
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.ClickLogInSubmitButton();
         checkLogInDialogWithText("User does not exist");
 
         // wrong username without password
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("abc"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.SetLogInUsername("abc");
+        Helpers.ClickLogInSubmitButton();
         checkLogInDialogWithText("User does not exist");
 
         // wrong random username with random password
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("abc"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("123"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.UserLogIn("abc", "123");
         checkLogInDialogWithText("User does not exist");
 
         // wrong username case with correct password
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("logInTester"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("Aa12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.UserLogIn("logInTester", "Aa12345678");
         checkLogInDialogWithText("User does not exist");
     }
 
     @Test
     public void TestWrongPassword() {
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("LogInTester"));
+        Helpers.SetLogInUsername("LogInTester");
         // no password input
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.ClickLogInSubmitButton();
         checkLogInDialogWithText("Wrong Password");
 
         // wrong password
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("123"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.SetLogInPassword("123");
+        Helpers.ClickLogInSubmitButton();
         checkLogInDialogWithText("Wrong Password");
 
         // wrong password case
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("aa12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.SetLogInPassword("aa12345678");
+        Helpers.ClickLogInSubmitButton();
         checkLogInDialogWithText("Wrong Password");
     }
 
     @Test
     public void TestLogInSuccess() {
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("LogInTester"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("Aa12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        Helpers.UserLogIn("LogInTester", "Aa12345678");
         Helpers.checkIsGone(R.id.log_in_view);
         Helpers.checkIsVisible(R.id.nav);
         Helpers.checkIsVisible(R.id.map_view);
