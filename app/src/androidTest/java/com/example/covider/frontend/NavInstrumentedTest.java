@@ -29,12 +29,8 @@ public class NavInstrumentedTest {
     public void LogIn(){
         // add users
         UserManager userManager = ManagerFactory.getUserManagerInstance();
-        userManager.addOrUpdateUser(new User(100,"Enji", "Aa12345678", 1));
-        onView(withId(R.id.log_in_username))
-                .perform(clearText(), replaceText("Enji"));
-        onView(withId(R.id.log_in_password))
-                .perform(clearText(), replaceText("Aa12345678"));
-        onView(withId(R.id.log_in_submit)).perform(click());
+        userManager.addOrUpdateUser(new User(900,"NavTester", "12345678", 1));
+        Helpers.UserLogIn("NavTester", "12345678");
     }
 
     @Test
