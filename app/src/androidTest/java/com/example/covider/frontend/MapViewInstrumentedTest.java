@@ -50,7 +50,6 @@ public class MapViewInstrumentedTest {
     public void setup(){
         // add user
         UserManager userManager = ManagerFactory.getUserManagerInstance();
-        userManager.addOrUpdateUser(new User(200,"MapViewTesterProfessor1", "12345678", 0));
         userManager.addOrUpdateUser(new User(201,"MapViewTesterStudent1", "12345678", 1));
         userManager.addOrUpdateUser(new User(205,"MapViewTesterStudent2", "12345678", 1));
         userManager.addOrUpdateUser(new User(206,"MapViewTesterStudent3", "12345678", 1));
