@@ -1,9 +1,9 @@
 package com.example.covider.database.risk;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import android.content.Context;
-
-
-import static org.junit.Assert.*;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -24,7 +24,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RiskManagerTest {
-    /*
 
     RiskManager riskManager;
     EnrollmentManager enrollmentManager;
@@ -97,7 +96,6 @@ public class RiskManagerTest {
     }
 
 
-    */
 
 
 }

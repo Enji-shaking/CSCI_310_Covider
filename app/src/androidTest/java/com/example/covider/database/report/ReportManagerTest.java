@@ -1,9 +1,8 @@
 package com.example.covider.database.report;
 
+import static org.junit.Assert.assertEquals;
+
 import android.content.Context;
-
-
-import static org.junit.Assert.*;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -14,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ReportManagerTest {
-    /*
     ReportManager reportManager;
 
     @Before
@@ -41,5 +39,20 @@ public class ReportManagerTest {
         assertEquals(userOneExpected.getTimestamp(),userOneMostRecent.getTimestamp());
         assertEquals(userOneExpected.getIsPositive(),userOneMostRecent.getIsPositive());
     }
-    */
+
+    @Test
+    public void testUpdateReports(){
+        UserDailyReport r0 = new UserDailyReport(10003, 1, 1, "Positive", 1646896887002L);
+        UserDailyReport r1 = new UserDailyReport(10003, 0, 0, "", 1646896887008L);
+        UserDailyReport r0Retrieved = reportManager.getReport(r0.getId());
+        assertEquals(r0, r0Retrieved);
+
+        reportManager.addOrUpdateReport(r1);
+        UserDailyReport r1Retrieved = reportManager.getReport(r1.getId());
+        assertEquals(r1, r1Retrieved);
+
+        reportManager.addOrUpdateReport(r0);
+        r0Retrieved = reportManager.getReport(r0.getId());
+        assertEquals(r0, r0Retrieved);
+    }
 }
