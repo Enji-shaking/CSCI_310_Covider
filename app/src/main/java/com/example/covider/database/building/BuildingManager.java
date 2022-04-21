@@ -18,6 +18,7 @@ public class BuildingManager extends DatabaseHandler {
     private static final String TABLE_NAME = "building";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "building_name";
+    private static final String KEY_REQUIREMENT = "building_req";
 
     public static BuildingManager instance = null;
 
@@ -32,9 +33,10 @@ public class BuildingManager extends DatabaseHandler {
         super(context);
         if(!isTableExist("building")){
             String sql = "CREATE TABLE " + TABLE_NAME + " (" +
-                            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                            KEY_NAME + " TEXT" +
-                        ");";
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_NAME + " TEXT, " +
+                KEY_REQUIREMENT + " TEXT" +
+            ");";
 
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(sql);
@@ -48,6 +50,7 @@ public class BuildingManager extends DatabaseHandler {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, building.getId());
         values.put(KEY_NAME, building.getName());
+        values.put(KEY_REQUIREMENT, building.getRequirement());
         return (int) db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
@@ -55,6 +58,7 @@ public class BuildingManager extends DatabaseHandler {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name);
+        values.put(KEY_REQUIREMENT, Building.getDefaultRequirement());
         return (int) db.insert(TABLE_NAME, null, values);
     }
 
@@ -71,7 +75,7 @@ public class BuildingManager extends DatabaseHandler {
 
         // SELECT id, name FROM building WHERE building.name = ?;
         Cursor cursor = db.query(
-                TABLE_NAME, new String[] {KEY_ID, KEY_NAME},
+                TABLE_NAME, new String[] {KEY_ID, KEY_NAME, KEY_REQUIREMENT},
                 KEY_NAME + "=?", new String[] { name },
                 null, null, null);
         if (cursor == null || !cursor.moveToFirst()){
@@ -92,7 +96,7 @@ public class BuildingManager extends DatabaseHandler {
 
         // SELECT id, name FROM building WHERE building.name = ?;
         Cursor cursor = db.query(
-                TABLE_NAME, new String[] {KEY_ID, KEY_NAME},
+                TABLE_NAME, new String[] {KEY_ID, KEY_NAME, KEY_REQUIREMENT},
                 KEY_ID + "=?", new String[] { String.valueOf(id) },
                 null, null, null);
         if (cursor == null || !cursor.moveToFirst()){
@@ -101,7 +105,8 @@ public class BuildingManager extends DatabaseHandler {
 
         Building building = new Building(
                 cursor.getLong(0),
-                cursor.getString(1)
+                cursor.getString(1),
+                cursor.getString(2)
         );
 
         cursor.close();
@@ -111,7 +116,7 @@ public class BuildingManager extends DatabaseHandler {
     public ArrayList<Building> getBuildingList(){
         ArrayList<Building> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT " + KEY_ID + ", " + KEY_NAME + " FROM " + TABLE_NAME + ";";
+        String sql = "SELECT " + KEY_ID + ", " + KEY_NAME + ", " + KEY_REQUIREMENT + " FROM " + TABLE_NAME + ";";
         try(
             Cursor cursor = db.rawQuery(sql, new String[] {});
         ){

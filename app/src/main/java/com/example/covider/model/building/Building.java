@@ -6,10 +6,19 @@ public class Building {
 
     private long id;
     private String name;
+    private String requirement;
+    private static final String defaultRequirement = "There's no special requirement for the building, but please be aware";
 
     public Building(long id, String name) {
         this.id = id;
         this.name = name;
+        this.requirement = defaultRequirement;
+    }
+
+    public Building(long id, String name, String req) {
+        this.id = id;
+        this.name = name;
+        this.requirement = req;
     }
 
     public long getId() {
@@ -26,6 +35,14 @@ public class Building {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public static String getDefaultRequirement() {
+        return defaultRequirement;
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.example.covider.database.checkin.CheckinManager;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.enrollment.EnrollmentManager;
 import com.example.covider.database.notification.NotificationManager;
+import com.example.covider.database.questionnaire.QuestionnaireManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
@@ -20,6 +21,7 @@ public class ManagerFactory {
     private static BuildingManager buildingManagerInstance = null;
     private static ReportManager reportManagerInstance = null;
     private static RiskManager riskManagerInstance = null;
+    private static QuestionnaireManager questionnaireManagerInstance = null;
 
 
     private static boolean initialized = false;
@@ -37,6 +39,7 @@ public class ManagerFactory {
             buildingManagerInstance = BuildingManager.getInstance(context);
             reportManagerInstance = ReportManager.getInstance(context);
             riskManagerInstance = RiskManager.getInstance(context);
+            questionnaireManagerInstance = QuestionnaireManager.getInstance(context);
         }
     }
 
@@ -70,5 +73,9 @@ public class ManagerFactory {
 
     public static RiskManager getRiskManagerInstance() {
         return riskManagerInstance;
+    }
+
+    public static QuestionnaireManager getQuestionnaireManagerInstance() {
+        return questionnaireManagerInstance;
     }
 }

@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         userManager.addOrUpdateUser(new User(124,"Tanya", "12345678", 0));
         userManager.addOrUpdateUser(new User(125,"Saty", "12345678", 0));
 
-        buildingManager.addOrUpdateBuilding(new Building(200,"sal"));
-        buildingManager.addOrUpdateBuilding(new Building(201,"thh"));
+        buildingManager.addOrUpdateBuilding(new Building(200,"sal", "Please wear masks and keep social distance"));
+        buildingManager.addOrUpdateBuilding(new Building(201,"thh", "Please wear N95 masks and keep social distance"));
         buildingManager.addOrUpdateBuilding(new Building(202,"kap"));
         buildingManager.addOrUpdateBuilding(new Building(203,"rth"));
 

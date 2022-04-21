@@ -49,6 +49,20 @@ public class BuildingManagerTest {
         assertEquals(3, buildingList.size());
 
     }
+
+    @Test
+    public void testRequirements(){
+        buildingManager.addOrUpdateBuilding(new Building(1,"SAL", "DUMMY"));
+        Building buildingExpected = new Building(1, "SAL", "DUMMY");
+        Building buildingGetById = buildingManager.getBuildingById(buildingExpected.getId());
+        assertEquals(buildingExpected, buildingGetById);
+
+        int id = buildingManager.addBuilding("Test");
+        buildingGetById = buildingManager.getBuildingById(id);
+        buildingExpected = new Building(id, "Test", Building.getDefaultRequirement());
+        assertEquals(buildingExpected, buildingGetById);
+    }
+
     @After
     public void clean(){
         Config.Change_Normal();
