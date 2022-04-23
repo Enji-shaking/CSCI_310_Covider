@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     private long userId = 0;
     private int isStu = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
+    private final ArrayList<Integer> dailyScheduleMapBuildingIds = new ArrayList<>();
+    private final ArrayList<Integer> frequentVisitMapBuildingIds = new ArrayList<>();
 
     private void createDummy(){
         UserManager userManager;
@@ -265,13 +267,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayCustomizedBuildings() {
-        // display building corresponds to enrolled courses
-        displayDailySchedule();
         // display frequent visits
         displayFrequentVisit();
+        // display building corresponds to enrolled courses
+        displayDailySchedule();
     }
 
     private void displayDailySchedule() {
+        for (int dailyId : dailyScheduleMapBuildingIds) {
+            if (frequentVisitMapBuildingIds.contains(dailyId)) {
+                findViewById(dailyId).setBackgroundColor(getResources().getColor(R.color.frequent_visit_color));
+            } else {
+                findViewById(dailyId).setBackgroundColor(getResources().getColor(R.color.gold_transparent));
+            }
+        }
+        dailyScheduleMapBuildingIds.clear();
         EnrollmentManager em = ManagerFactory.getEnrollmentManagerInstance();
         BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
         ArrayList<Course> coursesEnrolled;
@@ -310,6 +320,25 @@ public class MainActivity extends AppCompatActivity {
             bView.addView(bName);
             scheduleBuildingsContainer.addView(bView);
             count++;
+            int buildingId;
+            if (b.getName().equals("prb")) {
+                buildingId = getResources().getIdentifier(
+                        "usc_map_" + b.getName() + "1",
+                        "id", getPackageName());
+                dailyScheduleMapBuildingIds.add(buildingId);
+                findViewById(buildingId)
+                        .setBackgroundColor(getResources().getColor(R.color.daily_schedule_color));
+                buildingId = getResources().getIdentifier(
+                        "usc_map_" + b.getName() + "2",
+                        "id", getPackageName());
+            } else {
+                buildingId = getResources().getIdentifier(
+                        "usc_map_" + b.getName(),
+                        "id", getPackageName());
+            }
+            dailyScheduleMapBuildingIds.add(buildingId);
+            findViewById(buildingId)
+                    .setBackgroundColor(getResources().getColor(R.color.daily_schedule_color));
         }
         if (count == 0) {
             findViewById(R.id.daily_schedule_title).setVisibility(View.GONE);
@@ -319,6 +348,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayFrequentVisit() {
+        for (int frequentId : frequentVisitMapBuildingIds) {
+            if (dailyScheduleMapBuildingIds.contains(frequentId)) {
+                findViewById(frequentId).setBackgroundColor(getResources().getColor(R.color.daily_schedule_color));
+            } else {
+                findViewById(frequentId).setBackgroundColor(getResources().getColor(R.color.gold_transparent));
+            }
+        }
+        frequentVisitMapBuildingIds.clear();
         Typeface typefaceSemibold = ResourcesCompat.getFont(this, R.font.ibm_plex_serif_semibold);
         final float scale = getResources().getDisplayMetrics().density;
         BuildingManager bm = ManagerFactory.getBuildingManagerInstance();
@@ -352,6 +389,30 @@ public class MainActivity extends AppCompatActivity {
             bView.addView(bName);
             frequentBuildingsContainer.addView(bView);
             count++;
+
+            int fbuildingId;
+            if (b.getName().equals("prb")) {
+                fbuildingId = getResources().getIdentifier(
+                        "usc_map_" + b.getName() + "1",
+                        "id", getPackageName());
+                if (!dailyScheduleMapBuildingIds.contains(fbuildingId)) {
+                    frequentVisitMapBuildingIds.add(fbuildingId);
+                    findViewById(fbuildingId)
+                            .setBackgroundColor(getResources().getColor(R.color.frequent_visit_color));
+                    fbuildingId = getResources().getIdentifier(
+                            "usc_map_" + b.getName() + "2",
+                            "id", getPackageName());
+                }
+            } else {
+                fbuildingId = getResources().getIdentifier(
+                        "usc_map_" + b.getName(),
+                        "id", getPackageName());
+            }
+            if (!dailyScheduleMapBuildingIds.contains(fbuildingId)) {
+                frequentVisitMapBuildingIds.add(fbuildingId);
+                findViewById(fbuildingId)
+                        .setBackgroundColor(getResources().getColor(R.color.frequent_visit_color));
+            }
         }
 
         if (count == 0) {

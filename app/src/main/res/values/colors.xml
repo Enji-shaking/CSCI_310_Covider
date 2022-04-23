@@ -14,14 +14,9 @@
     <color name="gold">#FFFFC72C</color>
     <color name="grey">#FFD2D4D3</color>
     <!--    Map Colors    -->
-    <color name="cardinal_transparent">#CC990000</color>
-    <color name="gold_transparent">#CCFFC72C</color>
-    <color name="green_transparent">#3370C7B1</color>
-    <color name="brown_transparent">#33CDA890</color>
-    <color name="pink_transparent">#33F3869A</color>
-    <color name="blue_transparent">#3362C2E0</color>
-    <color name="purple_transparent">#33C7B2D5</color>
-    <color name="grey_transparent">#33D2D4D3</color>
+    <color name="frequent_visit_color">#A600FF99</color>
+    <color name="daily_schedule_color">#A6FF6600</color>
+    <color name="gold_transparent">#A6FFC72C</color>
     <color name="grey_light">#80D2D4D3</color>
     <color name="cardinal_list_transparent">#73990000</color>
     <color name="gold_list_transparent">#80FFC72C</color>

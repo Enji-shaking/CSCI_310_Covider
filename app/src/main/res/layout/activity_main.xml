@@ -95,7 +95,7 @@
                                 android:layout_marginTop="425dp"
                                 android:rotation="30"
                                 android:contentDescription="@string/flt"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_koh"
                                 android:layout_width="35dp"
@@ -104,7 +104,7 @@
                                 android:layout_marginTop="435dp"
                                 android:rotation="30"
                                 android:contentDescription="@string/koh"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_wto"
                                 android:layout_width="29dp"
@@ -113,7 +113,7 @@
                                 android:layout_marginTop="468dp"
                                 android:rotation="30"
                                 android:contentDescription="@string/wto"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_lrc"
                                 android:layout_width="130dp"
@@ -122,7 +122,7 @@
                                 android:layout_marginTop="490dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/lrc"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_uac"
                                 android:layout_width="148dp"
@@ -131,7 +131,7 @@
                                 android:layout_marginTop="550dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/uac"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_jef"
                                 android:layout_width="62dp"
@@ -212,7 +212,7 @@
                                 android:layout_marginTop="760dp"
                                 android:rotation="-11"
                                 android:contentDescription="@string/ksh"
-                                android:background="@color/pink_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_swc"
                                 android:layout_width="73dp"
@@ -258,7 +258,7 @@
                                 android:layout_marginTop="675dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/mtx"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_drc"
                                 android:layout_width="29dp"
@@ -339,7 +339,7 @@
                                 android:layout_marginTop="709dp"
                                 android:rotation="27"
                                 android:contentDescription="@string/ctv"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_jws"
                                 android:layout_width="20dp"
@@ -428,7 +428,7 @@
                                 android:layout_height="40dp"
                                 android:layout_marginStart="1129dp"
                                 android:layout_marginTop="895dp"
-                                android:background="@color/purple_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/lvl"
                                 android:rotation="27" />
                             <View
@@ -439,7 +439,7 @@
                                 android:layout_marginTop="685dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/jmc"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_gap"
                                 android:layout_width="25dp"
@@ -448,7 +448,7 @@
                                 android:layout_marginTop="720dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/gap"
-                                android:background="@color/pink_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_her"
                                 android:layout_width="40dp"
@@ -457,7 +457,7 @@
                                 android:layout_marginTop="745dp"
                                 android:rotation="29"
                                 android:contentDescription="@string/her"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_lts"
                                 android:layout_width="150dp"
@@ -466,7 +466,7 @@
                                 android:layout_marginTop="793dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/lts"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_ctf"
                                 android:layout_width="25dp"
@@ -475,7 +475,7 @@
                                 android:layout_marginTop="835dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/ctf"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_mar"
                                 android:layout_width="10dp"
@@ -517,7 +517,7 @@
                                 android:layout_height="100dp"
                                 android:layout_marginStart="305dp"
                                 android:layout_marginTop="849dp"
-                                android:background="@color/grey_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/mcb"
                                 android:rotation="27" />
                             <View
@@ -564,7 +564,7 @@
                                 android:layout_marginTop="1030dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/scd"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_ttl"
                                 android:layout_width="23dp"
@@ -591,7 +591,7 @@
                                 android:layout_marginTop="1200dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/pks"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_prb1"
                                 android:layout_width="155dp"
@@ -600,7 +600,7 @@
                                 android:layout_marginTop="1320dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/prb"
-                                android:background="@color/brown_transparent" />
+                                android:background="@color/gold_transparent" />
                             <View
                                 android:id="@+id/usc_map_prb2"
                                 android:layout_width="60dp"
@@ -609,7 +609,7 @@
                                 android:layout_marginTop="1300dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/prb"
-                                android:background="@color/brown_transparent" />
+                                android:background="@color/gold_transparent" />
                             <View
                                 android:id="@+id/usc_map_eeb"
                                 android:layout_width="65dp"
@@ -690,7 +690,7 @@
                                 android:layout_marginTop="1187dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/sel"
-                                android:background="@color/purple_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_phe"
                                 android:layout_width="41dp"
@@ -762,7 +762,7 @@
                                 android:layout_marginTop="908dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/ped"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_asc"
                                 android:layout_width="93dp"
@@ -780,7 +780,7 @@
                                 android:layout_marginTop="782dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/bit"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_nct"
                                 android:layout_width="55dp"
@@ -789,7 +789,7 @@
                                 android:layout_marginTop="838dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/nct"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_adm"
                                 android:layout_width="61dp"
@@ -969,7 +969,7 @@
                                 android:layout_marginTop="1170dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/ahf2"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_jhh"
                                 android:layout_width="46dp"
@@ -987,7 +987,7 @@
                                 android:layout_marginTop="1255dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/tgf"
-                                android:background="@color/blue_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_law"
                                 android:layout_width="120dp"
@@ -1023,7 +1023,7 @@
                                 android:layout_marginTop="1098dp"
                                 android:rotation="28"
                                 android:contentDescription="@string/dml"
-                                android:background="@color/purple_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_cpa"
                                 android:layout_width="102dp"
@@ -1041,7 +1041,7 @@
                                 android:layout_marginTop="903dp"
                                 android:contentDescription="@string/bsr"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_nrc"
                                 android:layout_width="161dp"
@@ -1050,7 +1050,7 @@
                                 android:layout_marginTop="954dp"
                                 android:contentDescription="@string/nrc"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_ptd"
                                 android:layout_width="62dp"
@@ -1059,7 +1059,7 @@
                                 android:layout_marginTop="1152dp"
                                 android:contentDescription="@string/ptd"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_dxm"
                                 android:layout_width="18dp"
@@ -1068,7 +1068,7 @@
                                 android:layout_marginTop="1162dp"
                                 android:contentDescription="@string/dxm"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_alm"
                                 android:layout_width="25dp"
@@ -1086,7 +1086,7 @@
                                 android:layout_marginTop="1208dp"
                                 android:contentDescription="@string/tro"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_dmt"
                                 android:layout_width="52dp"
@@ -1095,7 +1095,7 @@
                                 android:layout_marginTop="1192dp"
                                 android:contentDescription="@string/dmt"
                                 android:rotation="27"
-                                android:background="@color/brown_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_fig"
                                 android:layout_width="25dp"
@@ -1131,7 +1131,7 @@
                                 android:layout_marginTop="1208dp"
                                 android:contentDescription="@string/ush"
                                 android:rotation="27"
-                                android:background="@color/grey_transparent"/>
+                                android:background="@color/gold_transparent"/>
 
                             <View
                                 android:id="@+id/usc_map_ugb"
@@ -1150,7 +1150,7 @@
                                 android:layout_marginTop="935dp"
                                 android:contentDescription="@string/gec"
                                 android:rotation="29"
-                                android:background="@color/green_transparent"/>
+                                android:background="@color/gold_transparent"/>
 
                             <View
                                 android:id="@+id/usc_map_ugw"
@@ -1158,7 +1158,7 @@
                                 android:layout_height="255dp"
                                 android:layout_marginStart="1490dp"
                                 android:layout_marginTop="589dp"
-                                android:background="@color/grey_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/ugw"
                                 android:rotation="29" />
                             <View
@@ -1169,7 +1169,7 @@
                                 android:layout_marginTop="512dp"
                                 android:contentDescription="@string/shr"
                                 android:rotation="29"
-                                android:background="@color/grey_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_elb"
                                 android:layout_width="60dp"
@@ -1178,7 +1178,7 @@
                                 android:layout_marginTop="1198dp"
                                 android:contentDescription="@string/elb"
                                 android:rotation="27"
-                                android:background="@color/purple_transparent"/>
+                                android:background="@color/gold_transparent"/>
                             <View
                                 android:id="@+id/usc_map_cdf"
                                 android:layout_width="81dp"
@@ -1230,7 +1230,7 @@
                                 android:layout_height="200dp"
                                 android:layout_marginStart="1280dp"
                                 android:layout_marginTop="205dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/trh"
                                 android:rotation="27" />
 
@@ -1240,7 +1240,7 @@
                                 android:layout_height="50dp"
                                 android:layout_marginStart="1070dp"
                                 android:layout_marginTop="275dp"
-                                android:background="@color/grey_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/huc"
                                 android:rotation="27" />
                             <View
@@ -1249,7 +1249,7 @@
                                 android:layout_height="60dp"
                                 android:layout_marginStart="1089dp"
                                 android:layout_marginTop="398dp"
-                                android:background="@color/grey_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/hjc"
                                 android:rotation="27" />
                             <View
@@ -1258,7 +1258,7 @@
                                 android:layout_height="25dp"
                                 android:layout_marginStart="1070dp"
                                 android:layout_marginTop="355dp"
-                                android:background="@color/grey_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/osp"
                                 android:rotation="26" />
                             <View
@@ -1267,7 +1267,7 @@
                                 android:layout_height="123dp"
                                 android:layout_marginStart="911dp"
                                 android:layout_marginTop="209dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/crc"/>
                             <View
                                 android:id="@+id/usc_map_mrc"
@@ -1275,7 +1275,7 @@
                                 android:layout_height="65dp"
                                 android:layout_marginStart="923dp"
                                 android:layout_marginTop="484dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/mrc"
                                 android:rotation="27" />
                             <View
@@ -1284,7 +1284,7 @@
                                 android:layout_height="150dp"
                                 android:layout_marginStart="982dp"
                                 android:layout_marginTop="394dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/nbc"
                                 android:rotation="-10" />
                             <View
@@ -1293,7 +1293,7 @@
                                 android:layout_height="78dp"
                                 android:layout_marginStart="770dp"
                                 android:layout_marginTop="400dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/cic"
                                 android:rotation="28" />
                             <View
@@ -1302,7 +1302,7 @@
                                 android:layout_height="78dp"
                                 android:layout_marginStart="760dp"
                                 android:layout_marginTop="282dp"
-                                android:background="@color/brown_transparent"
+                                android:background="@color/gold_transparent"
                                 android:contentDescription="@string/mhc"
                                 android:rotation="28" />
                         </RelativeLayout>
