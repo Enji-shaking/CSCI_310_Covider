@@ -84,7 +84,8 @@ public class BuildingManager extends DatabaseHandler {
 
         Building building = new Building(
                 cursor.getLong(0),
-                cursor.getString(1)
+                cursor.getString(1),
+                cursor.getString(2)
         );
 
         cursor.close();

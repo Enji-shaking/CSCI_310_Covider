@@ -12,6 +12,7 @@
     <string name="map">Map</string>
     <string name="map_view">Map View</string>
     <string name="list_view">List View</string>
+    <string name="entry_requirement">Entry Requirements</string>
     <string name="last_3_days">In Last 3 Days</string>
     <string name="go_back">Go Back</string>
     <string name="frequently_visited">Frequently Visited</string>

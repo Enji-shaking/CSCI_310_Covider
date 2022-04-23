@@ -1005,6 +1005,8 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_low_risk_visitors)).setText(String.format(getResources().getString(R.string.low_risk_visitors), brp.getNumLowRiskVisitors()));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_high_risk_visitors)).setText(String.format(getResources().getString(R.string.high_risk_visitors), brp.getNumHighRiskVisitors()));
         ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_positive_visitors)).setText(String.format(getResources().getString(R.string.positive_visitors), brp.getNumPositiveVisitors()));
+        ((TextView)popupWindow.getContentView().findViewById(R.id.pop_up_entry_requirement)).setText(bm.getBuildingByName(code).getRequirement());
+
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         Button.OnClickListener returnListener = (View popup) -> {
             popupWindow.dismiss();

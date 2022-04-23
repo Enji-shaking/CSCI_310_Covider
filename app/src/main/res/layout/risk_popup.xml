@@ -21,7 +21,31 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/ibm_plex_serif_bold"
         android:textSize="20sp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:background="@color/pop_up_bg"
+        android:layout_weight="3"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/entry_requirement"/>
+        <TextView
+            android:id="@+id/pop_up_entry_requirement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_serif_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
