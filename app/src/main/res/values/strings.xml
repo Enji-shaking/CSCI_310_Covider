@@ -13,6 +13,15 @@
     <string name="map_view">Map View</string>
     <string name="list_view">List View</string>
     <string name="entry_requirement">Entry Requirements</string>
+    <string name="check_in_questionnaire_title">Check In Questionnaire</string>
+    <string name="questionnaire_mask">Do most people wear mask?</string>
+    <string name="questionnaire_mask_id">questionnaire_mask</string>
+    <string name="questionnaire_sanitizer">Is there enough sanitizer?</string>
+    <string name="questionnaire_sanitizer_id">questionnaire_sanitizer</string>
+    <string name="questionnaire_distance">Do people keep social distance?</string>
+    <string name="questionnaire_distance_id">questionnaire_distance</string>
+    <string name="questionnaire_symptoms">Are there any people with symptoms?</string>
+    <string name="questionnaire_symptoms_id">questionnaire_symptoms</string>
     <string name="last_3_days">In Last 3 Days</string>
     <string name="go_back">Go Back</string>
     <string name="frequently_visited">Frequently Visited</string>

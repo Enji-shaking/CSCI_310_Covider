@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TitleTheme"
+            android:text="@string/check_in_questionnaire_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/questionnaire_mask"
+            android:theme="@style/SubtitleTheme"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp">
+
+            <Button
+                android:id="@+id/questionnaire_mask_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_mask_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/yes"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+            <Button
+                android:id="@+id/questionnaire_mask_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_mask_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/no"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/questionnaire_sanitizer"
+            android:theme="@style/SubtitleTheme"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp" >
+
+            <Button
+                android:id="@+id/questionnaire_sanitizer_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_sanitizer_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/yes"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+            <Button
+                android:id="@+id/questionnaire_sanitizer_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_sanitizer_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/no"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/questionnaire_distance"
+            android:theme="@style/SubtitleTheme"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp">
+
+            <Button
+                android:id="@+id/questionnaire_distance_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_distance_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/yes"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+            <Button
+                android:id="@+id/questionnaire_distance_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_distance_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/no"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/questionnaire_symptoms"
+            android:theme="@style/SubtitleTheme"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp">
+
+            <Button
+                android:id="@+id/questionnaire_symptoms_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_symptoms_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/yes"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+            <Button
+                android:id="@+id/questionnaire_symptoms_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/questionnaire_symptoms_id"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/no"
+                android:bottomRightRadius="20dp"
+                android:bottomLeftRadius="20dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/switch_off_track" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_questionnaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:paddingVertical="12dp"
+            android:text="@string/submit" />
+        <Button
+            android:id="@+id/questionnaire_return_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/pop_up_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:paddingVertical="12dp"
+            android:text="@string/go_back"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

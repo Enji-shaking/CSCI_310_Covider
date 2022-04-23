@@ -40,6 +40,7 @@ import com.example.covider.database.checkin.CheckinManager;
 import com.example.covider.database.course.CourseManager;
 import com.example.covider.database.enrollment.EnrollmentManager;
 import com.example.covider.database.notification.NotificationManager;
+import com.example.covider.database.questionnaire.QuestionnaireManager;
 import com.example.covider.database.report.ReportManager;
 import com.example.covider.database.risk.RiskManager;
 import com.example.covider.database.user.UserManager;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private long userId = 0;
     private int isStu = 0;
     private final HashMap<String, Boolean> answers = new HashMap<>();
+    private final HashMap<String, Boolean> questionnaireAnswers = new HashMap<>();
     private final ArrayList<Integer> dailyScheduleMapBuildingIds = new ArrayList<>();
     private final ArrayList<Integer> frequentVisitMapBuildingIds = new ArrayList<>();
 
@@ -1012,14 +1014,116 @@ public class MainActivity extends AppCompatActivity {
             popupWindow.dismiss();
         };
         popupWindow.getContentView().findViewById(R.id.return_button).setOnClickListener(returnListener);
+
         Button.OnClickListener checkInListener = (View popup) -> {
-            CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
-            System.out.println("Check In at " + code);
-            cm.addCheckin(userId, bm.getBuildingByName(code).getId());
-            displayFrequentVisit();
-            popupWindow.dismiss();
+            View questionnairePopupView = inflater.inflate(R.layout.questionnaire, null);
+            PopupWindow questionnairePopupWindow = new PopupWindow(
+                    questionnairePopupView,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    true);
+
+            questionnairePopupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+            initializeQuestionnaireLayout(questionnairePopupWindow, popupWindow, code);
         };
         popupWindow.getContentView().findViewById(R.id.check_in_button).setOnClickListener(checkInListener);
+    }
+
+    private void initializeQuestionnaireLayout(PopupWindow popupWindow, PopupWindow parentPopUp, String code) {
+        Button.OnClickListener questionnaireReturnListener = (View questionnairePopup) -> {
+            popupWindow.dismiss();
+        };
+        popupWindow.getContentView()
+                .findViewById(R.id.questionnaire_return_button)
+                .setOnClickListener(questionnaireReturnListener);
+
+        Button.OnClickListener listener = (View btn) -> {
+            Button clicked = (Button)btn;
+            clicked.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cardinal)));
+            clicked.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.gold)));
+            String answer = ((Button)btn).getText().toString();
+            String description = btn.getContentDescription().toString();
+            if (answer.equals("Yes")) {
+                questionnaireAnswers.put(description, true);
+                int oppositeAnswerId = getResources().getIdentifier(description+"_no", "id", getPackageName());
+                Button opposite = popupWindow.getContentView().findViewById(oppositeAnswerId);
+                opposite.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                opposite.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+            } else if (answer.equals("No")) {
+                questionnaireAnswers.put(description, false);
+                int oppositeAnswerId = getResources().getIdentifier(description+"_yes", "id", getPackageName());
+                Button opposite = popupWindow.getContentView().findViewById(oppositeAnswerId);
+                opposite.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.switch_off_track)));
+                opposite.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+            }
+        };
+        popupWindow.getContentView().findViewById(R.id.questionnaire_mask_yes).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_mask_no).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_sanitizer_yes).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_sanitizer_no).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_distance_yes).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_distance_no).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_symptoms_yes).setOnClickListener(listener);
+        popupWindow.getContentView().findViewById(R.id.questionnaire_symptoms_no).setOnClickListener(listener);
+
+        Button.OnClickListener submitListener = (View btn) -> {
+            if (questionnaireAnswers.size() == 4) {
+                boolean mask = false;
+                boolean sanitizer = false;
+                boolean distance = false;
+                boolean symptoms = false;
+                for (HashMap.Entry<String, Boolean> set :
+                        answers.entrySet()) {
+                    if (set.getKey().equals("questionnaire_mask")) {
+                        mask = set.getValue();
+                    } else if (set.getKey().equals("questionnaire_sanitizer")) {
+                        sanitizer = set.getValue();
+                    } else if (set.getKey().equals("questionnaire_distance")) {
+                        distance = set.getValue();
+                    } else if (set.getKey().equals("questionnaire_symptoms")) {
+                        symptoms = set.getValue();
+                    }
+                }
+
+                Building b = ManagerFactory.getBuildingManagerInstance().getBuildingByName(code);
+                QuestionnaireManager qm = ManagerFactory.getQuestionnaireManagerInstance();
+                qm.addQuestionnaire(
+                        userId, b.getId(), mask, sanitizer, distance, symptoms);
+                CheckinManager cm = ManagerFactory.getCheckinManagerInstance();
+                cm.addCheckin(userId, b.getId());
+                displayFrequentVisit();
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.ic_circle_check_solid)
+                        .setTitle("Success!")
+                        .setMessage("Thanks for your submission!")
+                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .show();
+                popupWindow.dismiss();
+                parentPopUp.dismiss();
+            } else {
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Error")
+                        .setMessage("Please answer all questions.")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Fill out all forms please",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+            }
+        };
+        popupWindow.getContentView()
+                .findViewById(R.id.submit_questionnaire)
+                .setOnClickListener(submitListener);
+
     }
 
     private void initializeMapBuildings() {

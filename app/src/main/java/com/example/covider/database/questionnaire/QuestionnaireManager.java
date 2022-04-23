@@ -67,6 +67,18 @@ public class QuestionnaireManager extends DatabaseHandler {
         return (int) db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
+    public long addQuestionnaire(long userId, long buildingId, boolean masks, boolean sanitizer, boolean distance, boolean symptoms) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_ID, userId);
+        values.put(KEY_BUILDING_ID, buildingId);
+        values.put(KEY_DISTANCE, distance);
+        values.put(KEY_MASK, masks);
+        values.put(KEY_SANITIZER, sanitizer);
+        values.put(KEY_SYMPTOMS, symptoms);
+        return db.insert(TABLE_NAME, null, values);
+    }
+
     public void deleteQuestionnaire(long id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "id=?", new String[]{Long.toString(id)});
