@@ -48,6 +48,7 @@ import com.example.covider.model.building.Building;
 import com.example.covider.model.course.Course;
 import com.example.covider.model.enrollment.Enrollment;
 import com.example.covider.model.notification.Notification;
+import com.example.covider.model.questionnaire.Questionnaire;
 import com.example.covider.model.report.BuildingRiskReport;
 import com.example.covider.model.report.CourseRiskReport;
 import com.example.covider.model.report.UserDailyReport;
@@ -976,6 +977,14 @@ public class MainActivity extends AppCompatActivity {
         BuildingRiskReport brp = rm.getReportForBuilding(buildingId);
         // modify risk level color
         double riskIndex = brp.getRiskIndex();
+        QuestionnaireManager qm = ManagerFactory.getQuestionnaireManagerInstance();
+        ArrayList<Questionnaire> questionnaires = qm.getQuestionnaireByBuildingId(buildingId);
+        for(Questionnaire q: questionnaires){
+            if(!q.isMasks() || !q.isDistance() || !q.isSanitizer() || q.isSymptoms()){
+                riskIndex += 0.2;
+                break;
+            }
+        }
         if (riskIndex <= 0.25) {
             ((ImageView)(popupWindow.getContentView()
                     .findViewById(R.id.pop_up_building_risk_circle)))

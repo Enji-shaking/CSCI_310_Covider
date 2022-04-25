@@ -39,6 +39,7 @@ public class BuildingRiskReport {
         if(getNumVisitors() == 0){
             return 0;
         }
+
         return (1.0 * numPositiveVisitors + 0.3 * numHighRiskVisitors) / getNumVisitors();
     };
 
