@@ -25,8 +25,8 @@ public class BuildingManagerTest {
     public void setup(){
         Context instrumentationContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Config.Change_Test();
-        instrumentationContext.deleteDatabase(Config.DATABASE_NAME);
-//        ManagerFactory.initialize(instrumentationContext);
+//        instrumentationContext.deleteDatabase(Config.DATABASE_NAME);
+        ManagerFactory.initialize(instrumentationContext);
         buildingManager = ManagerFactory.getBuildingManagerInstance();
     }
 
