@@ -1123,7 +1123,7 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(getApplicationContext(),"Fill out all forms please",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Please answer all questions.",Toast.LENGTH_LONG).show();
                             }
                         })
                         .show();

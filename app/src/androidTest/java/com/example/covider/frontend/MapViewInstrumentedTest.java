@@ -2,7 +2,6 @@ package com.example.covider.frontend;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 
@@ -31,14 +30,10 @@ import com.example.covider.model.user.User;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.ArrayList;
 
 @RunWith(AndroidJUnit4.class)
 public class MapViewInstrumentedTest {
@@ -129,6 +124,85 @@ public class MapViewInstrumentedTest {
             onView(withId(R.id.usc_map_mrc)).perform(Helpers.clickOnNotDisplayed);
             temp = onView(withId(R.id.pop_up_building_risk_circle));
             onView(withId(R.id.check_in_button)).perform(click());
+            {
+                // test questionnaire
+                ViewInteraction questionnaire = onView(withText(R.string.check_in_questionnaire_title));
+                questionnaire.check(matches(isDisplayed()));
+                Helpers.checkIsVisible(R.id.submit_questionnaire);
+                Helpers.checkIsVisible(R.id.questionnaire_return_button);
+                {
+                    // empty questionnaire
+                    onView(withId(R.id.submit_questionnaire)).perform(click());
+                    Helpers.checkReportDialogWithText("Error", "Please answer all questions.", "Cancel");
+                }
+                {
+                    // partially filled questionnaire
+                    onView(withId(R.id.questionnaire_symptoms_no)).perform(click());
+                    onView(withId(R.id.submit_questionnaire)).perform(click());
+                    Helpers.checkReportDialogWithText("Error", "Please answer all questions.", "Cancel");
+                }
+                {
+                    // test questionnaire return button
+                    onView(withId(R.id.questionnaire_return_button)).perform(click());
+                    questionnaire.check(doesNotExist());
+                    temp.check(matches(isDisplayed()));
+                }
+                onView(withId(R.id.check_in_button)).perform(click());
+                questionnaire = onView(withText(R.string.check_in_questionnaire_title));
+                questionnaire.check(matches(isDisplayed()));
+                {
+                    // test selection
+                    // check mask buttons
+                    onView(withId(R.id.questionnaire_mask_yes)).perform(click());
+                    onView(withId(R.id.questionnaire_mask_yes)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_mask_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_mask_no)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_mask_no)).check(matches(Helpers.withTextColor(R.color.black)));
+                    onView(withId(R.id.questionnaire_mask_no)).perform(click());
+                    onView(withId(R.id.questionnaire_mask_no)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_mask_no)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_mask_yes)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_mask_yes)).check(matches(Helpers.withTextColor(R.color.black)));
+                    // check sanitizer buttons
+                    onView(withId(R.id.questionnaire_sanitizer_yes)).perform(click());
+                    onView(withId(R.id.questionnaire_sanitizer_yes)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_sanitizer_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_sanitizer_no)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_sanitizer_no)).check(matches(Helpers.withTextColor(R.color.black)));
+                    onView(withId(R.id.questionnaire_sanitizer_no)).perform(click());
+                    onView(withId(R.id.questionnaire_sanitizer_no)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_sanitizer_no)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_sanitizer_yes)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_sanitizer_yes)).check(matches(Helpers.withTextColor(R.color.black)));
+                    // check distance buttons
+                    onView(withId(R.id.questionnaire_distance_yes)).perform(click());
+                    onView(withId(R.id.questionnaire_distance_yes)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_distance_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_distance_no)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_distance_no)).check(matches(Helpers.withTextColor(R.color.black)));
+                    onView(withId(R.id.questionnaire_distance_no)).perform(click());
+                    onView(withId(R.id.questionnaire_distance_no)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_distance_no)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_distance_yes)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_distance_yes)).check(matches(Helpers.withTextColor(R.color.black)));
+                    // check symptoms buttons
+                    onView(withId(R.id.questionnaire_symptoms_yes)).perform(click());
+                    onView(withId(R.id.questionnaire_symptoms_yes)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_symptoms_yes)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_symptoms_no)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_symptoms_no)).check(matches(Helpers.withTextColor(R.color.black)));
+                    onView(withId(R.id.questionnaire_symptoms_no)).perform(click());
+                    onView(withId(R.id.questionnaire_symptoms_no)).check(matches(Helpers.withTintColorList(R.color.cardinal)));
+                    onView(withId(R.id.questionnaire_symptoms_no)).check(matches(Helpers.withTextColor(R.color.gold)));
+                    onView(withId(R.id.questionnaire_symptoms_yes)).check(matches(Helpers.withTintColorList(R.color.switch_off_track)));
+                    onView(withId(R.id.questionnaire_symptoms_yes)).check(matches(Helpers.withTextColor(R.color.black)));
+                }
+                {
+                    onView(withId(R.id.submit_questionnaire)).perform(click());
+                    Helpers.checkReportDialogWithText("Success!", "Thanks for your submission!", "Close");
+                    questionnaire.check(doesNotExist());
+                }
+            }
             temp.check(doesNotExist());
             // check check-in data
             onView(withId(R.id.usc_map_mrc)).perform(Helpers.clickOnNotDisplayed);
@@ -140,6 +214,7 @@ public class MapViewInstrumentedTest {
             onView(withId(R.id.pop_up_high_risk_visitors)).check(matches(withText("High Risk Visitors: 0")));
             onView(withId(R.id.pop_up_positive_visitors)).check(matches(withText("Positive Visitors: 1")));
             onView(withId(R.id.check_in_button)).perform(click());
+            submitAnsweredQuestionnaire();
             // check in again should not change anything
             onView(withId(R.id.usc_map_mrc)).perform(Helpers.clickOnNotDisplayed);
             temp = onView(withId(R.id.pop_up_building_risk_circle));
@@ -305,6 +380,7 @@ public class MapViewInstrumentedTest {
             onView(withId(R.id.usc_map_jff)).perform(Helpers.clickOnNotDisplayed);
             temp = onView(withId(R.id.pop_up_building_risk_circle));
             onView(withId(R.id.check_in_button)).perform(click());
+            submitAnsweredQuestionnaire();
             temp.check(doesNotExist());
             // check frequent visit
             Helpers.checkIsVisible(R.id.frequently_visited_title);
@@ -322,6 +398,7 @@ public class MapViewInstrumentedTest {
             onView(withId(R.id.pop_up_high_risk_visitors)).check(matches(withText("High Risk Visitors: 0")));
             onView(withId(R.id.pop_up_positive_visitors)).check(matches(withText("Positive Visitors: 1")));
             onView(withId(R.id.check_in_button)).perform(click());
+            submitAnsweredQuestionnaire();
             // check in again should not change anything
             onView(withId(R.id.usc_map_jff)).perform(Helpers.clickOnNotDisplayed);
             temp = onView(withId(R.id.pop_up_building_risk_circle));
@@ -379,6 +456,15 @@ public class MapViewInstrumentedTest {
                 description.appendText("with tint color: ");
             }
         };
+    }
+
+    private static void submitAnsweredQuestionnaire() {
+        onView(withId(R.id.questionnaire_mask_yes)).perform(click());
+        onView(withId(R.id.questionnaire_sanitizer_yes)).perform(click());
+        onView(withId(R.id.questionnaire_distance_yes)).perform(click());
+        onView(withId(R.id.questionnaire_symptoms_no)).perform(click());
+        onView(withId(R.id.submit_questionnaire)).perform(click());
+        onView(withText("Close")).perform(click());
     }
 
 }

@@ -5,7 +5,11 @@ import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.isDialog;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -20,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.core.internal.deps.guava.base.Predicate;
 import androidx.test.espresso.core.internal.deps.guava.collect.Iterables;
 import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
@@ -52,6 +57,35 @@ public class Helpers {
             view.performClick();
         }
     };
+
+    protected static void checkReportDialogWithText(String title, String message, String option) {
+        ViewInteraction dialog = onView(withText(title));
+        dialog
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()));
+        onView(withText(message))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()));
+        onView(withText(option))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()));
+        onView(withText(option)).perform(click());
+        onView(isRoot()).inRoot(isDialog()).noActivity();
+    }
+
+    protected static Matcher<View> withTintColorList(final int color) {
+        Checks.checkNotNull(color);
+        return new BoundedMatcher<View, Button>(Button.class) {
+            @Override
+            public boolean matchesSafely(Button b) {
+                return b.getBackgroundTintList().equals(ColorStateList.valueOf(b.getContext().getResources().getColor(color)));
+            }
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with tint background color: ");
+            }
+        };
+    }
 
     protected static void SetLogInUsername(String username) {
         onView(withId(R.id.log_in_username))
