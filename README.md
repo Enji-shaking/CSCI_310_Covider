@@ -1,5 +1,15 @@
 # CSCI_310_Covider
 
+## 2.5 changelog (improvement since 2.4)
+1. Recently visited buildings course buildings are displayed in color different from other buildings.
+2. The building details page show the building’s entry requirements,
+3. On the Check-in page, the user can choose to enter a questionnaire asking about the building’s covid measures, such as masks, hand sanitizer, etc.
+4. A negative response to the above-mentioned questionnaire (3) should result in an increase in the building’s risk index.
+
+
+
+
+
 ## Icon Library
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
 - [Font Awesome](https://fontawesome.com/)
