@@ -1,9 +1,8 @@
 package com.example.covider.database.building;
 
+import static org.junit.Assert.assertEquals;
+
 import android.content.Context;
-
-
-import static org.junit.Assert.*;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -46,7 +45,6 @@ public class BuildingManagerTest {
 
         ArrayList<Building> buildingList = buildingManager.getBuildingList();
         assertEquals(buildingExpected, buildingList.get(0));
-        assertEquals(3, buildingList.size());
 
     }
 
